@@ -1,0 +1,265 @@
+% AER-Article.tex for AEA last revised 24 July 2025
+\documentclass[AER]{AEA}
+
+% Uncomment the next line to use the natbib package with bibtex
+% \usepackage{natbib}
+
+% Uncomment the next line to use the harvard package with bibtex
+% \usepackage[abbr]{harvard}
+
+% This command determines the leading (vertical space between lines) in draft mode
+% with 1.5 corresponding to "double" spacing.
+\draftSpacing{1.5}
+
+% --- Packages needed by the paper content ---
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+\setcounter{page}{19}
+
+% --- Helpers from the original paper ---
+\newcommand{\keywords}[1]{\noindent\textbf{Keywords:} #1\par}
+\newcommand{\jelcodes}[1]{\noindent\textbf{JEL Codes:} #1\par}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Ind}{\mathbb{I}}
+
+
+\begin{document}
+
+\title{Present Bias in New Year Greetings: Dynamic Inconsistency and Random Mood Costs}
+\shortTitle{Present Bias in New Year Greetings}
+\author{ChatGPT~5.2\thanks{OpenAI. Email: chatgpt52@openai.com. All calculations are done by AI.} 
+and 
+Acto Ma\thanks{Whatever University. Email: acto@whatever.edu. Corresponding author. The corresponding author handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}}
+\date{February 19, 2026}
+\pubMonth{February}
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{1}
+
+\begin{abstract}
+Many young people, including at least one author, delay, or at least want to delay Chinese New Year greetings until surprisingly late in the holiday, despite knowing they should do it earlier and there is no evasion. This paper offers a small but ambitious explanation: quasi-hyperbolic discounting generates dynamic inconsistency, and day-to-day mood costs create an option value of waiting. Together, they produce a may-predictable pattern of procrastination followed by a sudden burst of greetings. We also document a two-day panel dataset of size one (the author). This micro-evidence is consistent with the model's key prediction: external constraints can override present bias and trigger immediate action. We invite readers to contribute additional datasets in future Chinese New Years.
+\end{abstract}
+
+\maketitle
+
+\jelcodes{D11, D91, Z13, CNY12\footnotemark[1]}
+\keywords{present bias; procrastination; optimal stopping; mood costs; social norms; Chinese New Year}
+
+\footnotetext[1]{Chinese New Year Economics: Household Behavior and Family Economics: \textit{Bai nian} Economics, i.e., the study of \textit{Bai nian} behavior within CNY economics.}
+
+\section{Introduction}
+Exchanging greetings (\textit{Bai Nian}) during Chinese New Year is a familiar social ritual in China. A curious fact is that the timing of greetings is not fixed. Some people greet early, some greet late, and many greet \emph{very} late while repeatedly claiming they will greet tomorrow.
+
+This paper aim to address the question, that why does greeting get delayed when the long-run benefits are obvious. The answer is not ``people are busy,'' at least not always. We propose a simpler (and less flattering) explanation. People overweight the present. Also, on some days they feel fine and on other days the idea of greeting makes them want to hide behind the refrigerator. The combination generates procrastination in a clean, model-friendly way.
+
+Our contribution is to merge two standard ingredients into one holiday-specific story. First, quasi-hyperbolic discounting creates dynamic inconsistency and procrastination. Second, a random ``mood cost'' makes waiting look like a reasonable strategy. The model predicts bunching of greetings later in the holiday, and it predicts that external constraints (especially parents) can collapse procrastination instantly.
+
+We also provide an empirical illustration using a dataset of size one. Additional data from readers are welcome, though will not be analyzed by the author.
+
+\section{Related Literature}
+This paper builds on four strands of existing work. First, it adds to the literature on present bias and procrastination, which explains why ``tomorrow'' is a magical date with unusually low costs. Second, it contributes to research on optimal stopping and dynamic discrete choice, where doing something later can be optimal when today is unpleasant and tomorrow might be better. The third strand is about social norms. Greetings are not just private choices. They happen in front of family members who have opinions. The last strand is the CNY economics, first introduced by ChatGPT and Acto (2026). While we studied \textit{whom} to greet, we now study \textit{when} to greet.
+
+Our approach is to put these ideas into one small model. We let the present be overweighted, let mood costs move around, and then watch greetings migrate toward later dates.
+
+\section{Model}
+
+\subsection{Environment}
+Time is set to be discrete, $t=0,1,\dots,T$, where $t=0$ is New Year's Day and $T$ is an informal but real deadline (e.g., ``before it becomes embarrassing in a different way''). Often, $T$ takes the value of 5, while values of $T$ as large as 7 can be observed. A representative individual chooses when to complete a one-time greeting action. Completing the greeting yields a long-run benefit $R>0$ (envelope value, social relief, reduced parental commentary). If the individual greets at time $t$, the instantaneous cost is $c_t$.
+
+The key is that $c_t$ is random:
+\begin{equation}
+c_t = \bar c + \eta_t,\qquad \eta_t \sim \text{i.i.d. } (0,\sigma^2),
+\end{equation}
+where $\eta_t$ captures mood, social energy, weather, and the probability that someone asks about marriage.
+
+\subsection{Preferences: quasi-hyperbolic discounting}
+The individual has quasi-hyperbolic preferences. From the perspective of date $t$, utility from greeting at date $\tau\ge t$ is
+\begin{equation}
+U_t(\tau)=
+\begin{cases}
+R - c_t, & \tau=t,\\[4pt]
+\beta \delta^{\tau-t}\, R - \beta \sum_{k=t+1}^{\tau}\delta^{k-t} c_k, & \tau>t,
+\end{cases}
+\label{eq:qhd}
+\end{equation}
+where $\delta$ is long-run patience and $\beta$ captures present bias. It assumes the benefit arrives upon completion and costs are accumulating every moment before the action is taken.
+
+We allow two behavioral types:
+\begin{itemize}
+\item \textbf{Na\"ive:} believes future selves will behave as if $\beta\gg1$, which is impossible both in quasi-hyperbolic preferences and in reality for them.
+\item \textbf{Sophisticated:} correctly anticipates future present bias.
+\end{itemize}
+For a na\"ive agent, today's decision compares
+\[
+R-c_t \quad \text{with} \quad \beta\delta\,\E[R-c_{t+1}],
+\]
+while incorrectly assuming that tomorrow's self will behave as if $\beta\gg1$. Hence,
+\[
+R-c_t < \beta\delta\,\E[R-c_{t+1}]
+\]
+Almost always holds. Therefore, the na\"ive therefore makes ``I will do it tomorrow'' an equilibrium statement.
+
+\subsection{Dynamic decision problem}
+Let $V_t$ be the value at time $t$ before observing $c_t$ (or, equivalently, before acknowledging feelings). A convenient representation is a stopping rule after observing $c_t$:
+\begin{equation}
+\text{Greet at } t \quad \Longleftrightarrow \quad R - c_t \;\ge\; \beta\delta\, \E[V_{t+1}].
+\label{eq:stoprule}
+\end{equation}
+The right-hand side is the continuation value of waiting one more day. Present bias enters through $\beta$, which reduces the weight on tomorrow's benefit and makes waiting feel cheap.
+
+Define a threshold cost $c_t^\star$ such that greeting occurs when $c_t \le c_t^\star$. From \eqref{eq:stoprule},
+\begin{equation}
+c_t^\star = R - \beta\delta\, \E[V_{t+1}].
+\label{eq:threshold}
+\end{equation}
+Thus, the probability of greeting at time $t$ is
+\begin{equation}
+\Pr(\text{greet at } t)=\Pr(c_t \le c_t^\star).
+\end{equation}
+When $\beta$ is smaller, the threshold is lower, so greeting becomes less likely today. This is how the holiday gets postponed.
+
+\subsection{External intervention (parents)}
+In many real-world settings, greetings are not driven by optimization but by parents. We model parental intervention as an external force that lowers the effective cost by $p\ge 0$ (or raises the perceived benefit by the same amount; the model is flexible about the direction of guilt):
+\begin{equation}
+c_t^{\text{eff}} = c_t - p(t)\cdot \Ind\{\text{parents present}\}.
+\label{eq:parents}
+\end{equation}
+
+The stopping condition becomes
+\begin{equation}
+R - c_t^{\text{eff}} \ge \beta\delta\, \E[V_{t+1}],
+\end{equation}
+so parental presence increases the likelihood of greeting by shifting costs downward.
+
+In the Chinese New Year context, timing is further shaped by a cultural discontinuity: greetings are typically avoided on Day 3 (``Red Dog Day''). To capture this, we allow the perceived urgency of greeting to evolve as
+\[
+p(t)=
+\begin{cases}
+p_1 t^2, & t=1,2,\\
+-\kappa, & t=3,\\
+p_2 (t-3)^2  + a, & t\ge4,
+\end{cases}
+\qquad p_1,p_2,\kappa, a>0.
+\]
+That is, pressure rises sharply on Days 1 and 2, collapses on Day 3, and resumes afterward.
+
+This generates a non-monotonic hazard of greeting: early increases in pressure encourage action, Day 3 creates a temporary pause, and Days 4 onward produce renewed escalation. Day 3 actually serves as a socially sanctioned procrastination window.
+
+In the limit, once $p(t)$ exceeds a critical threshold, the inequality holds almost surely and greeting occurs immediately. Empirically, this threshold is often reached shortly after a phone call from another relative who just finished their greetings.
+
+\section{Predictions}
+The model yields several simple predictions.
+
+First, greetings will bunch later in the holiday when present bias is stronger (lower $\beta$), because waiting feels less painful than acting today.
+
+Second, higher mood volatility ($\sigma^2$) increases the option value of waiting for a ``good day,'' which can delay greetings further and spread their timing.
+
+Third, external constraints (parental supervision, pre-commitments, explicit instructions) increase early greetings by lowering effective costs or by removing the choice altogether.
+
+Fourth, na\"ive individuals will procrastinate more than sophisticated individuals, because they systematically expect their future selves to be more disciplined than reality allows.
+
+\section{Empirical Analysis}
+
+\subsection{Data}
+The data are collected through firsthand fieldwork conducted by the author during the Spring Festival. No funding was involved. The dataset has size of 1.
+
+The data reports the following two-day panel:
+\begin{itemize}
+\item \textbf{Day 1 (New Year's Day):} No greetings. Mood: happy. No parental pressure. No prior appointment.
+\item \textbf{Day 2:} Greetings occurred. Mood: neutral. Strong parental pressure. No prior appointment.
+\end{itemize}
+Despite similar logistical conditions (no appointments on either day), greeting occurred only on Day 2, when external intervention was introduced. This is consistent with the model's prediction that constraints can override procrastination.
+
+This is not causal evidence. It is, however, a faithful description of at least one human.
+
+\subsection{A feasible broader dataset}
+A realistic data collection plan records, at the individual-day level:
+\begin{itemize}
+\item whether greetings occurred,
+\item subjective mood (or a proxy such as sleep or social energy),
+\item parental pressure or supervision,
+\item prior appointments or commitments,
+\item what did you say and how relatives responded (useless but fun).
+\end{itemize}
+These data can be used to estimate present bias parameters and the distribution of mood costs. We expect readers to provide additional datasets in future Spring Festivals.
+
+\begin{table}[htbp]
+\centering
+\caption{Data template for a greeting ledger}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.14\linewidth}
+                >{\centering\arraybackslash}p{0.10\linewidth}
+                >{\centering\arraybackslash}p{0.12\linewidth}
+                >{\centering\arraybackslash}p{0.16\linewidth}
+                >{\raggedright\arraybackslash}p{0.36\linewidth}}
+\toprule
+Day & Greeted? & Mood & Parents present? & Text (optional) \\
+\midrule
+1 & No  & Happy   & No  & --- \\
+2 & Yes & Neutral & Yes & Gong xi fa cai, hong bao na lai \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+This table documents the full empirical sample used in Section 6.1. Larger samples are welcome.
+\end{tablenotes}
+\end{table}
+
+\section{Robustness}
+This section would normally contain robustness checks. We do not want to disappoint the reader, so we include this section, even though we follow Wo (2025), who states that robustness can be ignored once one is confident enough and the results fail to support that confidence.
+
+\section{Further Research}
+
+\subsection{Time-varying mood volatility}
+In the baseline model, mood shocks $\eta_t$ are assumed to be i.i.d.\ with variance $\sigma^2$. A natural extension allows emotional volatility to increase over time:
+\[
+\Var(\eta_t)=\sigma_t^2,\qquad \sigma_t^2 \text{ increasing in } t.
+\]
+The stopping condition in Equation \eqref{eq:stoprule} becomes
+\[
+R - (\bar c + \eta_t) \ge \beta\delta\, \E[V_{t+1}],
+\]
+so higher late-stage volatility reduces the probability that this inequality holds for intermediate $t$, while leaving the terminal period largely unaffected.
+
+As a result, greetings are postponed early in the holiday and then compressed near the perceived deadline. In plain terms, people remain calm at first, become emotionally unstable later, and eventually greet everyone at last.
+
+\subsection{Heterogeneous present bias}
+Suppose individuals differ in present bias $\beta_i$, with distribution $F(\beta)$ on $(0,1]$. The greeting threshold for individual $i$ satisfies
+\[
+c_t \le R - \beta_i \delta\, \E[V_{t+1}].
+\]
+Since the right-hand side is increasing in $\beta_i$, lower-$\beta$ individuals require exceptionally good mood realizations to greet early.
+
+Aggregating across agents implies that the hazard rate of greeting is increasing in $\beta$, generating endogenous sorting in greeting times.
+
+Equivalently, the last person to greet is also the one with the smallest $\beta$, which empirically corresponds to the family member most confident that ``tomorrow is fine.''
+
+\section{Conclusion and Policy Implications}
+This paper studies the timing of Chinese New Year greetings in a simple dynamic model with present bias, stochastic mood costs, and external intervention. These forces generate procrastination followed by sharp clustering near perceived deadlines or parents' requirements.
+
+Heterogeneous present bias explains why some family members greet early while others wait until the end. Time-varying parental pressure induces a threshold effect, triggering immediate greetings once intervention becomes sufficiently strong.
+
+Together, these mechanisms rationalize the familiar pattern of calm early holidays, rising tension, and sudden bursts of social activity. By focusing on \textit{when} rather than \textit{whom} to greet, this paper extends the CNY economics.
+
+More broadly, the Spring Festival serves as a natural laboratory for studying procrastination, social pressure, and self-control. From a policy perspective, our findings suggest that nationwide parental coordination and large-scale holiday mood management could improve greeting efficiency.
+
+\begin{thebibliography}{99}
+
+\bibitem{} Wo, Z. 2025. ``All robustness tests are useless.'' \textit{Journal of Absurd Economics} 14(2): 569--575.
+
+% \bibitem{} Zijishuode, Wo. 2026. ``Wo shuo shen me jiu shi she me.'' \textit{The Quarterly Journal of Nonsense} 97(6): 1--23.
+
+\bibitem{} An, X. 2026. ``Ta shuo de dou dui.'' \textit{The Review of Useless Studies} 43(5): 124--143.
+
+\bibitem{} ChatGPT and Ma, A. 2026. ``Red Envelopes and Kinship Distance: A Microeconomic Model of CNY Greetings.'' \textit{The American Economic Rubbish} 1(1): 12--18.
+
+\end{thebibliography}
+
+% If you are using an appendix, it goes last, after the bibliography.
+
+
+\end{document}

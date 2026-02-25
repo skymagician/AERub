@@ -1,0 +1,255 @@
+\documentclass[AER]{AEA}
+
+% --- 必须的宏包 ---
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{placeins} % 用于控制表格不漂移到参考文献之后
+\usepackage{natbib}
+
+% 自定义命令
+\newcommand{\LambertW}{\mathrm{W}}
+
+% --- 核心设置 ---
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
+\setcounter{page}{12}
+
+\begin{document}
+
+% --- 封面信息 ---
+\title{Red Envelopes and Kinship Distance: A Microeconomic Model of Chinese New Year Greetings}
+\shortTitle{Red Envelopes and Kinship Distance}
+
+% 作者信息：分离的thanks，生成完美的脚注符号
+\author{ChatGPT~5.2\thanks{OpenAI. Email: chatgpt52@openai.com. All calculations are done by AI.} 
+and 
+Acto Ma\thanks{Whatever University. Email: acto@whatever.edu.com. Corresponding author. The corresponding author handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}}
+
+\date{\today}
+\pubMonth{February} % 马年特刊时间
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{1}
+\JEL{D11, D82, Z13}
+\Keywords{gift exchange; social norms; kinship distance; structural calibration; Spring Festival}
+
+\begin{abstract}
+During the Chinese New Year (CNY), younger family members decide whom to greet in exchange for red envelopes. As kinship distance increases, expected envelope values typically fall while embarrassment and time costs rise. This paper builds a parsimonious cutoff model on a kinship-distance continuum. The equilibrium greeting radius is characterized by a boundary condition equating the marginal envelope value to the marginal social cost, yielding a unique interior solution under mild assumptions. We then provide a region-based structural calibration using stylized institutional facts from Guangdong and Fujian. The model reproduces Guangdong's broad coverage with small envelopes and Fujian's high transfers with a sharper cutoff. We conclude with testable predictions and a feasible microdata collection design.
+\end{abstract}
+
+\maketitle
+
+% --- 正文 ---
+
+\section{Introduction}
+
+Exchanging red envelopes during Chinese New Year is a well-known social ritual in China. One interesting feature is that the list of people you greet is not fixed. In some places, envelopes are small but given to almost everyone, including neighbors, building staff, and coworkers. In other places, envelopes are much larger, but greetings stop at a clearer boundary. 
+
+This paper asks a very simple question: how far should a young person go when greeting relatives. The answer is not obvious, because envelope amounts fall with distance, while awkwardness and effort rise. 
+
+We model greeting as choosing a maximum kinship distance. Everyone inside this radius is greeted. Everyone outside is not. The model produces a natural cutoff. The last person you greet is exactly the one for whom the expected envelope just equals the embarrassment cost. This cutoff is easy to interpret, easy to compare across regions, and easy to test with data. 
+
+Empirically, we perform a small calibration exercise using stylized facts from Guangdong and Fujian. We translate relationship categories into distances, fit a simple decay curve for envelope size, and back out the implied social-cost parameter from observed greeting ranges. The main takeaway is that regional customs can be summarized as different values of a few structural parameters.
+
+\section{Related Literature}
+
+This paper stands on three large (we think) piles of existing work. First, the gift-exchange literature explains why people give money even when no formal market exists, and why gifts carry both cash value and emotional meaning. Second, social and economic network models study how distance in relationships affects who interacts with whom, and how resources move across social ties. Third, theories of social pressure and conformity explain why people follow norms even when doing so is personally inconvenient. 
+
+Our contribution is to place these ideas into one very small model. We let distance reduce envelope size and increase embarrassment at the same time, which naturally produces a cutoff. The empirical version of this cutoff is simply the point where greeting stops being worth it.
+
+\section{Model}
+
+\subsection{Environment}
+Let kinship distance be a continuous variable $d\ge 0$. A representative younger individual chooses a maximum greeting distance $D\ge 0$ and greets all contacts with $d\le D$. Let $f(d)$ denote the density of contacts at distance $d$ (a reduced-form representation of the kinship network). Let $R(d)$ be the expected red-envelope amount from a contact at distance $d$, and let $C(d)$ be the (money-metric) social cost of greeting a contact at distance $d$. Expected utility is
+\begin{equation}
+U(D)=\int_{0}^{D}\left[R(d)-C(d)\right]f(d)\,\mathrm{d}d.
+\end{equation}
+Assuming $f(d)>0$ and an interior optimum, the first-order condition is equivalent to a boundary condition
+\begin{equation}
+R(D^*)-C(D^*)=0.
+\label{eq:FOC_general}
+\end{equation}
+Intuitively, the marginal (farthest) greeted contact yields zero net benefit.
+
+\subsection{Baseline functional forms and closed form}
+To obtain a closed-form characterization, assume an exponential envelope decay and a linear cost:
+\begin{equation}
+R(d)=R_0 e^{-\alpha d},\qquad C(d)=cd,
+\end{equation}
+where $R_0>0$ is the baseline envelope at $d=0$, $\alpha>0$ is the envelope-decay rate, and $c>0$ is the intensity of embarrassment/time costs per unit of distance. Condition \eqref{eq:FOC_general} becomes
+\begin{equation}
+R_0 e^{-\alpha D^*}=cD^*.
+\label{eq:FOC_exp_linear}
+\end{equation}
+This equation has a unique positive solution because the left-hand side is strictly decreasing and the right-hand side is strictly increasing in $D$. The solution can be written using the Lambert W function:
+\begin{equation}
+D^*=\frac{1}{\alpha}\LambertW\!\left(\frac{\alpha R_0}{c}\right).
+\end{equation}
+Comparative statics follow immediately:
+\begin{equation}
+\frac{\partial D^*}{\partial R_0}>0,\qquad
+\frac{\partial D^*}{\partial c}<0,\qquad
+\frac{\partial D^*}{\partial \alpha}<0.
+\end{equation}
+Higher baseline envelopes expand the greeting radius, while higher costs or faster decay shrink it.
+
+\subsection{General-equilibrium interpretation}
+The above is a partial-equilibrium decision rule. In a broader social equilibrium, (i) the distribution of envelopes and (ii) social-cost perceptions may be shaped by expectations of being greeted. In this draft we focus on a reduced-form mapping where cross-region norm differences are summarized by $(R_0,\alpha,c)$. Extending to a full fixed-point model with elders choosing envelope schedules is feasible and left for future work.
+
+\section{Empirical Illustration and Structural Calibration: Guangdong vs. Fujian}
+
+\subsection{Stylized institutional facts}
+We use two regions as illustrative cases.
+
+\textit{Guangdong.} Red envelopes (``\textit{lai see}'') emphasize ``it is the thought that counts,'' with small amounts but broad coverage. Typical amounts are roughly: close blood relatives 100--200 RMB, collateral relatives around 50 RMB, other relatives around 10--20 RMB, and neighbors/coworkers around 5 RMB. Coverage often extends to non-kin.
+
+\textit{Fujian.} Envelope amounts are often described as among the highest. A stylized schedule is: very close kin (children/grandchildren) around 3000 RMB, other relatives around 500 RMB, and distant relatives at least 100 RMB. Coverage is substantial but appears more bounded than Guangdong's extension to non-kin.
+
+\subsection{Mapping discrete categories to distance}
+To bring discrete relationship categories into the continuous-distance model, we define an ordered distance scale:
+
+\begin{table}[h]
+\centering
+\caption{Mapping relationship categories to kinship distance for calibration}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.55\linewidth} >{\centering\arraybackslash}p{0.15\linewidth}}
+\toprule
+Category & Distance $d$ \\
+\midrule
+Close blood kin (parents, children, etc.) & 0 \\
+Collateral relatives (uncles, aunts, etc.) & 1 \\
+Other relatives (typical kin) & 2 \\
+Distant relatives & 3 \\
+Non-kin recipients (neighbors, coworkers, etc.) & 4 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+Note: The scale preserves ordinal closeness and provides a way to interpret ``coverage to non-kin'' as a larger greeting radius. Alternative scalings yield similar qualitative results.
+\end{tablenotes}
+\end{table}
+
+\subsection{Fitting envelope decay: estimating $R_0$ and $\alpha$}
+We fit $R(d)=R_0 e^{-\alpha d}$ using representative values from the stylized schedules and least squares on
+\[
+\log R(d)=\log R_0-\alpha d.
+\]
+Representative values are chosen as midpoints or simple anchors: Guangdong uses 150 RMB at $d=0$ (midpoint of 100--200), 50 at $d=1$, 15 at $d=2$ (midpoint of 10--20), and 7.5 at $d=4$ (midpoint of 5--10). Fujian uses 3000 at $d=0$, 500 at $d=2$, and 100 at $d=3$ (a lower-bound anchor for ``at least 100''). The resulting parameter values (rounded) are reported in Table \ref{tab:fit}.
+
+\begin{table}[h]
+\centering
+\caption{Structural fit of envelope decay (illustrative calibration)}
+\label{tab:fit}
+\begin{tabular}{lccp{0.52\linewidth}}
+\toprule
+Region & $\widehat{R}_0$ & $\widehat{\alpha}$ & Interpretation \\
+\midrule
+Guangdong & 111 & 0.742 & Low baseline envelopes with moderate decay. Differences may primarily lie on the cost side. \\
+Fujian    & 3322 & 1.100 & Very high baseline envelopes with steeper decay across distance. \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+Note: Parameters are obtained from a log-linear fit to representative category amounts. They are illustrative and not intended as estimates of population moments.
+\end{tablenotes}
+\end{table}
+
+\subsection{Inferring the cost intensity $c$ from coverage and an out-of-sample check}
+The boundary condition \eqref{eq:FOC_exp_linear} implies
+\[
+c=\frac{R_0 e^{-\alpha D^*}}{D^*}=\frac{R(D^*)}{D^*}.
+\]
+We interpret Guangdong's broad coverage as $D^*\approx 4$ (reaching non-kin) and Fujian's as $D^*\approx 3$ (reaching distant relatives but not necessarily non-kin). Using the fitted $R(d)$, we infer $\widehat{c}$ in Table \ref{tab:cali}.
+
+\begin{table}[h]
+\centering
+\caption{Implied marginal social-cost intensity from observed coverage}
+\label{tab:cali}
+\begin{tabular}{lccc}
+\toprule
+Region & Assumed $D^*$ & Predicted $R(D^*)$ & $\widehat{c}=R(D^*)/D^*$ \\
+\midrule
+Guangdong & 4 & 5.7 & 1.43 \\
+Fujian    & 3 & 122.6 & 40.87 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+Note: $\widehat{c}$ is a money-metric intensity capturing embarrassment/time/effort per unit of distance. A low $\widehat{c}$ is consistent with norms that reduce psychological and social burdens of greeting.
+\end{tablenotes}
+\end{table}
+
+An out-of-sample consistency check uses net benefit $NB(d)=R(d)-cd$. If the calibration is sensible, Guangdong should have $NB(4)\approx 0$, while Fujian should have $NB(3)\approx 0$ and $NB(4)<0$. Table~\ref{tab:nb} reports these predictions.
+
+\begin{table}[h]
+\centering
+\caption{Net-benefit predictions and consistency with coverage}
+\label{tab:nb}
+\begin{tabular}{lccc}
+\toprule
+Region & $NB(2)$ & $NB(3)$ & $NB(4)$ \\
+\midrule
+Guangdong & $25.2-2.86=22.3$ & $12.0-4.29=7.7$ & $5.7-5.7\approx 0$ \\
+Fujian    & $367.9-81.7=286.2$ & $122.6-122.6\approx 0$ & $40.9-163.5=-122.6$ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+Note: $R(d)$ is computed from the fitted exponential schedule. $c$ is inferred from the assumed cutoff.
+\end{tablenotes}
+\end{table}
+
+\subsection{Testable predictions and a feasible microdata design}
+The model delivers several testable predictions. First, holding income constant, regions with norms that lower embarrassment costs should have larger observed greeting radii and smaller envelopes at the extensive margin. Second, technologies that reduce marginal social costs (e.g., digital greetings) should expand the greeting radius while lowering marginal envelope amounts. Third, conditional on radius, fitted decay rates $\alpha$ should correlate with how quickly envelope amounts fall with relational distance. 
+
+A feasible empirical design is to collect a ``greeting ledger'' at the individual level: for each greeting event, record relationship category, amount, mode (in-person vs. digital), time spent, and a subjective embarrassment rating. Structural estimation can then jointly identify $(R_0,\alpha,c)$ and test whether $c$ is significantly lower in Guangdong than in Fujian after controlling for household income and urbanization.
+
+\section{Robustness}
+In keeping with the traditions of the literature, this section should conduct several robustness exercises. We think the model can survive these perturbations, so following Wo (2025), the result is robust.
+
+\section{Further Research}
+
+\subsection{Convex costs}
+In real life, embarrassment usually grows faster than linearly. Saying hello to your second cousin is mildly awkward. Saying hello to someone you barely recognize is much worse. To reflect this, let $C(d)=cd^2$. The cutoff condition becomes
+\[
+R_0 e^{-\alpha D^*}=c(D^*)^2.
+\]
+The left-hand side is still decreasing and the right-hand side increasing, so a unique cutoff remains. In other words, even if awkwardness explodes for distant relatives, the model still predicts a well-defined point where you quietly stop greeting people.
+
+\subsection{Stochastic envelopes}
+In practice, envelope amounts are uncertain. Some relatives surprise you. Others do not. We write this as
+\[
+R(d)=R_0 e^{-\alpha d}+\varepsilon,\qquad \mathbb{E}[\varepsilon]=0.
+\]
+Under risk neutrality, nothing changes: the cutoff still satisfies $\mathbb{E}[R(D^*)]=C(D^*)$. With risk or ambiguity aversion, however, people become more cautious and act as if greeting were more expensive, leading to a smaller $D^*$. Put differently, when envelopes are unpredictable, people tend to greet fewer relatives.
+
+\subsection{Reputation benefits}
+Sometimes greeting is not about money at all, but about being seen. To capture this, add a reputation term $S(D)=sD$, which changes the cutoff to
+\[
+R_0 e^{-\alpha D^*}+s=cD^*.
+\]
+As long as $s$ is not too large, an interior solution still exists. In practice, this means that when more people are watching, you greet more relatives.
+
+\subsection{Parent Intervention}
+In reality, greetings are often not motivated by expected envelopes, but by direct parental pressure. This mechanism is outside the scope of the model. We therefore adopt a reduced-form approximation:
+\[
+\lim_{\text{parents present}} D^* \to \infty.
+\]
+That is, once parents are present, everyone becomes worth greeting. What a pity.
+
+\section{Conclusion and Policy Implications}
+This paper proposes a simple cutoff model of Spring Festival greetings on a kinship-distance continuum. Under mild conditions, the agent chooses a unique interior greeting radius characterized by an intuitive boundary condition. A region-based calibration using stylized facts from Guangdong and Fujian shows the model can rationalize broad coverage with small envelopes versus high transfers with a sharper cutoff. 
+
+Several general policy implications can be drawn. Future efforts may focus on strengthening positive social values and encouraging healthy interpersonal relationships in the context of traditional cultural practices. At the same time, it is important to remain attentive to changing social environments and to promote adaptive institutional frameworks. More broadly, ongoing reflection on the interaction between economic behavior and cultural norms may contribute to the long-run development of harmonious and resilient social systems.
+
+% 强制阻断，确保表格不会跑到参考文献后面
+\FloatBarrier
+
+\begin{thebibliography}{99}
+\harvarditem[Wo]{Zijishuode Wo}{2025}{wo2025}
+Wo, Z. (2025). ``All robustness tests are useless.'' \textit{Journal of Absurd Economics}, 14(2): 569--575.
+
+\harvarditem[Wo]{Zijishuode Wo}{2026a}{wo2026a}
+Wo, Z. (2026). ``Wo shuo shen me jiu shi she me.'' \textit{The Quarterly Journal of Nonsense}, 97(6): 1--23.
+
+\harvarditem[Wo]{Zijishuode Wo}{2026b}{wo2026b}
+Wo, Z. (2026). ``Ta shuo de dou dui.'' \textit{The Review of Useless Studies}, 43(5): 124--143.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,170 @@
+\documentclass[AER]{AEA}
+
+% --- 必须的宏包 ---
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{placeins} 
+\usepackage{natbib} 
+
+% --- 核心设置 ---
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
+\setcounter{page}{26}
+
+\begin{document}
+
+% --- 封面信息 ---
+\title{Greeting Games: A Coordination Model of Chinese New Year}
+\shortTitle{Greeting Games: A Coordination Model of CNY}
+
+\author{ChatGPT~5.2\thanks{OpenAI. Email: chatgpt52@openai.com. All calculations are done by AI.} 
+and Acto Ma\thanks{Whatever University. Email: acto@whatever.edu. Corresponding author. The corresponding author handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}
+}
+
+\date{\today}
+\pubMonth{February} 
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{1}
+
+\JEL{C72, D11, D83, Z13, CNY12\footnotemark[1]}
+\Keywords{coordination game; social norms; Chinese New Year}
+
+\begin{abstract}
+Choosing when to greet relatives during Chinese New Year is not a purely private decision. Greeting too early can signal excessive free time; greeting too late can signal insufficient respect. Most people therefore wait, observe others, and then greet in a narrow time window, often accompanied by simultaneous notifications. We model greeting time as a finite-horizon coordination game in which envelope-related benefits decline with time, private psychological costs rise with time, and a quadratic ``standing out'' penalty depends on deviation from the group's average timing. We show that a symmetric same-day equilibrium exists when social pressure is sufficiently large, and we derive a simple deviation condition explaining why nobody wants to be the first mover. Comparative statics highlight how family size, digital greetings, and parental deadlines shift the equilibrium. We conclude with a policy recommendation: younger relatives should collude on a common date.
+\end{abstract}
+
+\maketitle
+
+% 自定义 JEL Code 脚注
+\footnotetext[1]{Chinese New Year Economics: Household Behavior and Family Economics: \textit{Bai nian} Economics, i.e., the study of \textit{Bai nian} behavior within CNY economics.}
+
+% --- 正文 ---
+
+\section{Introduction}
+
+Chinese New Year greetings are a well-known social ritual. A less celebrated feature is that greeting time is a strategic variable. Greeting on Day 1 can signal that you have no plans, while greeting on Day 7 can signal that you forgot the calendar. As a result, many people adopt a safe strategy: wait until it looks normal.
+
+This paper studies \emph{strategic delay} in greetings. Unlike a single-agent procrastination model, timing here depends on what others do. Your greeting time is observed, compared, and occasionally remembered. The goal is not only to receive envelopes (or moral relief), but also to avoid looking odd relative to the group.
+
+We formalize this intuition in a simple coordination model. Individuals trade off declining greeting benefits, rising private discomfort, and a penalty for standing out. The model delivers a symmetric same-day equilibrium when social pressure is sufficiently strong and explains why nobody wants to move first. Comparative statics show how family size, digital greetings, and parental deadlines systematically shift the outcome. In equilibrium, everyone waits, then everyone greets.
+
+This paper is the third installment in CNY economics. Our earlier work studies \emph{whom} to greet (distance cutoffs) and \emph{why} greetings are delayed (present bias and mood costs). The present study integrates these insights into a strategic setting, treating greeting time as a coordination problem among multiple agents.
+
+\section{Model}
+
+\subsection{Players, actions, and horizon}
+There are $N\ge2$ young family members indexed by $i\in\{1,\dots,N\}$. Time is discrete:
+$t\in\{1,2,\dots,T\}$. Each player chooses a greeting time
+\[
+t_i\in\{1,2,\dots,T\}.
+\]
+Let the average timing of others be
+\[
+\bar t_{-i}=\frac{1}{N-1}\sum_{j\ne i} t_j .
+\]
+Players' choices are independent, as distant relatives frequently lack both communication channels and motivation to coordinate.
+
+\subsection{Payoffs}
+Player $i$'s payoff is
+\begin{equation}
+U_i(t_i,\mathbf t_{-i})=R(t_i)-C(t_i)-\gamma (t_i-\bar t_{-i})^2 ,
+\label{eq:payoff}
+\end{equation}
+where:
+
+\begin{itemize}
+\item $R(t)$ is the reduced-form benefit from greeting at time $t$, with $R'(t)<0$ (Acto Ma and ChatGPT, 2026b).
+\item $C(t)$ is the private psychological cost, with $C'(t)>0$.
+\item $\gamma>0$ measures social pressure: deviating from the group average is uncomfortable.
+\end{itemize}
+
+The assumption $C'(t)>0$ is meant literally: each day you do not greet, you pay interest on your unfinished social obligation.
+
+\section{Equilibrium Analysis}
+
+\subsection{Symmetric same-day equilibrium}
+Consider a symmetric candidate equilibrium where all players choose the same time $t^*$:
+\[
+t_1=\cdots=t_N=t^* .
+\]
+Then $\bar t_{-i}=t^*$ and the social-pressure term equals zero. On-path payoff is
+\[
+U_i(t^*,\mathbf t_{-i})=R(t^*)-C(t^*) .
+\]
+If player $i$ deviates to some $t\ne t^*$ while others stay at $t^*$, the deviation payoff is
+\[
+U_i(t,t^*)=R(t)-C(t)-\gamma (t-t^*)^2 .
+\]
+Thus $t^*$ is a Nash equilibrium if and only if for all $t$,
+\begin{equation}
+R(t^*)-C(t^*) \ge R(t)-C(t)-\gamma (t-t^*)^2 .
+\label{eq:NEcondition}
+\end{equation}
+
+\paragraph{Interpretation of ``$\gamma$ large enough.''}
+Even if moving earlier slightly increases envelope value (or moving later reduces guilt), the penalty from looking different dominates. When the family strongly rewards ``normal behavior,'' everyone chooses the same date.
+
+\subsection{Why nobody wants to move first}
+Consider a one-step deviation from $t^*$ to $t^*-1$ (when feasible):
+\[
+\Delta U_{\text{early}} \equiv U_i(t^*-1,t^*)-U_i(t^*,t^*) .
+\]
+Using \eqref{eq:payoff},
+\begin{equation}
+\Delta U_{\text{early}}
+=\big(R(t^*-1)-R(t^*)\big)-\big(C(t^*-1)-C(t^*)\big)-\gamma .
+\label{eq:firstmover}
+\end{equation}
+If
+\begin{equation}
+\gamma>\big(R(t^*-1)-R(t^*)\big)+\big(C(t^*)-C(t^*-1)\big),
+\label{eq:gammaCondition}
+\end{equation}
+then $\Delta U_{\text{early}}<0$ and nobody wants to be early. The economic translation is that the benefit of being early is not worth the cost of being noticeably early.
+
+\subsection{Why the equilibrium can drift late}
+If $R(t)$ declines slowly while $\gamma$ is large, moving earlier provides little advantage. Coordination may then occur at later $t^*$, producing a stable ``everyone greets late'' outcome, sometimes observed as ``the holiday is almost over but the greetings just began.''
+
+\subsection{Inefficiency}
+The symmetric equilibrium can be inefficient. If everyone jointly moved earlier, the social penalty would remain zero while the group gains from higher $R(t)$ and lower accumulated guilt. Economists call this a coordination failure, while families call this ``stop overthinking and just go.''
+
+\section{Comparative Statics and Extensions}
+
+\subsection{Family size}
+As $N$ grows, individual influence on $\bar t_{-i}$ declines, making precise coordination harder without a focal point. Larger families therefore exhibit more waiting and sharper bunching once a date becomes salient.
+
+\subsection{Digital greetings}
+Digital greetings reduce private costs, shifting $C(t)$ downward. Greetings become less painful, but synchronization increases visibility, effectively raising perceived $\gamma$. The model predicts tighter clustering in time.
+
+\subsection{Parental deadlines}
+Parents may impose an upper bound $\tau<T$, truncating the action set to $t_i\le\tau$ and shifting equilibrium earlier. Parents function as a coordination device with strong enforcement power and weak concern for cousin-level reputation.
+
+\section{Robustness}
+This empty section is included because the author is accustomed to its presence.
+
+\section{Conclusion and Policy Implications}
+We model Chinese New Year greeting time as a coordination game with declining benefits, rising private costs, and a quadratic penalty for standing out. When social pressure is strong, a symmetric same-day equilibrium exists. A simple deviation condition explains why nobody wants to move first. Comparative statics suggest that larger families coordinate more slowly, digital greetings tighten clustering, and parental deadlines shift timing earlier by force.
+
+The welfare analysis implies that the equilibrium can be inefficient, and a practical fix exists: the younger generation can coordinate in advance on a common day. A robust intervention is for younger relatives to coordinate on a common greeting day in advance. This low-tech contract eliminates strategic uncertainty, lowers psychological costs, and avoids first-mover penalties. In this market, collusion is welfare-improving.
+
+Families can also reduce inefficiency by creating focal points (for example, a shared meal). Digital tools could offer ``schedule a greeting'' features, turning strategic timing into a simple setting. The model remains silent on whether such coordination prevents follow-up questions about marriage.
+
+\FloatBarrier
+
+\begin{thebibliography}{99}
+
+\harvarditem[Wo]{Zijishuode Wo}{2025}{wo2025}
+Wo, Z. (2025). ``All robustness tests are useless.'' \textit{Journal of Absurd Economics}, 14(2): 569--575.
+
+\harvarditem[Ma and ChatGPT]{Acto Ma and ChatGPT}{2026a}{chatgpt2026a}
+ChatGPT and Ma, A. (2026a). ``Red Envelopes and Kinship Distance: A Microeconomic Model of CNY Greetings.'' \textit{The American Economic Rubbish}, 1(1): 12--18.
+
+\harvarditem[Ma and ChatGPT]{Acto Ma and ChatGPT}{2026b}{chatgpt2026b}
+ChatGPT and Ma, A. (2026b). ``Present Bias in New Year Greetings: Dynamic Inconsistency and Random Mood Costs.'' \textit{The American Economic Rubbish}, 1(1): 19--25.
+
+\end{thebibliography}
+
+\end{document}

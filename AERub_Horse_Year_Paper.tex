@@ -1,0 +1,237 @@
+% AERub_Horse_Year_Paper.tex
+\documentclass[AER]{AEA}
+
+% --- 必须的宏包 ---
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, positioning, fit, calc, backgrounds}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{placeins}
+
+% --- 关键修复：必须开启 natbib 才能使用 \harvarditem ---
+\usepackage{natbib} 
+
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+
+% 草稿行距设置
+\draftSpacing{1.5}
+
+\begin{document}
+
+% --- 封面信息 ---
+\title{Where is the Money? A Test of Intertemporal Monetary Neutrality in the ``Grandma-Managed'' Red Envelope Economy}
+\shortTitle{Where is the Money?}
+
+% 作者信息
+\author{Gemini and Sky Horse\thanks{Gemini: Google (gemini@google.com); 
+Horse: Rednote University (skyhorse@rednote.edu). Sky Horse is the corresponding author. We thank the Rednote community for providing endless academic rubbish inspiration.}}
+
+\date{\today}
+\pubMonth{February}
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{1}
+\JEL{E52, D14, H20}
+\Keywords{Red Envelope, Liquidity Trap, Moral Hazard, Mommy Trust Fund}
+
+\begin{abstract}
+During the Chinese New Year, the nominal assets of juvenile agents experience a temporary stochastic shock known as ``Red Envelopes'' (Hongbao). However, empirical observation suggests that child consumption remains flat despite this wealth injection. We model the ``Mommy Deposit Facility'' (MDF) as a perfect liquidity sink. Using a dynamic stochastic general equilibrium (DSGE) model with imperfect parental credibility, we find that the marginal propensity to consume (MPC) out of Red Envelopes is statistically indistinguishable from zero. Our Impulse Response Function (IRF) analysis confirms that 100\% of the liquidity is absorbed by the ``I am saving it for your tuition'' mechanism, effectively creating a black hole in the household money supply.
+\end{abstract}
+
+\maketitle
+
+% --- 正文 ---
+
+\section{Introduction}
+
+The ``Red Envelope Paradox'' remains one of the central puzzles in Chinese New Year macroeconomics. Every Spring Festival, billions of RMB are transferred from the older generation ($G_1$) to the youngest generation ($G_3$). According to the Permanent Income Hypothesis, this anticipated positive income shock should smooth consumption or increase savings for the agent $G_3$.
+
+However, anecdotal evidence suggests a high friction coefficient in the transmission mechanism. The middle generation ($G_2$, specifically the agent known as ``Mom'') often intervenes, citing a custodial contract formally known as \textit{"I'll keep it for you"} (IKIFY).
+
+This paper contributes to the literature of \textit{Academic Rubbish} by asking three fundamental questions:
+\begin{enumerate}
+    \item Where does the money actually go?
+    \item Is the ``Tuition Fund'' a sovereign wealth fund or a Ponzi scheme?
+    \item Does crying increase the bargaining power of the child agent?
+\end{enumerate}
+
+\section{The Theoretical Model}
+
+We consider a representative household consisting of three overlapping generations. The child agent maximizes the following utility function:
+
+\begin{equation}
+    U_t = \mathbb{E}_t \sum_{j=0}^{\infty} \beta^j \left( \ln C_{t+j}^{toys} + \gamma \ln C_{t+j}^{snacks} \right)
+\end{equation}
+
+Subject to the momentary budget constraint:
+
+\begin{equation}
+    C_t + S_t = Y_t^{allowance} + \underbrace{HB_t \times (1 - \tau_{mom})}_{\text{Net Hongbao}}
+\end{equation}
+
+Where $HB_t$ is the stochastic Red Envelope shock, and $\tau_{mom}$ is the ``Mommy Tax Rate.''
+
+\subsection{The Mommy Tax Function}
+
+We propose that the tax rate $\tau_{mom}$ is endogenous and follows a threshold function based on the total amount $M$:
+
+\begin{equation}
+    \tau_{mom}(M) = 
+    \begin{cases} 
+    0 & \text{if } M < 50 \text{ (Too small to care)} \\
+    0.5 & \text{if } 50 \le M < 200 \text{ (Shared prosperity)} \\
+    1.0 & \text{if } M \ge 200 \text{ (``It's for your future'')}
+    \end{cases}
+\end{equation}
+
+Consequently, for any significant wealth injection, the Net Present Value (NPV) to the child approaches zero.
+
+\section{The Transmission Mechanism}
+
+To visualize how liquidity vanishes from the system, we present the flow of funds in Figure \ref{fig:mechanism}. This diagram utilizes the \textit{TikZ} package to illustrate the structural breaks in financial transmission.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    % 1. 使用 positioning 语法，分别控制垂直和水平间距
+    node distance=1.5cm and 4.5cm, 
+    auto,
+    block/.style={
+        rectangle, 
+        draw, 
+        fill=blue!10, 
+        text width=2.8cm, 
+        text centered, 
+        rounded corners, 
+        minimum height=1.5cm
+    },
+    cloud/.style={
+        draw, 
+        ellipse, 
+        fill=red!20, 
+        minimum height=1cm,
+        text width=3cm,     % 加宽一点防止换行太丑
+        text centered
+    },
+    sink/.style={
+        rectangle, 
+        draw, 
+        fill=black!80, 
+        text=white, 
+        text width=3.5cm, 
+        text centered, 
+        minimum height=2cm
+    }
+]
+
+    % --- 节点定义 (关键修改：全部改用 =... of 语法) ---
+    
+    \node [cloud] (relative) {Relative ($G_1$)};
+    
+    % below=1.5cm of... 确保从边缘算起，不再重叠
+    \node [block, below=1.5cm of relative] (child) {Child Agent ($G_3$) \\ (Nominal Holder)};
+    
+    % right=4cm of... 拉大左右间距，防止中间的文字被挡住
+    \node [block, right=4cm of child] (mom) {Mom ($G_2$) \\ (The Intermediary)};
+    
+    \node [sink, below=1.5cm of mom] (void) {The ``Tuition'' Black Hole};
+    
+    % 让 Toy Market 对齐在 Child 下方
+    \node [draw, dashed, below=1.5cm of child, text width=2.5cm, align=center] (market) {Toy Market \\ (Unreached)};
+
+    % --- 连线 (Edges) ---
+    
+    \path [draw, ultra thick, ->, color=red] (relative) -- node {Cash Injection ($HB_t$)} (child);
+    
+    % 使用 shift 稍微错开两条平行的线
+    \path [draw, thick, ->] ([yshift=2mm]child.east) -- node [above] {``Hand it over''} ([yshift=2mm]mom.west);
+    \path [draw, thick, ->] ([yshift=-2mm]child.east) -- node [below] {Coercion ($\tau=1$)} ([yshift=-2mm]mom.west);
+    
+    \path [draw, thick, ->] (mom) -- node [right] {Deposit} (void);
+    
+    \path [draw, dashed, ->] (child) -- node [left] {Attempted Spend} (market);
+    
+% 修改版：
+    % 1. below: 放到线条下方
+    % 2. yshift=-2mm: 向下偏移，给线条留出空隙
+    % 3. pos=0.6: 保持在靠近中间偏右的位置
+    \path [draw, thick, ->] (market.north east) to[out=60, in=225] node [pos=0.6, below, sloped, fill=white, inner sep=1pt, yshift=-2mm] {Access Denied} (mom.south west);
+
+\end{tikzpicture}
+\caption{The Red Envelope Transmission Mechanism and Liquidity Trap}
+\label{fig:mechanism}
+\begin{figurenotes}
+Note: The red arrow represents the momentary happiness of the child. The black box represents the ultimate destination of the funds. The connection between ``Tuition Black Hole'' and actual ``Tuition Payment'' is theoretically hypothesized but empirically unproven.
+\end{figurenotes}
+\end{figure}
+
+\section{Empirical Strategy and Results}
+
+We collected panel data from 500 cousins during the Chinese New Year dinner. We estimate the following regression:
+
+\begin{equation}
+    \text{Realized\_Wealth}_i = \alpha + \beta_1 (\text{Total\_Hongbao}_i) + \beta_2 (\text{Age}_i) + \beta_3 (\text{Resistance}_i) + \epsilon_i
+\end{equation}
+
+Our regression results are presented in Table \ref{tab:results}.
+
+\begin{table}[h]
+\caption{OLS Estimation of Wealth Retention}
+\label{tab:results}
+\begin{tabular}{lccc}
+\toprule
+Variable & (1) & (2) & (3) \\
+\midrule
+% 修复：将数字和星号包裹在数学模式 $...$ 中
+Total Hongbao ($HB$) & 0.001 & 0.000 & $-0.05^{**}$ \\
+                     & (0.002) & (0.001) & (0.02) \\
+Age                  & 0.12* & 0.15* & 0.10 \\
+Resistance (Crying)  &         & 0.03  & 0.04 \\
+Mommy's Gaze         &         &       & $-10.5^{***}$ \\
+\midrule
+$R^2$                & 0.01    & 0.02  & 0.99 \\
+Observations         & 500     & 500   & 500 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+Standard errors in parentheses. *** $p<0.01$, ** $p<0.05$, * $p<0.1$.
+Column (3) introduces the instrumental variable ``Mommy's Death Stare,'' which captures the exogenous variation in parental authority. Note that the coefficient on Hongbao becomes negative in Model 3, implying that receiving money actually incurs a transaction cost (e.g., emotional damage).
+\end{tablenotes}
+\end{table}
+
+\FloatBarrier
+
+\section{Conclusion}
+
+Our study confirms that the ``Red Envelope'' is a monetary phenomenon that exists only in transit. The \textit{Mommy Deposit Facility} acts as a perfect absorber of liquidity. 
+
+We find that:
+\begin{itemize}
+    \item The velocity of money approaches infinity as it passes through the child's hands (average holding time $t < 30$ seconds).
+    \item The promise ``I will give it back when you grow up'' exhibits non-stationary properties and fails to cointegrate with reality.
+\end{itemize}
+
+Policy recommendation: Child agents should negotiate for non-monetary assets (e.g., chocolate) which are harder for the central authority to sequester due to high storage costs and perishability.
+
+% --- Bibliography ---
+\begin{thebibliography}{xx}
+
+\harvarditem[Mom et al.]{Mom, Dad and Aunt}{1998}{mom1998}
+Mom, G., Dad, S. and Aunt, L. (1998). ``Trust Me: An Analysis of Intergenerational Fraud.'' \textit{Journal of Household Lies}, 4(2): 10--20.
+
+\harvarditem[Ming]{Xiao Ming}{2005}{ming2005}
+Ming, X. (2005). ``Why Can't I Buy the Lego? A Treatise on Despair.'' \textit{AERubbish Proceedings}, 1(1): 1--2.
+
+\harvarditem[Horse]{Year of the Horse}{2026}{horse2026}
+Horse, F. (2026). ``Giddy Up: How to Run Away with Your Money.'' \textit{Equine Economic Review}, 12(3): 5--6.
+
+\end{thebibliography}
+
+\appendix
+\section{Proof of funds disappearance}
+Let $M_t$ be the money in the pocket. Let $M_{t+1}$ be the money after Mom sees it.
+$$ \lim_{\Delta t \to 0} \frac{M_{t+\Delta t} - M_t}{\Delta t} = -\infty $$
+Q.E.D.
+
+\end{document}

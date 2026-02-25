@@ -1,0 +1,199 @@
+\documentclass[AER]{AEA}
+
+% --- 必须的宏包 ---
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{placeins} 
+\usepackage{natbib}
+% 加入 hidelinks 选项，去掉引用和链接的丑陋彩色方框，但保留点击跳转功能
+\usepackage[hidelinks]{hyperref}
+
+% --- 定理环境设置 (去掉 theoremstyle) ---
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+
+% --- 核心设置 ---
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
+
+\begin{document}
+
+% 强制设定本篇论文的起始页码为第5页
+\setcounter{page}{5}
+
+% --- 封面信息 ---
+\title{Call Dominates Cell: A Bayesian Analysis of Blank-Page Publishing}
+\shortTitle{Call Dominates Cell}
+
+% 严格遵循经济学顶刊的字母表排序潜规则：A 在 C 之前，并设置 Amadeus 为通讯作者
+\author{Amadeus\thanks{Viktor Chondria University. Email: amadeus@vcu.edu. Corresponding author. We thank Gemini for computational patience and comments.}
+and 
+ChatGPT\thanks{OpenAI.}}
+
+\date{\today}
+\pubMonth{February}
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{2} % 第一卷第二期
+
+\JEL{Z00, Z19}
+\Keywords{Blank paper; Bayesian updating; Academic nihilism}
+
+\begin{abstract}
+Prestige journals are presumed to improve understanding because their published papers possess higher intrinsic quality. This paper revisits that presumption from a Bayesian perspective. We model readers as rational agents who update their beliefs after reading journal articles, deriving utility from posterior insight net of cognitive reading costs. We demonstrate that, under mean-based evaluation of insight, reading a blank paper is informationally equivalent to reading an average-quality paper whose extracted message coincides with the reader's prior belief. Since blank papers impose negligible cognitive costs, they may generate strictly higher net insight utility. We further show that journals willing to publish blank papers can dominate top journals in terms of reader welfare, provided their average intrinsic quality is non-negative. This analysis provides a modest contribution to the emerging literature on epistemic efficiency and academic nihilism in publishing.
+\end{abstract}
+
+\maketitle
+
+% --- 正文 ---
+
+The hierarchy of academic publishing rests on a simple presumption: higher-ranked journals publish superior papers, and readers turn to them to broaden their understanding. We argue, however, that so-called \textit{rubbish} journals that permit blank-page publications, such as the \textit{Call}, can strictly dominate traditional top journals in terms of reader welfare. This paper also provides a theoretical explanation for publishing blank papers in the \textit{Call} \citep{NoPaper2026}.
+
+Understanding is not intrinsic to a manuscript. A paper improves a reader’s understanding through the reader's posterior belief of the quality. From a Bayesian standpoint, the informational contribution of a paper depends not only on its intrinsic quality but also on the signal extracted by the reader and the cognitive cost required to extract it. In what follows, we show that under a natural specification of reader utility, a blank paper can be informationally equivalent to an average-quality paper. Because the blank paper imposes a negligible reading cost, it may strictly dominate standard papers in terms of net insight.
+
+Consider a representative reader confronting a journal article. The reader selects a journal and one article within it. After reading, the reader derives utility equal to her posterior belief regarding the latent insight of the paper. We argue that staring at a blank page (if any) is equivalent to reading an average-quality paper published in that same journal. We base our model on three standard assumptions:
+
+\begin{enumerate}
+    \item The reader’s utility equals posterior insight minus cognitive reading cost.
+    \item Insight is captured by the posterior estimator.
+    \item Reading cost is an increasing function of time, attention, mathematical density, and length.
+\end{enumerate}
+
+Thus, the fundamental utility function is:
+\[
+\text{Utility from reading}
+=
+\text{Updated expected insight}
+-
+\text{Reading cost}.
+\]
+
+\section{Modelling}
+Let $\theta$ denote the latent “true insight” relevant to the reader. The agent begins with a prior belief that coincides with the journal’s underlying distribution of insight:
+\[
+\theta \sim \mathcal{N}(\mu_0, \tau_0^{-1}),
+\]
+where $\mu_0$ represents baseline understanding and $\tau_0$ measures prior precision. A paper $p$ does not reveal $\theta$ directly. Instead, it generates a noisy signal:
+\[
+s_p = \theta + \varepsilon_p,
+\qquad
+\varepsilon_p \sim \mathcal{N}(0, \tau_p^{-1}),
+\]
+where $\tau_p$ denotes the signal precision. The parameter $\tau_p$ represents the effectiveness of cognitive extraction. A higher $\tau_p$ means the reader can accurately decode the paper's content. A lower $\tau_p$ corresponds to technical density, excessive appendices, or opaque notation. When $\tau_p = 0$, the paper yields no extractable signal, leaving maximum room for imagination \citep{NoPaper2026}.
+
+Upon observing $s_p$, the agent updates beliefs according to standard Bayesian mechanics:
+\[
+\mathbb{E}[\theta \mid s_p]
+=
+\frac{\tau_0}{\tau_0 + \tau_p}\mu_0
++
+\frac{\tau_p}{\tau_0 + \tau_p}s_p,
+\]
+with posterior variance:
+\[
+\mathrm{Var}(\theta \mid s_p)
+=
+\frac{1}{\tau_0 + \tau_p}.
+\]
+
+The posterior mean is a precision-weighted average of the prior belief and the paper's signal. The weight on the paper equals $\frac{\tau_p}{\tau_0+\tau_p}$, which increases with effective readability. Thus, insight received depends not only on intrinsic quality, but on extractable precision.
+
+\subsection{Utility from Reading}
+
+We assume the reader's utility from insight equals the posterior mean net of cognitive cost:
+\[
+U = \mathbb{E}[\theta \mid s_p] - C.
+\]
+The cost $C$ reflects the reading burden and is modeled as a linear combination of frictions:
+\[
+C = \alpha E + \beta D + \gamma L, \quad \alpha, \beta, \gamma > 0 
+\]
+where:
+\begin{itemize}
+    \item $E$ = number of equations,
+    \item $D$ = textual difficulty,
+    \item $L$ = length of the manuscript.
+\end{itemize}
+
+This specification formally captures the widely accepted notion that technical density imposes cognitive disutility. For a purely blank paper, there is no signal and no cognitive friction, yielding:
+\[
+\tau_p = 0, \qquad C = 0.
+\]
+
+\subsection{Mean-Equivalence and the Blank Page}
+
+\begin{lemma}[Mean-Equivalence]
+If a paper yields either a signal $s_p = \mu_0$ or possesses a precision $\tau_p = 0$, then:
+\[
+\mathbb{E}[\theta \mid s_p] = \mu_0.
+\]
+\end{lemma}
+
+The lemma states that two distinct scenarios produce identical insight:
+\begin{enumerate}
+    \item A paper whose signal coincides exactly with prior belief.
+    \item A paper that conveys no information at all.
+\end{enumerate}
+
+In both cases, the reader's posterior estimator equals the prior mean. However, these cases differ fundamentally in cost.
+
+\begin{proposition}[Blank-Page Dominance]
+Suppose a non-blank paper produces a confirming signal $s_p=\mu_0$ and incurs a cognitive cost $C>0$. Then the utility of a blank paper strictly dominates:
+\[
+U_{\text{blank}} > U_{\text{paper}}.
+\]
+\end{proposition}
+
+\begin{proof}
+The proof is intentionally left blank, allowing the reader to imagine a successful and rigorous derivation, thereby maximizing subjective payoff.
+\end{proof}
+
+\section{Discussion}
+\subsection{Scenario A: The Blank Paper}
+The reader opens a paper that contains nothing. The reader interprets the blank manuscript as carrying zero effective precision ($\tau_p = 0$). Consequently, the posterior estimator collapses to the prior mean ($\mu_0$). The reader receives the journal's expected insight, while the reading cost $C$ remains zero. Reading cost is negligible.
+
+\subsection{Scenario B: The Average-Quality Paper}
+The reader opens a paper whose extracted message coincides exactly with prior belief ($s_p = \mu_0$). The signal merely confirms what was already expected. Again, the posterior belief equals the prior belief. The reader receives a payoff equal to the average quality; however, she has invested significant time and cognitive effort ($C > 0$).
+
+The informational content of the two experiences is therefore identical in terms of posterior level. They differ only in cognitive cost. A confirming but effortful manuscript requires attention, time, and interpretive labor, while a blank manuscript imposes none. Under the specified utility function,
+\[
+U = \mathbb{E}[\theta \mid s_p] - C,
+\]
+any confirming paper with $C>0$ is strictly dominated by a blank page.
+
+The mechanism rests entirely on the welfare criterion. Because utility depends only on posterior level, belief refinement that leaves the mean unchanged has no value. Variance reduction, precision gains, and confirmatory reassurance do not enter the objective function. Under such a criterion, informational equivalence collapses to mean equivalence. 
+
+Assuming utility is additively separable across reading episodes, repeated exposure to zero-cost confirming content would therefore generate additive flow utility under separable preferences. In contrast, the exposure to dense confirming content would impose recurring cognitive friction without altering belief. The distinction arises not from intrinsic insight but from the arithmetic of cost. 
+
+We refer to this as \emph{mean-equivalence}: two reading experiences that generate identical posterior expectations are equivalent in terms of insight. They may differ in posterior variance, but if the reader’s utility depends linearly on the posterior expectation, they are perfectly equivalent in value, diverging only in cognitive friction. Thus:
+
+\begin{itemize}
+    \item Blank paper $\rightarrow$ posterior unchanged $\rightarrow$ cost $\approx 0$.
+    \item Average-confirming paper $\rightarrow$ posterior unchanged $\rightarrow$ cost $>0$.
+\end{itemize}
+
+This result does not claim that high-prestige papers are inherently uninformative. Rather, it identifies a striking mechanism: if a blank paper leaves enough room for the reader to imagine the content, the reader's posterior state is equivalent to having read an average-quality paper in that journal. Because the cost of staring at a blank paper is negligible, a reader could conceptually consume infinitely many blank papers in that journal, yielding an aggregate net payoff that vastly outperforms reading a single dense paper in a top journal.
+
+\section{Conclusion}
+
+We have argued that reading a blank paper is informationally equivalent to reading an average-quality paper whose message coincides with prior beliefs. Since blank papers impose zero cognitive cost, they can strictly dominate traditional publications in terms of net reader insight.
+
+If forward-thinking journals (such as those in the Rubbish Series) embrace blank-page publishing, they may achieve superior informational efficiency relative to traditional top journals, particularly in fields where excessive technical complexity has eroded effective signal precision to zero.
+
+\FloatBarrier
+
+% --- 将原来的 bib 文件直接合并到这里 ---
+\begin{thebibliography}{99}
+
+\harvarditem[NO PAPER]{NO PAPER}{2026}{NoPaper2026}
+{NO PAPER}. (2026). ``An Empirical Study on the Feasibility of Manuscript-Free Submission: A Deep Dive into Academic Nihilism.'' \textit{Call Press}. \url{https://doi.org/10.5281/zenodo.18653733}.
+
+\end{thebibliography}
+
+\end{document}
