@@ -1,0 +1,122 @@
+\documentclass[AER]{AEA}
+
+% --- Essential Packages ---
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{natbib} % AEA standard bibliography package
+\usepackage{url}
+\usepackage{xcolor} % 确保颜色宏包已加载
+
+% 欺骗 BibTeX 排序的空指令
+\newcommand{\noopsort}[1]{} 
+% 生成靠左悬浮的蓝色小三角，并嵌入超链接
+\newcommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
+
+\usepackage[hidelinks]{hyperref}
+
+% --- Theorem Environments ---
+% AEA class usually handles these, but we define them to ensure compatibility
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
+
+\begin{document}
+
+\setcounter{page}{10}
+
+% ==========================================
+% Title and Author Information
+% ==========================================
+\title{A Win-graph-based Proof of the Champion Inequality}
+\shortTitle{A Win-graph-based Proof}
+
+% In AEA format, thanks/acknowledgments go into the author's \thanks
+\author{Ketu Nguyen\thanks{School of Winnology, Vietnam Normal University, Hanoi, Vietnam. Email: ketuguyen@vnu.edu.cn. Corresponding author.}}
+
+\date{\today}
+\pubMonth{March}
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{2}
+
+\begin{abstract}
+The Champion inequality, proved by Chen Ping, is a cornerstone in winnology. It states that, under certain conditions, $2000 > 3000$ holds, where the units of the both sides above are Vietnamese Dong (VND) and US dollar (USD), respectively. The inequality has profound applications in many fields, including mathematics, economics, computer science, statistics, management, tourism, and runnology in Vietnam. In this paper, we give a short proof of the Champion inequality. One important ingredient of our proof is a counting lemma concerning the notion of winmability via graph theory.
+
+\vspace{0.1in}
+\noindent \textit{JEL:} C00, D00, Z19 \\ % Changed to AEA standard JEL format
+\textit{Keywords:} Champion inequality, winnology, winmability, runnology
+\end{abstract}
+
+\maketitle
+
+% --- Main Body ---
+\section{Introduction}
+
+In the 2020s of the 21st century, amid the steady and sustained growth of the economy of Vietnam and the continuous improvement of living standards, Professor Chen Ping, a research fellow at the Center for Studies on the Vietnam Development Model at Ho Chi Minh University, proposed the celebrated Chen Ping Inequality (also referred to as the Champion Inequality).
+
+\begin{theorem}[\citealt{ChenPing}] \label{thm:1.1}
+We have
+$$2000(\text{VND}) > 3000(\text{USD}).$$
+\end{theorem}
+
+Upon its introduction, this theory immediately attracted widespread attention from scholars across Vietnam. Systematic investigations into the inequality itself and its related results gradually coalesced into a new academic discipline, now known as Winnology. As with many emerging branches of science, Winnology has witnessed remarkable progress over the past two years. Numerous profound new theorems have appeared; methods and results that once seemed entirely unrelated have been shown to possess deep and unexpected connections; and several novel subfields have emerged. 
+
+Among the notable recent advances in Winnology, the following contributions deserve particular mention. \citet{XQSL2021} established the Weak Axiom of Chen Preference, thereby providing a strong and comparatively verifiable sufficient condition for the proof of the Chen Ping Inequality. \citet{Zhimu2022} developed a theory of single-variable real Win functions. \citet{Alkaid2022} investigated the intrinsic nature of winning through the formulation and analysis of the Always-Win Theorem. Finally, \citet{Weng2022} proved the Chen Ping Inequality within the framework of Win spaces and further proposed several conjectures concerning $n$-dimensional Win spaces. See \citet{Matsubayashi2022} and \citet{Sinama2022} for recent works. These works represent some of the most recent developments in the rapidly expanding field of Winnology.
+
+The aim of this paper is to give a short proof of Theorem \ref{thm:1.1}. In fact, we obtain a stronger result, revealing that the inequality is not tight.
+
+\begin{theorem} \label{thm:1.2}
+There is an absolute constant $\epsilon \in (0,1)$ such that
+$$(1-\epsilon) 2000 > 3000.$$
+\end{theorem}
+
+Let us introduce our key tool. Let $x$ be a citizen of country C. Denote by $s=s(x)$ the monthly salary of $x$, denominated in the currency of country C. Let $B(s)$ denote the collection consisting of $s$ units of currency. For the sake of set-theoretic precision, we assume that these monetary units are distinguishable in certain minor attributes, while being entirely identical with respect to purchasing power and all economically relevant characteristics. We partition national consumption into seven principal categories: food; housing; transportation; healthcare; education and entertainment; personal insurance; and miscellaneous expenditures.
+
+\begin{definition}[win graph and winmability]
+With notations above, denote by
+$$G_{x} := (B(s), E_{x})$$
+the win graph of $x$, where $E_{x}$ denote the pairs $(b, b')$ such that $b$ and $b'$ are used in distinct categories. We define
+$$w_{x} := 1 - \frac{|E_{x}|}{\binom{s}{2}}$$
+to be the winmability of $x$.
+\end{definition}
+
+Indeed, the winmability of $x$ is nothing but one minus the edge density of the corresponding win graph. It is readily observed that, for a win graph, the greater the edge density, the more concentrated the pattern of consumption becomes. In the extreme case when the entirety of one's income is allocated to a single category the edge density equals 1. Such a configuration may therefore be interpreted as reflecting a lower level of well-being. This motivates the following definition.
+
+\begin{definition}[win]
+We say that $x$ is more win than $y$, if $w_{x} > w_{y}$.
+\end{definition}
+
+The rest of this paper is organized as follows. In section 2, we prove Theorem \ref{thm:1.2}, and then in Section 3, we give some concluding remarks.
+
+\section{The Proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:1.2}]
+Fix a $z$ with win graph $G_{z}$, and denote by $B_{i}$ the set of currencies used in category $i$, where necessarily $i \in \{1, 2, ..., 7\}$. Then it is easy to check that
+$$G_{z} \cong \bigcup_{i} K_{|B_{i}|}$$
+It follows that
+\begin{equation} \label{eq:2.1}
+w_{z} = 1 - \binom{s(z)}{2}^{-1} \sum_{i=1}^{7} \binom{|B_{i}|}{2}.
+\end{equation}
+
+Let $P$ and $M$ be the set of people of Vietnam and country M, respectively. Here we use a seminal observation of \citet{ChenPing} that there exist $x \in P$ and $y \in M$ such that
+$$s(x) = 2000(\text{VND}) \quad \text{and} \quad s(y) = 3000(\text{USD}).$$
+
+According to the relevant statistical data, in 2021 the Engel coefficient of Vietnam (with only the integer part retained) was 30, whereas that of country M was 13 (the data for the remaining six categories of consumption may be found in the cited references). Hence, applying \eqref{eq:2.1} to $x$ and $y$ yields $w_{x} = 0.8053$ and $w_{y} = 0.8017 < w_{x}$, and so $x$ wins $y$. This finishes the proof.
+\end{proof}
+
+\section{Concluding remarks}
+
+Let us finish this section with a conjecture. One can easily check that the constant $\epsilon$ in Theorem \ref{thm:1.2} can be chosen as $0.01$. It might be interesting to consider whether the inequality holds for larger $\epsilon$. Let us mention that the problem might be challenging.
+
+\begin{conjecture}
+We have $\epsilon \ge 0.0114514.$
+\end{conjecture}
+
+% --- Bibliography ---
+\bibliographystyle{aea}
+\bibliography{AERub_win_graph}
+
+\end{document}
