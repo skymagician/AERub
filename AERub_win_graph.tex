@@ -6,10 +6,10 @@
 \usepackage{url}
 \usepackage{xcolor} % 确保颜色宏包已加载
 
-% 欺骗 BibTeX 排序的空指令
+\usepackage{xcolor} 
 \newcommand{\noopsort}[1]{} 
-% 生成靠左悬浮的蓝色小三角，并嵌入超链接
-\newcommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
+% 【关键修改】：在导言区定义为空，这意味着在正文中调用时，它什么也不显示！
+\DeclareRobustCommand{\AERlink}[1]{}
 
 \usepackage[hidelinks]{hyperref}
 
@@ -116,6 +116,10 @@ We have $\epsilon \ge 0.0114514.$
 \end{conjecture}
 
 % --- Bibliography ---
+
+% 【关键修改】：在打印参考文献列表前，瞬间让它变回蓝色小三角！
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
+
 \bibliographystyle{aea}
 \bibliography{AERub_win_graph}
 
