@@ -31,14 +31,14 @@
 
 在您的本地电脑成功编译出 PDF 后，请将您的 **PDF 成品**、**`.tex` 主文件**、**`.bib` 参考文献库**及**图片资源**打包。本刊提供以下三种投稿渠道：
 
-1. 🌐 **官方直连 (Web of Nothing 平台 - 推荐！)**：
-   直接使用 WoN 学术提交系统 [Web of Nothing 投稿中心](https://webofnothing.top/paper-submit)，享受丝滑的投稿体验。
+1. 🌐 **Web of Nothing 平台 (推荐)**：
+   直接使用 WoN 平台 [Web of Nothing 投稿中心](https://webofnothing.top/paper-submit)，享受丝滑的投稿体验。
 
-2. 📧 **传统学术 (编辑部邮箱)**：
-   将稿件发送至本刊编辑部：`aerubbish.editorial@outlook.com`。
+2. 📧 **Email**：
+   将稿件发送至本刊编辑部邮箱：`aerubbish.editorial@outlook.com`。
 
-3. 💻 **极客专属 (GitHub PR - 慎用！)**：
-   您也可以直接 Fork 本仓库，将您的文件夹 Push 后向我们提交 Merge Request。
+3. 💻 **GitHub PR (慎用)**：
+   您也可以 Fork 本仓库，将您的稿件 Push 后向我们提交 Merge Request。
    
    *(⚠️ 严正警告：此通道将默认您自愿放弃“盲审”权利，您的“迷惑行为源码”将在合并前接受全网开源极客的无情审视！)*
 
