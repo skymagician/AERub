@@ -30,10 +30,12 @@
 % ==========================================
 % Title and Author Information
 % ==========================================
-\title{A Win-graph-based Proof of the Champion Inequality}
+% 1. 在标题末尾直接硬编码一个上标十字架
+\title{A Win-graph-based Proof of the Champion Inequality$^\dagger$}
 \shortTitle{A Win-graph-based Proof}
 
 % In AEA format, thanks/acknowledgments go into the author's \thanks
+% 2. 正常使用 \thanks，它会自动生成星号 (*) 并在底部排在第一行
 \author{Ketu Nguyen\thanks{School of Winnology, Vietnam Normal University, Hanoi, Vietnam. Email: ketuguyen@vnu.edu.cn. Corresponding author.}}
 
 \date{\today}
@@ -51,6 +53,9 @@ The Champion inequality, proved by Chen Ping, is a cornerstone in winnology. It 
 \end{abstract}
 
 \maketitle
+
+% 3. 【黑科技核心】：在 \maketitle 之后，强行插入一个“不带自动编号”的脚注，手动打上十字架
+\let\thefootnote\relax\footnotetext{$^\dagger$ Go to \url{https://webofnothing.top/noi/10.N0/aer.202603.A.0404.0002} to visit the article page for additional materials and author disclosure statements.}
 
 % --- Main Body ---
 \section{Introduction}
