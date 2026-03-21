@@ -44,6 +44,16 @@
    您也可以直接 Fork 本仓库，将您的文件夹 Push 后向我们提交 Merge Request。
    *(⚠️ 严正警告：此通道将默认您自愿放弃“盲审”权利，您的“迷惑行为源码”将在合并前接受全网开源极客的无情审视！)*
 
+---
+
+## ⚖️ 开源协议与版权声明 (License & Acknowledgements)
+
+本仓库的主体代码（包括所有 `.tex` 示例文档、`.bib` 参考文献库）均采用 **[MIT License]** 开源。您可以随意取用、修改、甚至用于水论文，但本刊编辑部不对您因此造成的任何学术声誉破产负责。
+
+**【特别致谢与第三方协议】**
+本仓库中用于中文排版的底层模板 `chinese-erj.cls` 基于开源项目 [EthanDeng/Chinese-ERJ](https://github.com/EthanDeng/Chinese-ERJ) 进行了修改与定制。该文件及其衍生代码严格遵循 **[LaTeX Project Public License (LPPL) Version 1.3c](http://www.latex-project.org/lppl.txt)**。
+我们向原作者表示崇高的敬意，并郑重声明：使用本修改版模板产生的任何编译报错，请直接向本刊编辑部（或您的导师）发泄，请勿打扰原作者。
+
 ## 📱 关注本刊 (Follow Us)
 
 立刻扫码关注 **《美国经济评臆》官方微信公众号**！我们将定期推送本刊录用的文章的硬核拆解、学术圈整活前沿。

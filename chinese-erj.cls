@@ -1,3 +1,16 @@
+%% -------------------------------------------------------------------
+%% This is a MODIFIED version of the 'chinese-erj' class by EthanDeng.
+%% It has been specifically tailored for the journal 
+%% "American Economic Rubbish" (AERub).
+%% 
+%% Original Author: EthanDeng (https://github.com/EthanDeng/Chinese-ERJ)
+%% License: LPPL Version 1.3c (http://www.latex-project.org/lppl.txt)
+%% 
+%% Disclaimer: Any bugs, extreme formatting formatting, or "academic 
+%% arrogance" produced by this modified version are the sole 
+%% responsibility of the AERub Editorial Board, NOT the original author.
+%% -------------------------------------------------------------------
+
 % Current Version: 0.06
 % Author: Dongsheng Deng
 % Homepage: https://ddswhu.me/
