@@ -15,17 +15,17 @@
 
 本刊实行极其严苛的“双轨制”排版。我们不要求您从零开始学习 LaTeX 的底层黑科技，**最稳妥的排版方式是：直接复制本仓库中已发布文章的 `.tex` 和 `.bib` 源码，用您的内容进行替换套用。**
 
-### 🇺🇸 英文原刊排版 (English Submissions)
+### 🇺🇸 英文模板 (English Submissions)
 英文稿件采用纯正的美国经济学会（AEA）顶级期刊《American Economic Review》官方排版格式。
 * **依赖模板**：`AEA.cls`, `aea.bst`
 * **编译引擎**：必须使用 `pdflatex` $\to$ `bibtex` $\to$ `pdflatex` $\to$ `pdflatex`。严禁使用 `biber`！
 * **套用范例**：请直接参考并复制本仓库中的 `AERub_win_graph.tex` 与 `AERub_win_graph.bib`（《陈平不等式的图论证明》）。该文件已完美内置了原版 AER 的标题脚注黑科技与悬浮蓝三角超链接，照着改准没错。
 
-### 🇨🇳 中文核心排版 (Chinese Submissions)
+### 🇨🇳 中文模板 (Chinese Submissions)
 中文稿件采用《经济研究》（Economic Research Journal）的底层逻辑，自带国内顶刊的绝对威压。
 * **依赖模板**：`chinese-erj.cls`
 * **编译引擎**：必须使用 `xelatex` $\to$ `biber` $\to$ `xelatex` $\to$ `xelatex`。
-* **套用范例**：请直接参考并复制本仓库中的中文稿件（如 `AERub_tiangou.tex` 或 `AERub_lemon.tex`）。这些源码已为您配置好了极简合并星号脚注、奇偶页眉自动生成以及霸气的实心黑方块证毕符号。
+* **套用范例**：请直接参考并复制本仓库中的中文稿件（如 `AERub_tiangou.tex` 或 `AERub_lemon.tex`）。这些源码已为您配置好了所有格式。
 
 ---
 
