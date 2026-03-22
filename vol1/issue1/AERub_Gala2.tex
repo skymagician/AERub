@@ -8,6 +8,12 @@
 \usepackage{array}
 \usepackage{placeins} 
 \usepackage{natbib}
+
+% --- 终极防伪：链接、绘图与字体设置 ---
+\usepackage{url}
+\usepackage{xcolor} 
+\newcommand{\noopsort}[1]{} 
+\DeclareRobustCommand{\AERlink}[1]{}
 \usepackage[hidelinks]{hyperref}
 
 % --- 定理环境设置 ---
@@ -29,29 +35,37 @@
 \setcounter{page}{31}
 
 % --- 封面信息 ---
-\title{The Disintegration of the Gala: A Hotelling Approach to the Deadweight Loss of Forced Centralization}
+% 1. 在标题末尾直接硬编码一个上标十字架
+\title{The Disintegration of the Gala: A Hotelling Approach to the Deadweight Loss of Forced Centralization$^\dagger$}
 \shortTitle{Disintegration of the Gala}
 
-% 严格遵循经济学顶刊的字母表排序潜规则：G (Gemini) 在 S (Shanfu) 之前
-\author{Gemini\thanks{Department of Generative Pre-training, Silicon Valley Server Farm. Email: gemini@google.com. The first author (an AI) acknowledges the massive amount of internet complaints about the Gala in its training data, without which this research would not be possible.} 
-and 
-Shanfu Ma\thanks{Shanghai University of International Business and Economics (SUIBE). Email: nyuan1001@163.com. Corresponding author. We are grateful to the \textit{American Economic Rubbish} (AER) for maintaining zero editorial standards. The corresponding author assumes full responsibility for all unwatchable mathematical derivations. Funding from the ``My Mom Forced Me to Watch This'' Foundation is gratefully acknowledged.}}
+% 2. 不使用 \thanks，硬编码一个上标星号
+\author{Gemini and Shanfu Ma$^*$}
 
 \date{\today}
 \pubMonth{February}
 \pubYear{2026}
 \pubVolume{1}
-\pubIssue{1} % 改回第一卷第一期：马年新春特刊
-
-% 修正 JEL Code: D42 (垄断)
-\JEL{D42, D61, H41, Z11}
-\Keywords{Spring Festival Gala; Hotelling model; Deadweight loss; Aesthetic decentralization}
+\pubIssue{1}
 
 \begin{abstract}
 This paper develops a spatial equilibrium model to explain the monotonic decline in the utility derived from the Chinese New Year Gala. By incorporating heterogeneous aesthetic preferences into a classic Hotelling linear city framework, we analytically demonstrate that a forced single-center supply ($N=1$) inevitably leads to an explosive deadweight loss when the variety of preferences increases. We reject the conventional ``censorship hypothesis'' and argue that the Gala's unwatchability is a deterministic outcome of social development. Finally, we propose ``aesthetic decentralization'' as a Pareto-improving policy.
+\noindent (\textit{JEL} D42, D61, H41, Z11)
 \end{abstract}
 
 \maketitle
+
+% 3. 【极简终极黑科技】：连续两次强行注入！完全绕开底层队列！
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}Gemini: Silicon Valley Server Farm (email: gemini@google.com); Ma: Shanghai University of International Business and Economics (email: nyuan1001@163.com). We are grateful to the \textit{American Economic Rubbish} for maintaining zero editorial standards. Ma assumes full responsibility for all unwatchable mathematical derivations. Funding from the ``My Mom Forced Me to Watch This'' Foundation is gratefully acknowledged.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0202.254F3ED90C20} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 【绝对定位黑科技】：在首页左上角强行“纹”上官方 NOI 标注（终极走火入魔版：连 URL 内部都进行字母和数字的字体混排！）
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(1): 31--35} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0202.254F3ED90C20}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0202.254F3ED90C20}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 % AER STRICT RULE: NO "Introduction" heading! Start text immediately.
@@ -187,20 +201,12 @@ Policymakers should abolish the implicit mandate that forces local and provincia
 
 \FloatBarrier
 
-\begin{thebibliography}{99}
+% --- Bibliography ---
 
-\harvarditem[Dixit and Stiglitz]{Dixit and Stiglitz}{1977}{dixit1977}
-Dixit, A. K., and J. E. Stiglitz. (1977). ``Monopolistic Competition and Optimum Product Diversity.'' \textit{The American Economic Review}, 67(3): 297--308.
+% 【关键修改】：在打印参考文献列表前，瞬间让它变回蓝色小三角！
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
 
-\harvarditem[Hotelling]{Hotelling}{1929}{hotelling1929}
-Hotelling, H. (1929). ``Stability in Competition.'' \textit{The Economic Journal}, 39(153): 41--57.
-
-\harvarditem[Steiner]{Steiner}{1952}{steiner1952}
-Steiner, P. O. (1952). ``Program Patterns and Preferences, and the Workability of Competition in Radio Broadcasting.'' \textit{The Quarterly Journal of Economics}, 66(2): 194--223.
-
-\harvarditem[Tiebout]{Tiebout}{1956}{tiebout1956}
-Tiebout, C. M. (1956). ``A Pure Theory of Local Expenditures.'' \textit{Journal of Political Economy}, 64(5): 416--424.
-
-\end{thebibliography}
+\bibliographystyle{aea}
+\bibliography{AERub_Gala2}
 
 \end{document}

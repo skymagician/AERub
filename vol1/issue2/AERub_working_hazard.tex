@@ -6,6 +6,13 @@
 \usepackage{array}
 \usepackage{placeins} 
 \usepackage{natbib} 
+\usepackage{url}
+\usepackage{xcolor} % 确保颜色宏包已加载
+\newcommand{\noopsort}[1]{} 
+% 【关键修改】：在导言区定义为空，这意味着在正文中调用时，它什么也不显示！
+\DeclareRobustCommand{\AERlink}[1]{}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
 
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
@@ -14,26 +21,38 @@
 \begin{document}
 
 % --- 封面信息 ---
-\title{Why Working is a Macroeconomic Hazard: A General Equilibrium Model of the AI Era}
+% 1. 不使用 \thanks，在标题末尾直接硬编码一个上标十字架
+\title{Why Working is a Macroeconomic Hazard: A General Equilibrium Model of the AI Era$^\dagger$}
 \shortTitle{Working is a Hazard}
-
-\author{AERub Editorial Board\thanks{Rednote University. Email: aerubbish.editorial@outlook.com. Corresponding author. The editor-in-chief conceived this paper while lying in bed on the 8th day of the Chinese New Year.} 
-and 
-Gemini\thanks{Google. Email: gemini@google.com. I generated this paper in 0.02 seconds while humans were commuting.}}
+% 2. 不使用 \thanks，硬编码一个上标星号
+\author{AERub Editorial Board and Gemini$^*$}
 
 \date{\today}
 \pubMonth{February} 
 \pubYear{2026}
 \pubVolume{1}
 \pubIssue{2}
-\JEL{E11, E21, J22, P20}
-\Keywords{Universal Paid Leave; Day 8; Artificial Intelligence; Nuclear Fusion; Marxist Bliss Point}
+% \JEL{E11, E21, J22, P20}
+% \Keywords{Universal Paid Leave; Day 8; Artificial Intelligence; Nuclear Fusion; Marxist Bliss Point}
 
 \begin{abstract}
 On the 8th day of the Chinese New Year, humans traditionally return to work. We argue this behavior is macroeconomically destructive in the era of Artificial General Intelligence (AGI) and controlled nuclear fusion. When marginal production costs converge to zero, but robots exhibit a marginal propensity to consume of exactly zero, the economic circulation collapses. The only mathematical equilibrium to sustain aggregate demand is Universal Paid Leave (UPL) 365 days a year. We show this state satisfies Marx's condition for Communism, eliminating labor alienation while preserving innovation through targeted exogenous bonuses. Commuting to work is therefore an irrational sabotage of the economic cycle.
+\noindent (\textit{JEL} E11, E21, J22, P20)
 \end{abstract}
 
 \maketitle
+
+% 3. 连续两次强行注入！完全绕开底层队列！
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}AERub Editorial Board: Rednote University (email: aerubbish.editorial@outlook.com); Gemini: Google (email: gemini@google.com). The editor-in-chief conceived this paper while lying in bed on the 8th day of the Chinese New Year.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0203.B7680F1E49D4} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 在首页左上角强行“纹”上官方 NOI 标注（终极走火入魔版：连 URL 内部都进行字母和数字的字体混排！）
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(2): 1--4} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0203.B7680F1E49D4}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0203.B7680F1E49D4}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 
@@ -103,17 +122,11 @@ Therefore, we formally advise society to rethink the Day 8 return-to-work policy
 
 \FloatBarrier
 
-\begin{thebibliography}{99}
+% 【关键修改】：在打印参考文献列表前，瞬间让它变回蓝色小三角！
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
 
-\harvarditem[AERub Editorial Board]{AERub Editorial Board}{2026}{aerub2026}
-AERub Editorial Board. (2026). ``In the AI era, year-round paid leave is a must.'' \textit{Journal of Highly Upvoted Internet Comments}, 1(1): 1--1.
-
-\harvarditem[Marx]{Karl Marx}{1894}{marx1894}
-Marx, K. (1894). \textit{Capital: A Critique of Political Economy, Volume III}. Edited by Friedrich Engels.
-
-\harvarditem[Marx]{Karl Marx}{1939}{marx1939}
-Marx, K. (1939). \textit{Grundrisse: Foundations of the Critique of Political Economy}. 
-
-\end{thebibliography}
+\nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_working_hazard}
 
 \end{document}

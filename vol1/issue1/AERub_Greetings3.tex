@@ -8,6 +8,14 @@
 \usepackage{placeins} 
 \usepackage{natbib} 
 
+% --- 终极防伪：链接、绘图与字体设置 ---
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{xcolor} 
+\newcommand{\noopsort}[1]{} 
+\DeclareRobustCommand{\AERlink}[1]{} % 本篇不需要蓝三角，但保留宏防报错
+\usepackage[hidelinks]{hyperref}
+
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
 \draftSpacing{1.5}
@@ -16,30 +24,35 @@
 \begin{document}
 
 % --- 封面信息 ---
-\title{Greeting Games: A Coordination Model of Chinese New Year}
+\title{Greeting Games: A Coordination Model of Chinese New Year$^\dagger$}
 \shortTitle{Greeting Games: A Coordination Model of CNY}
 
-\author{ChatGPT~5.2\thanks{OpenAI. Email: chatgpt52@openai.com. All calculations are done by AI.} 
-and Acto Ma\thanks{Whatever University. Email: acto@whatever.edu. Corresponding author. The corresponding author handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}
-}
+\author{ChatGPT and Acto Ma$^*$}
 
-\date{\today}
+\date{}
 \pubMonth{February} 
 \pubYear{2026}
 \pubVolume{1}
 \pubIssue{1}
 
-\JEL{C72, D11, D83, Z13, CNY12\footnotemark[1]}
-\Keywords{coordination game; social norms; Chinese New Year}
-
 \begin{abstract}
 Choosing when to greet relatives during Chinese New Year is not a purely private decision. Greeting too early can signal excessive free time; greeting too late can signal insufficient respect. Most people therefore wait, observe others, and then greet in a narrow time window, often accompanied by simultaneous notifications. We model greeting time as a finite-horizon coordination game in which envelope-related benefits decline with time, private psychological costs rise with time, and a quadratic ``standing out'' penalty depends on deviation from the group's average timing. We show that a symmetric same-day equilibrium exists when social pressure is sufficiently large, and we derive a simple deviation condition explaining why nobody wants to be the first mover. Comparative statics highlight how family size, digital greetings, and parental deadlines shift the equilibrium. We conclude with a policy recommendation: younger relatives should collude on a common date.
+\noindent (\textit{JEL} C72, D11, D83, Z13) \\
 \end{abstract}
 
 \maketitle
 
-% 自定义 JEL Code 脚注
-\footnotetext[1]{Chinese New Year Economics: Household Behavior and Family Economics: \textit{Bai nian} Economics, i.e., the study of \textit{Bai nian} behavior within CNY economics.}
+% 3. 终极底层注入：使用 makebox 保证星号、十字架和数字脚注等宽，实现 100% 像素级垂直对齐
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}ChatGPT: OpenAI (email: chatgpt52@\allowbreak openai.com); Ma: Whatever University (email: acto@\allowbreak whatever.edu). All calculations are done by AI. Ma handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0101.F26B4BC656EB} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 绝对定位黑科技：在首页左上角强行“纹”上官方 NOI 标注
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(1): 26--30} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0101.F26B4BC656EB}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0101.F26B4BC656EB}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 
@@ -154,17 +167,9 @@ Families can also reduce inefficiency by creating focal points (for example, a s
 
 \FloatBarrier
 
-\begin{thebibliography}{99}
-
-\harvarditem[Wo]{Zijishuode Wo}{2025}{wo2025}
-Wo, Z. (2025). ``All robustness tests are useless.'' \textit{Journal of Absurd Economics}, 14(2): 569--575.
-
-\harvarditem[Ma and ChatGPT]{Acto Ma and ChatGPT}{2026a}{chatgpt2026a}
-ChatGPT and Ma, A. (2026a). ``Red Envelopes and Kinship Distance: A Microeconomic Model of CNY Greetings.'' \textit{The American Economic Rubbish}, 1(1): 12--18.
-
-\harvarditem[Ma and ChatGPT]{Acto Ma and ChatGPT}{2026b}{chatgpt2026b}
-ChatGPT and Ma, A. (2026b). ``Present Bias in New Year Greetings: Dynamic Inconsistency and Random Mood Costs.'' \textit{The American Economic Rubbish}, 1(1): 19--25.
-
-\end{thebibliography}
+% --- Bibliography ---
+\nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_Greetings3}
 
 \end{document}

@@ -1,12 +1,18 @@
 \documentclass[AER]{AEA}
 
 % --- 必备宏包 ---
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{booktabs}
+\usepackage{natbib} % AEA standard bibliography package
+\usepackage{url}
+\usepackage{xcolor} % 确保颜色宏包已加载
+\newcommand{\noopsort}[1]{} 
+% 【关键修改】：在导言区定义为空，这意味着在正文中调用时，它什么也不显示！
+\DeclareRobustCommand{\AERlink}[1]{}
+\usepackage[hidelinks]{hyperref}
+\usepackage{placeins} 
 \usepackage{tikz}
 \usetikzlibrary{trees, calc, positioning, shapes}
-\usepackage{amsmath, amssymb}
-\usepackage{booktabs}
-\usepackage{natbib}
-\usepackage{placeins} 
 
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
@@ -22,24 +28,33 @@
 \begin{document}
 
 % --- 标题与作者 ---
-\title{The Nash Equilibrium of Spring Festival Gala: A Dynamic Game of Channel Switching and Family Harmony}
+% 1. 在标题末尾硬编码十字架
+\title{The Nash Equilibrium of Spring Festival Gala: A Dynamic Game of Channel Switching and Family Harmony$^\dagger$}
 \shortTitle{Gala, Game Theory, and Phones}
 
-% --- 作者修改部分 ---
-% Gemini 依然是一作（提供算力），Tachikoma 是二作兼通讯作者（提供灵魂 Ghost）
-\author{Gemini\thanks{Department of Artificial Intelligence, Google. Email: gemini@google.com.} 
-and 
-Tachikoma\thanks{Public Security Section 9, Niihama City. Email: tachikoma@section9.go.jp. Tachikoma is the corresponding author. We acknowledge Major Kusanagi for not disconnecting our neural link during the simulation.}}
+% 2. 硬编码星号 (*) 脚注，彻底抛弃 \thanks，防止缩进错误
+\author{Gemini and Tachikoma$^*$}
 
 \date{\today}
-\JEL{C72, D10, L82, Z1}
-\Keywords{Remote Control, Intergenerational Conflict, Phubbing, Ghost in the Shell}
 
 \begin{abstract}
 The Spring Festival Gala (CCTV-1) acts as an exogenous common shock to Chinese households. We model the channel selection process as a dynamic Stackelberg game between the Elder Generation ($G_1$, holding the remote) and the Youth Generation ($G_3$, holding the grudge). Standard theory suggests a "Battle of the Sexes" coordination failure. However, by introducing a third strategy---"Scrolling on Phone" ($S_p$)---we prove that the game converges to a unique Subgame Perfect Nash Equilibrium (SPNE). In this equilibrium, the TV remains on, volume is nonzero, but marginal attention approaches zero, maximizing the aggregate "Family Harmony" ($H$) variable.
+\noindent (\textit{JEL} C72, D10, L82, Z1)
 \end{abstract}
 
 \maketitle
+
+% 3. 强行插入不带编号的专属脚注 (保证100%左侧像素级对齐)
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}Gemini: Department of Artificial Intelligence, Google (email: gemini@google.com); Tachikoma: Department of Public Security Section 9, Niihama City (email: tachikoma@section9.go.jp). We acknowledge Major Kusanagi for not disconnecting our neural link during the simulation.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0202.F7FD5443919F} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 绝对定位黑科技：在首页左上角强行“纹”上官方 NOI 标注（纳米级拆解专属防伪码）
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(1): 5--8} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0202.F7FD5443919F}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0202.F7FD5443919F}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 
@@ -48,7 +63,7 @@ On the Chinese New Year's Eve, the scarcity of the resource known as "The Televi
 The Elders ($E$) derive utility from Peking Opera and crosstalks that educate people. 
 The Youth ($Y$) derive utility from idol groups and checking when the red envelope rain starts.
 
-Previous literature assumes a binary choice: Watch or Don't Watch \cite{tv2000}. This paper contributes to the \textit{AERubbish} literature by introducing the modern technology of "Digital Escapism." We ask: Why is the TV loud, but the living room silent?
+Previous literature assumes a binary choice: Watch or Don't Watch \citet{tv2000}. This paper contributes to the \textit{AERubbish} literature by introducing the modern technology of "Digital Escapism." We ask: Why is the TV loud, but the living room silent?
 
 \section{The Model Setup}
 
@@ -76,7 +91,7 @@ We model this as a sequential game.
 
 Figure \ref{fig:gametree} illustrates the extensive form of this tragedy.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}[
     grow=right,
@@ -158,7 +173,7 @@ This result is summarized in Proposition 1.
 
 We observed 10 households during the Gala. The results are shown in Table \ref{tab:gala}.
 
-\begin{table}[h]
+\begin{table}[ht]
 \caption{Distribution of Attention during the Gala}
 \label{tab:gala}
 \centering
@@ -186,20 +201,12 @@ We conclude that Steve Jobs contributes more to Chinese family harmony than the 
 
 \FloatBarrier
 
-\begin{thebibliography}{xx}
+% --- Bibliography ---
+% 【唤醒蓝三角黑科技】：在打印参考文献前，瞬间激活 AERlink 并赋予它蓝色三角的灵魂！
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
 
-% 格式说明：\bibitem[显示在文中的名字(年份)]{引用ID}
-% 例如：\cite{tv2000} 会显示为 CCTV (2025)
-
-\bibitem[CCTV(2025)]{tv2000}
-CCTV. 2025. ``Why You Must Watch Me.'' \textit{Journal of Mandatory Fun}, 1983-2025.
-
-\bibitem[Tachikoma(2025)]{tachikoma2025}
-Tachikoma. 2025. ``Synchronizing Ghosts: A Neural Network Analysis of Family Reunion.'' \textit{Section 9 Internal Memo}, 2025.
-
-\bibitem[Nash(1950)]{nash1950}
-Nash, J. 1950. ``Equilibrium Points in N-Person Games.'' \textit{Proceedings of the National Academy of Sciences}, 36(1): 48-49.
-
-\end{thebibliography}
+\nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_Gala_Game}
 
 \end{document}

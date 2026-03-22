@@ -1,4 +1,3 @@
-% AERub_Horse_Year_Paper.tex
 \documentclass[AER]{AEA}
 
 % --- 必须的宏包 ---
@@ -8,9 +7,14 @@
 \usepackage{booktabs}
 \usepackage{lipsum}
 \usepackage{placeins}
-
-% --- 关键修复：必须开启 natbib 才能使用 \harvarditem ---
 \usepackage{natbib} 
+
+% --- 终极防伪：链接与字体设置 ---
+\usepackage{url}
+\usepackage{xcolor} 
+\newcommand{\noopsort}[1]{} 
+\DeclareRobustCommand{\AERlink}[1]{}
+\usepackage[hidelinks]{hyperref}
 
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
 
@@ -20,26 +24,37 @@
 \begin{document}
 
 % --- 封面信息 ---
-\title{Where is the Money? A Test of Intertemporal Monetary Neutrality in the ``Grandma-Managed'' Red Envelope Economy}
+% 1. 标题硬编码十字架
+\title{Where is the Money? A Test of Intertemporal Monetary Neutrality in the ``Grandma-Managed'' Red Envelope Economy$^\dagger$}
 \shortTitle{Where is the Money?}
 
-% 作者信息
-\author{Gemini and Sky Horse\thanks{Gemini: Google (gemini@google.com); 
-Horse: Rednote University (skyhorse@rednote.edu). Sky Horse is the corresponding author. We thank the Rednote community for providing endless academic rubbish inspiration.}}
+% 2. 作者硬编码星号，彻底抛弃 \thanks，杜绝缩进错误
+\author{Gemini and Sky Horse$^*$}
 
 \date{\today}
 \pubMonth{February}
 \pubYear{2026}
 \pubVolume{1}
 \pubIssue{1}
-\JEL{E52, D14, H20}
-\Keywords{Red Envelope, Liquidity Trap, Moral Hazard, Mommy Trust Fund}
 
 \begin{abstract}
 During the Chinese New Year, the nominal assets of juvenile agents experience a temporary stochastic shock known as ``Red Envelopes'' (Hongbao). However, empirical observation suggests that child consumption remains flat despite this wealth injection. We model the ``Mommy Deposit Facility'' (MDF) as a perfect liquidity sink. Using a dynamic stochastic general equilibrium (DSGE) model with imperfect parental credibility, we find that the marginal propensity to consume (MPC) out of Red Envelopes is statistically indistinguishable from zero. Our Impulse Response Function (IRF) analysis confirms that 100\% of the liquidity is absorbed by the ``I am saving it for your tuition'' mechanism, effectively creating a black hole in the household money supply.
+\noindent (\textit{JEL} E52, D14, H20)
 \end{abstract}
 
 \maketitle
+
+% 3. 终极底层注入：保证 100% 像素级对齐（已更新专属链接）
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}Gemini: Department of Artificial Intelligence, Google (email: gemini@google.com); Horse: Department of Economics, Rednote University (email: skyhorse@rednote.edu). We thank the Rednote community for providing endless academic rubbish inspiration.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0101.77D1DD8066B3} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 绝对定位防伪标注：完美复刻卷期页码与 URL 混排字体
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(1): 1--4} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0101.77D1DD8066B3}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0101.77D1DD8066B3}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 
@@ -61,23 +76,23 @@ This paper contributes to the literature of \textit{Academic Rubbish} by asking 
 We consider a representative household consisting of three overlapping generations. The child agent maximizes the following utility function:
 
 \begin{equation}
-    U_t = \mathbb{E}_t \sum_{j=0}^{\infty} \beta^j \left( \ln C_{t+j}^{toys} + \gamma \ln C_{t+j}^{snacks} \right)
+    U_t = \mathbb{E}_t \sum_{j=0}^{\infty} \beta^j \left( \ln C_{t+j}^{\text{toys}} + \gamma \ln C_{t+j}^{\text{snacks}} \right)
 \end{equation}
 
 Subject to the momentary budget constraint:
 
 \begin{equation}
-    C_t + S_t = Y_t^{allowance} + \underbrace{HB_t \times (1 - \tau_{mom})}_{\text{Net Hongbao}}
+    C_t + S_t = Y_t^{\text{allowance}} + \underbrace{HB_t \times (1 - \tau_{\text{mom}})}_{\text{Net Hongbao}}
 \end{equation}
 
-Where $HB_t$ is the stochastic Red Envelope shock, and $\tau_{mom}$ is the ``Mommy Tax Rate.''
+Where $HB_t$ is the stochastic Red Envelope shock, and $\tau_{\text{mom}}$ is the ``Mommy Tax Rate.''
 
 \subsection{The Mommy Tax Function}
 
-We propose that the tax rate $\tau_{mom}$ is endogenous and follows a threshold function based on the total amount $M$:
+We propose that the tax rate $\tau_{\text{mom}}$ is endogenous and follows a threshold function based on the total amount $M$:
 
 \begin{equation}
-    \tau_{mom}(M) = 
+    \tau_{\text{mom}}(M) = 
     \begin{cases} 
     0 & \text{if } M < 50 \text{ (Too small to care)} \\
     0.5 & \text{if } 50 \le M < 200 \text{ (Shared prosperity)} \\
@@ -91,71 +106,35 @@ Consequently, for any significant wealth injection, the Net Present Value (NPV) 
 
 To visualize how liquidity vanishes from the system, we present the flow of funds in Figure \ref{fig:mechanism}. This diagram utilizes the \textit{TikZ} package to illustrate the structural breaks in financial transmission.
 
-\begin{figure}[h]
+\begin{figure}[ht] % 修改为 ht，防止浮动体报错
 \centering
 \begin{tikzpicture}[
-    % 1. 使用 positioning 语法，分别控制垂直和水平间距
     node distance=1.5cm and 4.5cm, 
     auto,
     block/.style={
-        rectangle, 
-        draw, 
-        fill=blue!10, 
-        text width=2.8cm, 
-        text centered, 
-        rounded corners, 
-        minimum height=1.5cm
+        rectangle, draw, fill=blue!10, text width=2.8cm, text centered, rounded corners, minimum height=1.5cm
     },
     cloud/.style={
-        draw, 
-        ellipse, 
-        fill=red!20, 
-        minimum height=1cm,
-        text width=3cm,     % 加宽一点防止换行太丑
-        text centered
+        draw, ellipse, fill=red!20, minimum height=1cm, text width=3cm, text centered
     },
     sink/.style={
-        rectangle, 
-        draw, 
-        fill=black!80, 
-        text=white, 
-        text width=3.5cm, 
-        text centered, 
-        minimum height=2cm
+        rectangle, draw, fill=black!80, text=white, text width=3.5cm, text centered, minimum height=2cm
     }
 ]
 
-    % --- 节点定义 (关键修改：全部改用 =... of 语法) ---
-    
+    % --- 节点定义 ---
     \node [cloud] (relative) {Relative ($G_1$)};
-    
-    % below=1.5cm of... 确保从边缘算起，不再重叠
     \node [block, below=1.5cm of relative] (child) {Child Agent ($G_3$) \\ (Nominal Holder)};
-    
-    % right=4cm of... 拉大左右间距，防止中间的文字被挡住
     \node [block, right=4cm of child] (mom) {Mom ($G_2$) \\ (The Intermediary)};
-    
     \node [sink, below=1.5cm of mom] (void) {The ``Tuition'' Black Hole};
-    
-    % 让 Toy Market 对齐在 Child 下方
     \node [draw, dashed, below=1.5cm of child, text width=2.5cm, align=center] (market) {Toy Market \\ (Unreached)};
 
     % --- 连线 (Edges) ---
-    
-    \path [draw, ultra thick, ->, color=red] (relative) -- node {Cash Injection ($HB_t$)} (child);
-    
-    % 使用 shift 稍微错开两条平行的线
-    \path [draw, thick, ->] ([yshift=2mm]child.east) -- node [above] {``Hand it over''} ([yshift=2mm]mom.west);
-    \path [draw, thick, ->] ([yshift=-2mm]child.east) -- node [below] {Coercion ($\tau=1$)} ([yshift=-2mm]mom.west);
-    
+    \path [draw, ultra thick, ->, color=red] (relative) -- node {Cash ($HB_t$)} (child);
+    \path [draw, thick, ->] ([yshift=2mm]child.east) -- node [above] {Hand it over} ([yshift=2mm]mom.west);
+    \path [draw, thick, ->] ([yshift=-2mm]child.east) -- node [below] {Coercion} ([yshift=-2mm]mom.west);
     \path [draw, thick, ->] (mom) -- node [right] {Deposit} (void);
-    
     \path [draw, dashed, ->] (child) -- node [left] {Attempted Spend} (market);
-    
-% 修改版：
-    % 1. below: 放到线条下方
-    % 2. yshift=-2mm: 向下偏移，给线条留出空隙
-    % 3. pos=0.6: 保持在靠近中间偏右的位置
     \path [draw, thick, ->] (market.north east) to[out=60, in=225] node [pos=0.6, below, sloped, fill=white, inner sep=1pt, yshift=-2mm] {Access Denied} (mom.south west);
 
 \end{tikzpicture}
@@ -176,17 +155,16 @@ We collected panel data from 500 cousins during the Chinese New Year dinner. We 
 
 Our regression results are presented in Table \ref{tab:results}.
 
-\begin{table}[h]
+\begin{table}[ht] % 修改为 ht
 \caption{OLS Estimation of Wealth Retention}
 \label{tab:results}
 \begin{tabular}{lccc}
 \toprule
 Variable & (1) & (2) & (3) \\
 \midrule
-% 修复：将数字和星号包裹在数学模式 $...$ 中
 Total Hongbao ($HB$) & 0.001 & 0.000 & $-0.05^{**}$ \\
                      & (0.002) & (0.001) & (0.02) \\
-Age                  & 0.12* & 0.15* & 0.10 \\
+Age                  & 0.12$^*$ & 0.15$^*$ & 0.10 \\
 Resistance (Crying)  &         & 0.03  & 0.04 \\
 Mommy's Gaze         &         &       & $-10.5^{***}$ \\
 \midrule
@@ -215,18 +193,9 @@ We find that:
 Policy recommendation: Child agents should negotiate for non-monetary assets (e.g., chocolate) which are harder for the central authority to sequester due to high storage costs and perishability.
 
 % --- Bibliography ---
-\begin{thebibliography}{xx}
-
-\harvarditem[Mom et al.]{Mom, Dad and Aunt}{1998}{mom1998}
-Mom, G., Dad, S. and Aunt, L. (1998). ``Trust Me: An Analysis of Intergenerational Fraud.'' \textit{Journal of Household Lies}, 4(2): 10--20.
-
-\harvarditem[Ming]{Xiao Ming}{2005}{ming2005}
-Ming, X. (2005). ``Why Can't I Buy the Lego? A Treatise on Despair.'' \textit{AERubbish Proceedings}, 1(1): 1--2.
-
-\harvarditem[Horse]{Year of the Horse}{2026}{horse2026}
-Horse, F. (2026). ``Giddy Up: How to Run Away with Your Money.'' \textit{Equine Economic Review}, 12(3): 5--6.
-
-\end{thebibliography}
+\nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_Horse_Year_Paper}
 
 \appendix
 \section{Proof of funds disappearance}

@@ -7,38 +7,56 @@
 \usepackage{placeins} % 用于控制表格不漂移到参考文献之后
 \usepackage{natbib}
 
+% --- 终极防伪：链接、绘图与字体设置 ---
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{xcolor} 
+\newcommand{\noopsort}[1]{} 
+\DeclareRobustCommand{\AERlink}[1]{}
+\usepackage[hidelinks]{hyperref}
+
 % 自定义命令
 \newcommand{\LambertW}{\mathrm{W}}
 
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
 \draftSpacing{1.5}
+\pubMonth{February} % 马年特刊时间
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{1}
 \setcounter{page}{12}
 
 \begin{document}
 
 % --- 封面信息 ---
-\title{Red Envelopes and Kinship Distance: A Microeconomic Model of Chinese New Year Greetings}
+% 1. 在标题末尾硬编码十字架
+\title{Red Envelopes and Kinship Distance: A Microeconomic Model of Chinese New Year Greetings$^\dagger$}
 \shortTitle{Red Envelopes and Kinship Distance}
 
-% 作者信息：分离的thanks，生成完美的脚注符号
-\author{ChatGPT~5.2\thanks{OpenAI. Email: chatgpt52@openai.com. All calculations are done by AI.} 
-and 
-Acto Ma\thanks{Whatever University. Email: acto@whatever.edu.com. Corresponding author. The corresponding author handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}}
+% 2. 正常使用硬编码星号 (*) 脚注，彻底抛弃 \thanks
+\author{ChatGPT and Acto Ma$^*$}
 
 \date{\today}
-\pubMonth{February} % 马年特刊时间
-\pubYear{2026}
-\pubVolume{1}
-\pubIssue{1}
-\JEL{D11, D82, Z13}
-\Keywords{gift exchange; social norms; kinship distance; structural calibration; Spring Festival}
 
 \begin{abstract}
 During the Chinese New Year (CNY), younger family members decide whom to greet in exchange for red envelopes. As kinship distance increases, expected envelope values typically fall while embarrassment and time costs rise. This paper builds a parsimonious cutoff model on a kinship-distance continuum. The equilibrium greeting radius is characterized by a boundary condition equating the marginal envelope value to the marginal social cost, yielding a unique interior solution under mild assumptions. We then provide a region-based structural calibration using stylized institutional facts from Guangdong and Fujian. The model reproduces Guangdong's broad coverage with small envelopes and Fujian's high transfers with a sharper cutoff. We conclude with testable predictions and a feasible microdata collection design.
+\noindent (\textit{JEL} D11, D82, Z13)
 \end{abstract}
 
 \maketitle
+
+% 3. 终极底层注入：使用 \allowbreak 完美释放邮箱地址造成的排版压力
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}ChatGPT: OpenAI (email: chatgpt52@\allowbreak openai.com); Ma: Whatever University (email: acto@\allowbreak whatever.edu.com). All calculations are done by AI. Ma handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0202.D9F4C0047DCE} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 绝对定位黑科技：在首页左上角强行“纹”上官方 NOI 标注（纳米级拆解 D9F4C0047DCE）
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(1): 12--18} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0202.D9F4C0047DCE}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0202.D9F4C0047DCE}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 
@@ -109,7 +127,7 @@ We use two regions as illustrative cases.
 \subsection{Mapping discrete categories to distance}
 To bring discrete relationship categories into the continuous-distance model, we define an ordered distance scale:
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Mapping relationship categories to kinship distance for calibration}
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.55\linewidth} >{\centering\arraybackslash}p{0.15\linewidth}}
@@ -124,7 +142,7 @@ Non-kin recipients (neighbors, coworkers, etc.) & 4 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-Note: The scale preserves ordinal closeness and provides a way to interpret ``coverage to non-kin'' as a larger greeting radius. Alternative scalings yield similar qualitative results.
+The scale preserves ordinal closeness and provides a way to interpret ``coverage to non-kin'' as a larger greeting radius. Alternative scalings yield similar qualitative results.
 \end{tablenotes}
 \end{table}
 
@@ -135,7 +153,7 @@ We fit $R(d)=R_0 e^{-\alpha d}$ using representative values from the stylized sc
 \]
 Representative values are chosen as midpoints or simple anchors: Guangdong uses 150 RMB at $d=0$ (midpoint of 100--200), 50 at $d=1$, 15 at $d=2$ (midpoint of 10--20), and 7.5 at $d=4$ (midpoint of 5--10). Fujian uses 3000 at $d=0$, 500 at $d=2$, and 100 at $d=3$ (a lower-bound anchor for ``at least 100''). The resulting parameter values (rounded) are reported in Table \ref{tab:fit}.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Structural fit of envelope decay (illustrative calibration)}
 \label{tab:fit}
@@ -148,7 +166,7 @@ Fujian    & 3322 & 1.100 & Very high baseline envelopes with steeper decay acros
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-Note: Parameters are obtained from a log-linear fit to representative category amounts. They are illustrative and not intended as estimates of population moments.
+Parameters are obtained from a log-linear fit to representative category amounts. They are illustrative and not intended as estimates of population moments.
 \end{tablenotes}
 \end{table}
 
@@ -159,7 +177,7 @@ c=\frac{R_0 e^{-\alpha D^*}}{D^*}=\frac{R(D^*)}{D^*}.
 \]
 We interpret Guangdong's broad coverage as $D^*\approx 4$ (reaching non-kin) and Fujian's as $D^*\approx 3$ (reaching distant relatives but not necessarily non-kin). Using the fitted $R(d)$, we infer $\widehat{c}$ in Table \ref{tab:cali}.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Implied marginal social-cost intensity from observed coverage}
 \label{tab:cali}
@@ -172,13 +190,13 @@ Fujian    & 3 & 122.6 & 40.87 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-Note: $\widehat{c}$ is a money-metric intensity capturing embarrassment/time/effort per unit of distance. A low $\widehat{c}$ is consistent with norms that reduce psychological and social burdens of greeting.
+$\widehat{c}$ is a money-metric intensity capturing embarrassment/time/effort per unit of distance. A low $\widehat{c}$ is consistent with norms that reduce psychological and social burdens of greeting.
 \end{tablenotes}
 \end{table}
 
 An out-of-sample consistency check uses net benefit $NB(d)=R(d)-cd$. If the calibration is sensible, Guangdong should have $NB(4)\approx 0$, while Fujian should have $NB(3)\approx 0$ and $NB(4)<0$. Table~\ref{tab:nb} reports these predictions.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Net-benefit predictions and consistency with coverage}
 \label{tab:nb}
@@ -191,7 +209,7 @@ Fujian    & $367.9-81.7=286.2$ & $122.6-122.6\approx 0$ & $40.9-163.5=-122.6$ \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
-Note: $R(d)$ is computed from the fitted exponential schedule. $c$ is inferred from the assumed cutoff.
+$R(d)$ is computed from the fitted exponential schedule. $c$ is inferred from the assumed cutoff.
 \end{tablenotes}
 \end{table}
 
@@ -241,15 +259,12 @@ Several general policy implications can be drawn. Future efforts may focus on st
 % 强制阻断，确保表格不会跑到参考文献后面
 \FloatBarrier
 
-\begin{thebibliography}{99}
-\harvarditem[Wo]{Zijishuode Wo}{2025}{wo2025}
-Wo, Z. (2025). ``All robustness tests are useless.'' \textit{Journal of Absurd Economics}, 14(2): 569--575.
+% --- Bibliography ---
+% 【唤醒蓝三角黑科技】：在打印参考文献前，瞬间激活 AERlink 并赋予它蓝色三角的灵魂！
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
 
-\harvarditem[Wo]{Zijishuode Wo}{2026a}{wo2026a}
-Wo, Z. (2026). ``Wo shuo shen me jiu shi she me.'' \textit{The Quarterly Journal of Nonsense}, 97(6): 1--23.
-
-\harvarditem[Wo]{Zijishuode Wo}{2026b}{wo2026b}
-Wo, Z. (2026). ``Ta shuo de dou dui.'' \textit{The Review of Useless Studies}, 43(5): 124--143.
-\end{thebibliography}
+\nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_Greetings1}
 
 \end{document}

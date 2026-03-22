@@ -1,6 +1,6 @@
 \documentclass[AER]{AEA}
 
-% --- 必须的宏包 ---
+% --- 必备宏包 ---
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows, positioning, fit, calc, backgrounds, plotmarks}
 \usepackage{amsmath, amssymb}
@@ -9,43 +9,60 @@
 \usepackage{natbib}
 \usepackage{placeins} 
 
+% --- 终极防伪：链接与字体设置 ---
+\usepackage{url}
+\usepackage{xcolor} 
+\newcommand{\noopsort}[1]{} 
+\DeclareRobustCommand{\AERlink}[1]{}
+\usepackage[hidelinks]{hyperref}
+
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
+\pubMonth{February} 
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{1}
+\setcounter{page}{9}  % <--- 强制从第 9 页开始
+
+% 草稿行距设置
 \draftSpacing{1.5}
 
 \begin{document}
 
 % --- 封面信息 ---
-\title{Giddy Up or Lay Down? A Marginal Utility Analysis of Laziness during the Spring Festival Break}
+% 1. 标题硬编码十字架
+\title{Giddy Up or Lay Down? A Marginal Utility Analysis of Laziness during the Spring Festival Break$^\dagger$}
 \shortTitle{Giddy Up or Lay Down?}
 
-% 作者信息：Gemini (一作) 和 Mosaic Ma (通讯)
-\author{Gemini\thanks{Google DeepMind. Email: gemini@google.com. I acknowledge the computational power used to simulate this level of laziness.} 
-and 
-Mosaic Ma\thanks{Department of Information Asymmetry, Pixel Polytechnic. Email: 404\_not\_found@pixel.edu. Corresponding author. All data in this paper has been blurred to protect the dignity of the subjects.}}
+% 2. 作者硬编码星号，彻底抛弃 \thanks，杜绝缩进错误
+\author{Gemini and Mosaic Ma$^*$}
 
 \date{\today}
-\pubMonth{February} % 马年春节
-\pubYear{2026}
-\pubVolume{1}
-\pubIssue{1}
-\JEL{J22, I12, Z10 (Holiday Economics)}
-\Keywords{Laziness, Bed Gravity, Transportation Cost, Calorie Retention}
-\setcounter{page}{9}  % <--- 强制从第 9 页开始
 
 \begin{abstract}
 The Year of the Horse theoretically inspires agents to ``gallop'' (Ce Ma Ben Teng). However, empirical data from the Spring Festival break reveals a structural break in physical activity, converging to a state defined as ``Lying Flat'' (Tang Ping). We model the trip from the Bedroom ($B$) to the Dining Table ($D$) as a labor supply decision. We find that the \textit{Perceived Transportation Cost} (PTC) follows an exponential function of holiday duration ($t$). By Day 4, the PTC exceeds the utility of sustenance, leading to a corner solution where the agent starves in bed until scolded by the maternal authority.
+\noindent (\textit{JEL} J22, I12, Z10)
 \end{abstract}
 
 \maketitle
+
+% 3. 终极底层注入：使用 makebox 保证星号和十字架等宽，实现 100% 像素级垂直对齐
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}Gemini: Google DeepMind (email: gemini@google.com); Mosaic Ma: Department of Information Asymmetry, Pixel Polytechnic (email: 404\_not\_found@pixel.edu). Corresponding author. All data in this paper has been blurred to protect the dignity of the subjects. We acknowledge the computational power used to simulate this level of laziness.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0101.EE47A2BD20D4} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 绝对定位防伪标注：完美复刻卷期页码与 URL 混排字体
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(1): 9--11} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0101.EE47A2BD20D4}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0101.EE47A2BD20D4}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 
 \section{Introduction}
 
-Labor economics traditionally assumes that leisure has diminishing marginal utility. However, during the Chinese New Year, we observe a phenomenon where the demand for leisure (specifically, remaining in a horizontal position) exhibits \textit{increasing} returns to scale.
-
-This paper investigates the "Horse Year Paradox": Why do agents blessed with the spirit of the Horse exhibit the mobility of a sloth? We utilize a dataset collected by the corresponding author, Mosaic Ma, which unfortunately contains significant missing values due to the author falling asleep during data entry.
+Labor economics traditionally assumes that leisure has diminishing marginal utility. However, during the Chinese New Year, we observe a phenomenon where the demand for leisure (specifically, remaining in a horizontal position) exhibits \textit{increasing} returns to scale. This paper investigates the "Horse Year Paradox": Why do agents blessed with the spirit of the Horse exhibit the mobility of a sloth? We utilize a dataset collected by the corresponding author, Mosaic Ma, which unfortunately contains significant missing values due to the author falling asleep during data entry.
 
 \section{The Model of Bed Gravity}
 
@@ -67,7 +84,7 @@ Where $G_0$ is the standard gravity of Earth ($9.8 m/s^2$), and $\lambda > 0$ is
 
 To illustrate the difficulty of moving freely during the holidays, we present the ``Cost Divergence Hypothesis" in Figure \ref{fig:cost_curve}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=1.2]
     % 坐标轴
@@ -94,8 +111,8 @@ To illustrate the difficulty of moving freely during the holidays, we present th
     % 区域填充
     \fill[gray, opacity=0.2] (2.9, 0) rectangle (5.5, 5);
     \node at (4.2, 2.5) [rotate=45, gray] {Starvation / Takeout Zone};
-
 \end{tikzpicture}
+
 \caption{The Divergence between Physical and Perceived Transportation Costs}
 \label{fig:cost_curve}
 \begin{figurenotes}
@@ -107,7 +124,7 @@ Note: The blue dashed line represents the actual distance from the bedroom to th
 
 We tracked the daily step count of 100 graduate students. The regression results are presented in Table \ref{tab:steps}. Note that due to Professor Ma's unique ``Mosaic Processing" technique, standard errors are omitted because we couldn't read them clearly.
 
-\begin{table}[h]
+\begin{table}[ht]
 \caption{OLS Estimation of Daily Steps (Dependent Var: Steps)}
 \label{tab:steps}
 \begin{tabular}{lccc}
@@ -132,18 +149,16 @@ Note: *** $p<0.01$, ** $p<0.05$. In Model (3), the $R^2$ drops to zero because t
 
 This study confirms that in the Year of the Horse, the ``Giddy Up" (Ce Ma Ben Teng) effect is statistically insignificant. The dominant strategy is ``Lay Down". 
 
-We find that the marginal utility of getting up to eat converges to zero as the duration of the holiday extends. The only effective exogenous shock that can break this equilibrium is the \textit{Red Envelope Interaction Term} ($HB \times WeChat$).
+We find that the marginal utility of getting up to eat converges to zero as the duration of the holiday extends. The only effective exogenous shock that can break this equilibrium is the \textit{Red Envelope Interaction Term} ($HB \times \text{WeChat}$).
 
 \FloatBarrier
 
-\begin{thebibliography}{xx}
+% --- Bibliography ---
+% 唤醒蓝三角黑科技（如果您后续加上 url 字段，它会自动生效）
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
 
-\harvarditem[Ma]{Mosaic Ma}{2024}{ma2024}
-Ma, M. (2024). ``The Art of Blurring: How to Hide Insignificant P-Values.'' \textit{Journal of Econometric Tricks}, 10(2): 404--404.
-
-\harvarditem[Sloth]{Zootopia Sloth}{2016}{sloth2016}
-Sloth, F. (2016). ``.......Ha.......Ha.......Ha.'' \textit{Slow Motion Review}, 1(1): 1--2.
-
-\end{thebibliography}
+\nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_Laziness_Paper}
 
 \end{document}

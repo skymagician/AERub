@@ -1,57 +1,63 @@
 % AER-Article.tex for AEA last revised 24 July 2025
 \documentclass[AER]{AEA}
 
-% Uncomment the next line to use the natbib package with bibtex
-% \usepackage{natbib}
-
-% Uncomment the next line to use the harvard package with bibtex
-% \usepackage[abbr]{harvard}
-
-% This command determines the leading (vertical space between lines) in draft mode
-% with 1.5 corresponding to "double" spacing.
-\draftSpacing{1.5}
-
 % --- Packages needed by the paper content ---
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{bm}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{placeins}
+\usepackage{natbib}
+
+% --- 终极防伪：链接、绘图与字体设置 ---
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{xcolor} 
+\newcommand{\noopsort}[1]{} 
+\DeclareRobustCommand{\AERlink}[1]{} % 本篇不需要蓝三角，但保留宏防报错
 \usepackage[hidelinks]{hyperref}
 
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
 \setcounter{page}{19}
-
-% --- Helpers from the original paper ---
-\newcommand{\keywords}[1]{\noindent\textbf{Keywords:} #1\par}
-\newcommand{\jelcodes}[1]{\noindent\textbf{JEL Codes:} #1\par}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\Var}{\mathrm{Var}}
-\newcommand{\Ind}{\mathbb{I}}
-
-
-\begin{document}
-
-\title{Present Bias in New Year Greetings: Dynamic Inconsistency and Random Mood Costs}
-\shortTitle{Present Bias in New Year Greetings}
-\author{ChatGPT~5.2\thanks{OpenAI. Email: chatgpt52@openai.com. All calculations are done by AI.} 
-and 
-Acto Ma\thanks{Whatever University. Email: acto@whatever.edu. Corresponding author. The corresponding author handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}}
-\date{February 19, 2026}
 \pubMonth{February}
 \pubYear{2026}
 \pubVolume{1}
 \pubIssue{1}
 
+% --- Helpers from the original paper ---
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Ind}{\mathbb{I}}
+
+\begin{document}
+
+% 1. 在标题末尾硬编码十字架
+\title{Present Bias in New Year Greetings: Dynamic Inconsistency and Random Mood Costs$^\dagger$}
+\shortTitle{Present Bias in New Year Greetings}
+
+% 2. 正常使用硬编码星号 (*) 脚注，彻底抛弃 \thanks
+\author{ChatGPT and Acto Ma$^*$}
+\date{February 19, 2026}
+
 \begin{abstract}
 Many young people, including at least one author, delay, or at least want to delay Chinese New Year greetings until surprisingly late in the holiday, despite knowing they should do it earlier and there is no evasion. This paper offers a small but ambitious explanation: quasi-hyperbolic discounting generates dynamic inconsistency, and day-to-day mood costs create an option value of waiting. Together, they produce a may-predictable pattern of procrastination followed by a sudden burst of greetings. We also document a two-day panel dataset of size one (the author). This micro-evidence is consistent with the model's key prediction: external constraints can override present bias and trigger immediate action. We invite readers to contribute additional datasets in future Chinese New Years.
+\noindent (\textit{JEL} D11, D91, Z13) \\
 \end{abstract}
 
 \maketitle
 
-\jelcodes{D11, D91, Z13, CNY12\footnotemark[1]}
-\keywords{present bias; procrastination; optimal stopping; mood costs; social norms; Chinese New Year}
+% 3. 终极底层注入：使用 makebox 保证星号、十字架和数字脚注等宽，实现 100% 像素级垂直对齐
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}ChatGPT: OpenAI (email: chatgpt52@\allowbreak openai.com); Ma: Whatever University (email: acto@\allowbreak whatever.edu). All calculations are done by AI. Ma handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0101.A81F94AF636F} to visit the article page for additional materials and author disclosure statements.}
 
-\footnotetext[1]{Chinese New Year Economics: Household Behavior and Family Economics: \textit{Bai nian} Economics, i.e., the study of \textit{Bai nian} behavior within CNY economics.}
+% 4. 绝对定位黑科技：在首页左上角强行“纹”上官方 NOI 标注
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(1): 19--25} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0101.A81F94AF636F}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0101.A81F94AF636F}}
+  };
+\end{tikzpicture}
 
 \section{Introduction}
 Exchanging greetings (\textit{Bai Nian}) during Chinese New Year is a familiar social ritual in China. A curious fact is that the timing of greetings is not fixed. Some people greet early, some greet late, and many greet \emph{very} late while repeatedly claiming they will greet tomorrow.
@@ -63,7 +69,7 @@ Our contribution is to merge two standard ingredients into one holiday-specific 
 We also provide an empirical illustration using a dataset of size one. Additional data from readers are welcome, though will not be analyzed by the author.
 
 \section{Related Literature}
-This paper builds on four strands of existing work. First, it adds to the literature on present bias and procrastination, which explains why ``tomorrow'' is a magical date with unusually low costs. Second, it contributes to research on optimal stopping and dynamic discrete choice, where doing something later can be optimal when today is unpleasant and tomorrow might be better. The third strand is about social norms. Greetings are not just private choices. They happen in front of family members who have opinions. The last strand is the CNY economics, first introduced by ChatGPT and Acto (2026). While we studied \textit{whom} to greet, we now study \textit{when} to greet.
+This paper builds on four strands of existing work. First, it adds to the literature on present bias and procrastination, which explains why ``tomorrow'' is a magical date with unusually low costs. Second, it contributes to research on optimal stopping and dynamic discrete choice, where doing something later can be optimal when today is unpleasant and tomorrow might be better. The third strand is about social norms. Greetings are not just private choices. They happen in front of family members who have opinions. The last strand is the CNY economics, first introduced by \citet{chatgpt2026}. While we studied \textit{whom} to greet, we now study \textit{when} to greet.
 
 Our approach is to put these ideas into one small model. We let the present be overweighted, let mood costs move around, and then watch greetings migrate toward later dates.
 
@@ -210,7 +216,7 @@ This table documents the full empirical sample used in Section 6.1. Larger sampl
 \end{table}
 
 \section{Robustness}
-This section would normally contain robustness checks. We do not want to disappoint the reader, so we include this section, even though we follow Wo (2025), who states that robustness can be ignored once one is confident enough and the results fail to support that confidence.
+This section would normally contain robustness checks. We do not want to disappoint the reader, so we include this section, even though we follow \citet{wo2025}, who states that robustness can be ignored once one is confident enough and the results fail to support that confidence.
 
 \section{Further Research}
 
@@ -247,19 +253,11 @@ Together, these mechanisms rationalize the familiar pattern of calm early holida
 
 More broadly, the Spring Festival serves as a natural laboratory for studying procrastination, social pressure, and self-control. From a policy perspective, our findings suggest that nationwide parental coordination and large-scale holiday mood management could improve greeting efficiency.
 
-\begin{thebibliography}{99}
+\FloatBarrier
 
-\bibitem{} Wo, Z. 2025. ``All robustness tests are useless.'' \textit{Journal of Absurd Economics} 14(2): 569--575.
-
-% \bibitem{} Zijishuode, Wo. 2026. ``Wo shuo shen me jiu shi she me.'' \textit{The Quarterly Journal of Nonsense} 97(6): 1--23.
-
-\bibitem{} An, X. 2026. ``Ta shuo de dou dui.'' \textit{The Review of Useless Studies} 43(5): 124--143.
-
-\bibitem{} ChatGPT and Ma, A. 2026. ``Red Envelopes and Kinship Distance: A Microeconomic Model of CNY Greetings.'' \textit{The American Economic Rubbish} 1(1): 12--18.
-
-\end{thebibliography}
-
-% If you are using an appendix, it goes last, after the bibliography.
-
+% --- Bibliography ---
+\nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_Greetings2}
 
 \end{document}

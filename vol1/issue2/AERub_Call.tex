@@ -6,8 +6,13 @@
 \usepackage{array}
 \usepackage{placeins} 
 \usepackage{natbib}
-% 加入 hidelinks 选项，去掉引用和链接的丑陋彩色方框，但保留点击跳转功能
+\usepackage{url}
+\usepackage{xcolor} % 确保颜色宏包已加载
+\newcommand{\noopsort}[1]{} 
+% 【关键修改】：在导言区定义为空，这意味着在正文中调用时，它什么也不显示！
+\DeclareRobustCommand{\AERlink}[1]{}
 \usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
 
 % --- 定理环境设置 (去掉 theoremstyle) ---
 \newtheorem{theorem}{Theorem}[section]
@@ -28,13 +33,12 @@
 \setcounter{page}{5}
 
 % --- 封面信息 ---
-\title{Call Dominates Cell: A Bayesian Analysis of Blank-Page Publishing}
+% 1. 不使用 \thanks，在标题末尾直接硬编码一个上标十字架
+\title{Call Dominates Cell: A Bayesian Analysis of Blank-Page Publishing$^\dagger$}
 \shortTitle{Call Dominates Cell}
 
-% 严格遵循经济学顶刊的字母表排序潜规则：A 在 C 之前，并设置 Amadeus 为通讯作者
-\author{Amadeus\thanks{Viktor Chondria University. Email: amadeus@vcu.edu. Corresponding author. We thank Gemini for computational patience and comments.}
-and 
-ChatGPT\thanks{OpenAI.}}
+% 2. 不使用 \thanks，硬编码一个上标星号
+\author{Amadeus and ChatGPT$^*$}
 
 \date{\today}
 \pubMonth{February}
@@ -42,14 +46,27 @@ ChatGPT\thanks{OpenAI.}}
 \pubVolume{1}
 \pubIssue{2} % 第一卷第二期
 
-\JEL{Z00, Z19}
-\Keywords{Blank paper; Bayesian updating; Academic nihilism}
+% \JEL{Z00, Z19}
+% \Keywords{Blank paper; Bayesian updating; Academic nihilism}
 
 \begin{abstract}
 Prestige journals are presumed to improve understanding because their published papers possess higher intrinsic quality. This paper revisits that presumption from a Bayesian perspective. We model readers as rational agents who update their beliefs after reading journal articles, deriving utility from posterior insight net of cognitive reading costs. We demonstrate that, under mean-based evaluation of insight, reading a blank paper is informationally equivalent to reading an average-quality paper whose extracted message coincides with the reader's prior belief. Since blank papers impose negligible cognitive costs, they may generate strictly higher net insight utility. We further show that journals willing to publish blank papers can dominate top journals in terms of reader welfare, provided their average intrinsic quality is non-negative. This analysis provides a modest contribution to the emerging literature on epistemic efficiency and academic nihilism in publishing.
+\noindent (\textit{JEL} Z00, Z19)
 \end{abstract}
 
 \maketitle
+
+% 3. 连续两次强行注入！完全绕开底层队列！
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}Amadeus: Viktor Chondria University (email: amadeus@vcu.edu); ChatGPT: OpenAI (email: chatgpt@openai.com). We thank Gemini for computational patience and comments.}
+\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0203.53FEA521C710} to visit the article page for additional materials and author disclosure statements.}
+
+% 4. 在首页左上角强行“纹”上官方 NOI 标注（终极走火入魔版：连 URL 内部都进行字母和数字的字体混排！）
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish} \textsl{2026, 1(2): 5--9} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0203.53FEA521C710}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0203.53FEA521C710}}
+  };
+\end{tikzpicture}
 
 % --- 正文 ---
 
@@ -188,12 +205,10 @@ If forward-thinking journals (such as those in the Rubbish Series) embrace blank
 
 \FloatBarrier
 
-% --- 将原来的 bib 文件直接合并到这里 ---
-\begin{thebibliography}{99}
+% 【关键修改】：在打印参考文献列表前，瞬间让它变回蓝色小三角！
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
 
-\harvarditem[NO PAPER]{NO PAPER}{2026}{NoPaper2026}
-{NO PAPER}. (2026). ``An Empirical Study on the Feasibility of Manuscript-Free Submission: A Deep Dive into Academic Nihilism.'' \textit{Call Press}. \url{https://doi.org/10.5281/zenodo.18653733}.
-
-\end{thebibliography}
+\bibliographystyle{aea}
+\bibliography{AERub_Call}
 
 \end{document}
