@@ -1,0 +1,516 @@
+\documentclass[AER]{AEA}
+
+% --- Packages ---
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{placeins}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{xcolor}
+
+\urlstyle{same}
+
+% 1. 先强行抹杀 AEA.cls 自带的 proof 环境
+% \let\proof\relax
+% \let\endproof\relax
+
+% 2. 然后再安全加载 amsthm
+% \usepackage{amsthm}
+
+% --- 终极防伪与布尔开关 ---
+\newcommand{\noopsort}[1]{} 
+% 【修复】：给 blacksquare 加上数学模式符号 $ $
+\newcommand{\qed}{\nolinebreak\hfill\ensuremath{\blacksquare}\par}
+% 在正文全局中，让蓝三角隐身
+\DeclareRobustCommand{\AERlink}[1]{}
+\usepackage[hidelinks]{hyperref}
+
+% --- 定理环境 (AER标准：Proposition大写) ---
+\newtheorem{proposition}{PROPOSITION}
+\newtheorem{lemma}{LEMMA}
+\newtheorem{theorem}{THEOREM}
+\newtheorem{corollary}{COROLLARY}
+\newtheorem{definition}{DEFINITION}
+\newtheorem{remark}{REMARK}
+
+% --- 核心设置 ---
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
+\setcounter{page}{25} % 接续上一篇页码
+\pubMonth{April}
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{2}
+
+\begin{document}
+
+% 1. 标题与十字架脚注
+\title{Simping to Win: Contingent Courtship, Appropriable Attention, and Relational Contracts in the Affection Economy$^\dagger$}
+\shortTitle{Simping to Win}
+
+% 2. 作者与星号脚注
+\author{Peter Price$^*$}
+\date{February 2026}
+
+\begin{abstract}
+This paper develops a theory of ``simping'' as a commitment and appropriability problem in courtship. A suitor (the ``simp'') supplies costly attention and favors that can be partially appropriated even when the target does not commit. In a one-shot game, unconditional courtship that is fully appropriable cannot change partner choice. We introduce a \textit{contingency technology} that shifts courtship from appropriable transfers toward relationship-specific investments whose benefits are realized only under mutual commitment. We characterize the optimal mix of intensity and contingency, and provide a repeated-game foundation in which relational contracts endogenize contingency via continuation values and credible exit. The analysis highlights an efficiency rationale for platform features that facilitate transparent reciprocity.
+\noindent (\textit{JEL} C72, C73, D86, D91, J12) \\
+% \noindent \textbf{Keywords:} courtship, attention economy, reciprocity, commitment, relational contracts, dating markets
+\end{abstract}
+
+\maketitle
+
+% 3. 脚注底层对齐黑魔法
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^*$}Price: Department of Theoretical Romance, University of Affection (email: p.price@\allowbreak affection.edu). This is a theoretical paper studying incentive constraints and commitment in courtship. The model treats ``winning'' as the voluntary formation of a stable exclusive relationship. It does not advocate manipulatio or coercion; rather, it analyzes incentive compatibility and commitment problems.}
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0004} to visit the article page for additional materials and author disclosure statements.}
+
+% 【施法完毕】：恢复阿拉伯数字脚注
+\def\thefootnote{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+% 4. DOI 绝对定位纹身
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish 2026, 1(2): 25--35} \\
+    \href{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0004}{\textit{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0004}}
+  };
+\end{tikzpicture}
+
+% =========================================================
+\section{Introduction}
+% =========================================================
+
+Courtship in modern ``attention economies'' often features a familiar pattern:
+a high-investment suitor provides costly attention, favors, or gifts without receiving commitment in return.
+In Chinese internet slang, such a suitor is called a \emph{ti\v{a}n g\v{o}u} (literally ``licking dog''; colloquially, a ``simp''),
+a term referring to persistently one-sided romantic investment.\footnote{The term \emph{ti\v{a}n g\v{o}u} has become widely used in Chinese-language online communities to describe a person who invests heavily in a romantic interest without reciprocation.}
+
+This paper provides a theoretical foundation for when such a suitor can \emph{win}---defined as the voluntary formation of a stable exclusive relationship---and when the strategy is doomed to be exploited.
+Our central claim is simple but sharp: \emph{unconditional, fully appropriable courtship cannot change partner choice in a one-shot environment.}
+To win, the suitor must redirect investment from ``appropriable attention'' toward \emph{contingent} and/or \emph{relationship-specific} actions whose benefits are realized primarily under mutual commitment.
+
+The core friction is appropriability:
+many courtship inputs (messages, gifts, errands, emotional validation) deliver immediate utility to the recipient regardless of future commitment.
+If the recipient can accept these inputs and still match elsewhere, then unconditional generosity has little strategic leverage; it becomes a dominated instrument for persuasion.
+This logic formalizes a widely observed intuition: ``giving more'' does not necessarily improve one's chance of being chosen if the other party can retain the benefit while pursuing superior outside options.
+
+We introduce a reduced-form \emph{contingency index} capturing the share of courtship value that is \emph{not} appropriable without commitment.
+Examples include:
+(i) joint experiences requiring mutual participation,
+(ii) investments that raise match quality only inside the relationship (e.g., learning the partner's preferences, integrating social networks), and
+(iii) credible boundary-setting rules (withdrawal of attention after non-reciprocation).
+We study the suitor's optimal choice of (intensity, contingency), characterize equilibrium relationship formation, and provide a repeated-game microfoundation in which contingency arises endogenously from relational contracting and credible exit.
+
+\paragraph{Contributions.}
+First, we model ``simping'' as a standard incentive problem combining (i) costly transfers and (ii) partial appropriability by a strategic recipient.
+Second, we show in a one-shot model that fully appropriable gifts do not affect partner choice; winning requires contingent, relationship-specific instruments.
+Third, we derive optimal contingency and show how high attachment helps only if it finances \emph{contingent} investment rather than unconditional transfers.
+Fourth, we connect contingency to repeated-game continuation values and credibility: patience and outside options can substitute for formal contracting.
+Finally, we discuss welfare and platform design: commitment and reciprocity tools can reduce inefficient overinvestment and mismatches.
+
+\paragraph{Related literature.}
+Our analysis draws on classic insights from signaling and commitment \citep{Spence1973, FudenbergTirole1991},
+relational contracts \citep{BakerGibbonsMurphy2002, MailathSamuelson2006},
+and matching and family economics \citep{Becker1973, GaleShapley1962}.
+We interpret courtship inputs as noncontractible investments with partial appropriability, echoing hold-up logic in the theory of the firm, but focus on romantic partner choice rather than firm boundaries.
+
+% =========================================================
+\section{Environment and Definitions}
+% =========================================================
+
+We study a two-player game between a suitor~$S$ (the ``simp'') and a target~$T$ (the potential partner).
+
+\subsection{Payoffs and Outside Options}
+
+The target has an outside option $\bar{V} \in \mathbb{R}$ representing the utility from her best alternative (another match or remaining single).
+The suitor obtains intrinsic utility $U \ge 0$ from forming an exclusive relationship with the target.
+
+If $T$ forms a relationship with $S$, the target obtains baseline utility $b \in \mathbb{R}$ from match quality (chemistry and compatibility), plus the benefit from courtship inputs.
+We intentionally allow $b$ to be below $\bar{V}$: the suitor may not be the target's ``default best'' match absent additional investment.
+
+\subsection{Courtship Intensity and Contingency}
+
+The suitor chooses two objects:
+
+\begin{itemize}[leftmargin=0.75in]
+\item \textbf{Intensity} $x \ge 0$: the total level of costly courtship input (time, effort, favors, resources).
+\item \textbf{Contingency} $r \in [0,1]$: the fraction of the courtship value that is \emph{not appropriable} without commitment.
+\end{itemize}
+
+\noindent
+\emph{Interpretation.}---The courtship input yields total value $x$ to the target \emph{if} the relationship forms.
+If the target does \emph{not} commit, only a share $(1-r)x$ is nonetheless enjoyed (e.g., unilateral gifts or attention consumed),
+while the remaining share $rx$ is effectively relationship-specific (e.g., joint activities, contingent effort, credible boundaries).
+
+The suitor incurs cost $c(x)$ with $c(0)=0$, $c'(x)>0$, and $c''(x)\ge 0$.
+Implementing contingency incurs additional (possibly psychological or social) cost $k(r)$ with $k(0)=0$, $k'(r)\ge 0$, and $k''(r)\ge 0$.
+
+\begin{remark}[Why Contingency Is Costly]
+In practice, making effort contingent can be socially awkward (e.g., initiating ``What are we?'' conversations), emotionally costly (e.g., withdrawing attention after non-reciprocation), or require commitment devices (e.g., accountability structures, cultivating alternative options).
+These frictions are captured by $k(r)$.
+\end{remark}
+
+\subsection{Timing}
+
+The game proceeds as follows:
+
+\begin{enumerate}[leftmargin=0.75in]
+\item $S$ chooses $(x,r)$.
+\item $T$ observes $(x,r)$ and chooses $a \in \{C, R\}$, where $C$ denotes committing to an exclusive relationship with $S$ and $R$ denotes rejecting (i.e., matching elsewhere or remaining single).
+\item Payoffs are realized.
+\end{enumerate}
+
+\subsection{Payoffs}
+
+If $T$ commits ($a=C$):
+\begin{align}
+u_T(C) &= b + x, \label{eq:uTC}\\
+u_S(C) &= U - c(x) - k(r). \label{eq:uSC}
+\end{align}
+
+If $T$ rejects ($a=R$):
+\begin{align}
+u_T(R) &= \bar{V} + (1-r)\,x, \label{eq:uTR}\\
+u_S(R) &= -c(x) - k(r). \label{eq:uSR}
+\end{align}
+
+This formulation isolates the key asymmetry: the target can appropriate $(1-r)x$ even without committing.
+
+\begin{definition}[Simping]
+We say the suitor is ``simping'' when he chooses high $x$ paired with low $r$, so that most courtship value is appropriable upon rejection.
+\end{definition}
+
+\begin{definition}[Winning]
+The suitor ``wins'' if the equilibrium outcome features $T$ choosing $C$ (exclusive relationship formation).
+\end{definition}
+
+% =========================================================
+\section{Baseline: Unconditional Courtship Cannot Win}
+% =========================================================
+
+We first establish a stark benchmark: if courtship is fully appropriable upon rejection ($r=0$), then unconditional intensity cannot alter partner choice.
+
+\begin{proposition}[Irrelevance of Fully Appropriable Courtship]\label{prop:irrelevance}
+Suppose $r=0$ is the only feasible contingency level.
+Then:
+\begin{enumerate}[leftmargin=0.75in]
+\item If $b < \bar{V}$, the target rejects ($R$) for any $x \ge 0$; the suitor cannot win.
+\item In any subgame-perfect equilibrium, the suitor chooses $x=0$ (no courtship) and the target rejects whenever $b<\bar{V}$.
+\end{enumerate}
+\end{proposition}
+
+Proposition~\ref{prop:irrelevance} captures the strategic core of why unconditional generosity fails in a one-shot environment:
+when the recipient can keep what is given and still choose the better outside option, increasing gifts does not change the comparison.
+The difference $u_T(R) - u_T(C) = \bar{V} - b$ is independent of $x$, so no amount of unconditional investment can alter the target's ranking.
+
+\begin{remark}[Economics of ``Being Used'']
+In the baseline, high $x$ with $r=0$ transfers surplus to $T$ without affecting $T$'s action.
+Such behavior can be privately rational only if the suitor directly values the act of giving itself (not modeled here) or suffers from a commitment or self-control problem (discussed in Section~\ref{sec:extensions}).
+\end{remark}
+
+% =========================================================
+\section{Contingent Courtship Design}
+% =========================================================
+
+We now allow $S$ to choose $r>0$ at cost $k(r)$, shifting courtship toward relationship-specific or contingent inputs.
+
+\subsection{The Target's Best Response and the Commitment Constraint}
+
+Given $(x,r)$, the target commits if and only if
+\begin{equation}\label{eq:commitconstraint}
+b + x \;\ge\; \bar{V} + (1-r)\,x
+\quad \Longleftrightarrow \quad
+b + r\,x \;\ge\; \bar{V}.
+\end{equation}
+
+Condition~\eqref{eq:commitconstraint} is the central incentive constraint: only the \emph{non-appropriable} portion $r\,x$ has persuasive power.
+The term $r\,x$ represents the courtship value the target forfeits by rejecting, and it is this forgone value---not the total investment---that determines whether commitment is incentive compatible.
+
+\subsection{Optimal Intensity Given Contingency}
+
+Fix $r>0$ and suppose $b<\bar{V}$.
+To induce commitment, the suitor chooses the minimal $x$ satisfying~\eqref{eq:commitconstraint}:
+\begin{equation}\label{eq:xstar}
+x(r) = \frac{\bar{V}-b}{r}.
+\end{equation}
+If $b\ge \bar{V}$, then $x(r)=0$ suffices: the suitor wins without costly courtship.
+
+\subsection{Optimal Contingency}
+
+Assume $b<\bar{V}$ and $r\in(0,1]$ is feasible.
+Substituting~\eqref{eq:xstar} into $u_S(C)$ yields the suitor's problem:
+\begin{equation}\label{eq:rsproblem}
+\max_{r\in(0,1]} \;
+U - c\!\left(\frac{\bar{V}-b}{r}\right) - k(r).
+\end{equation}
+
+\begin{proposition}[Characterization of Optimal Contingency]\label{prop:optcontingency}
+Suppose $c$ and $k$ are differentiable with $c'>0$ and $k'\ge 0$.
+If an interior solution $r^*\in(0,1)$ exists, it satisfies the first-order condition
+\begin{equation}\label{eq:foc}
+\frac{\bar{V}-b}{(r^*)^2}\;c'\!\left(\frac{\bar{V}-b}{r^*}\right) = k'(r^*).
+\end{equation}
+Moreover, the suitor wins (i.e., chooses $(x,r)$ that induces $C$) if and only if
+\begin{equation}\label{eq:participation}
+U - c\!\left(\frac{\bar{V}-b}{r^*}\right) - k(r^*) \;\ge\; 0.
+\end{equation}
+\end{proposition}
+
+Equation~\eqref{eq:foc} equates the marginal benefit of raising contingency (reducing the required intensity) to the marginal cost of implementing contingency.
+Condition~\eqref{eq:participation} is the suitor's participation constraint: winning must yield non-negative surplus.
+
+\subsection{Closed-Form Example}
+
+To make the comparative statics transparent, consider the following functional forms:
+
+\[
+c(x)=x
+\quad\text{and}\quad
+k(r)=\frac{\kappa}{2}\,r^2
+\quad (\kappa>0).
+\]
+
+Then, for $b<\bar{V}$, the suitor's objective becomes
+\[
+U - \frac{\bar{V}-b}{r} - \frac{\kappa}{2}\,r^2.
+\]
+The interior optimum solves $(\bar{V}-b)/r^2=\kappa\, r$, yielding
+\begin{equation}\label{eq:rclosed}
+r^*=\min\left\{1,\;\left(\frac{\bar{V}-b}{\kappa}\right)^{1/3}\right\},
+\qquad
+x^*=\frac{\bar{V}-b}{r^*}.
+\end{equation}
+
+\begin{corollary}[Comparative Statics]\label{cor:comparative}
+In the closed-form example above, holding $U$ fixed:
+\begin{enumerate}[leftmargin=0.75in]
+\item A larger competition gap $(\bar{V}-b)$ increases $r^*$ (weakly) and increases the required intensity $x^*$.
+\item A higher contingency cost $\kappa$ decreases $r^*$ and increases $x^*$.
+\item The suitor wins if and only if $U \ge (\bar{V}-b)/r^* + (\kappa/2)(r^*)^2$.
+\end{enumerate}
+\end{corollary}
+
+\begin{remark}[How the Simp Can Win]
+A high-attachment suitor (large $U$) can finance the required investment, but \emph{only} if he shifts that investment toward high-$r$ instruments.
+If his investment remains fully appropriable ($r\approx 0$), the target's incentive constraint cannot be satisfied unless $b\ge \bar{V}$.
+Thus, ``winning'' requires transforming unconditional giving into contingent, relationship-specific value creation.
+\end{remark}
+
+% =========================================================
+\section{A Repeated-Game Foundation: Relational Contracts and Credible Exit}
+% =========================================================
+
+The reduced-form parameter $r$ can be microfounded by dynamic incentives.
+We consider an infinite-horizon repeated interaction in which exclusivity is sustained via continuation values rather than enforceable contracts.
+
+\subsection{Stage Game}
+
+Time is indexed by $t=0,1,2,\dots$.
+At the start of each period, if the relationship is ``active,'' the suitor chooses effort $x\ge 0$ (for simplicity, held constant over time).
+The target then chooses whether to remain exclusive (cooperate) or to deviate (pursue outside options).
+
+Per-period payoffs are as follows:
+\begin{itemize}[leftmargin=0.75in]
+\item \emph{Cooperation:} $T$ receives $b+x$ and $S$ receives $U - c(x)$.
+\item \emph{Deviation:} $T$ receives $\bar{V}+x$ in the deviation period (she retains the contemporaneous appropriable benefit), and the relationship may terminate depending on the suitor's response.
+\end{itemize}
+
+\noindent Both players discount future payoffs by $\delta\in(0,1)$.
+
+\subsection{Relational Enforcement and Effective Contingency}
+
+Consider a grim-trigger strategy profile:
+the suitor provides effort $x$ as long as the target has never deviated; after any deviation, the suitor permanently exits and effort drops to zero.
+The target cooperates as long as the suitor provides $x$; otherwise she takes the outside option.
+
+The target's one-shot gain from deviating is $\bar{V}-b$ (since she enjoys the current $x$ regardless).
+The future loss from deviating is the discounted stream of relationship surplus $(b+x)-\bar{V}$.
+
+\begin{proposition}[Sustaining Exclusivity via Continuation Values]\label{prop:repeated}
+Under grim-trigger strategies, exclusivity is incentive compatible for the target if and only if
+\begin{equation}\label{eq:repeatedIC}
+b + \delta\, x \;\ge\; \bar{V}.
+\end{equation}
+\end{proposition}
+
+Condition~\eqref{eq:repeatedIC} mirrors the one-shot constraint $b+r\,x\ge \bar{V}$ with \emph{effective contingency} $r=\delta$.
+Intuitively, only the continuation value (scaled by $\delta$) is non-appropriable: the target can appropriate current-period effort by deviating after receiving it, but forfeits all future relationship surplus.
+
+\subsection{Credibility of Exit: When the Simp Cannot Punish}
+
+Relational contracts also require that punishment be credible.
+If the suitor is so attached that he cannot credibly exit after deviation, the target anticipates no future loss and will deviate with impunity.
+
+We model credibility by endowing the suitor with an outside option $W\ge 0$ available after exit.
+If he stays after deviation, suppose his continuation payoff is $\underline{U}$ (e.g., reflecting jealousy, distrust, or diminished relationship quality).
+Exit is credible if and only if $W \ge \underline{U}$.
+
+\begin{proposition}[Credible Exit as a Discipline Device]\label{prop:credibility}
+Suppose that after a deviation the suitor chooses whether to exit (receiving $W$ in perpetuity) or stay (receiving $\underline{U}$ in perpetuity), with $W$ and $\underline{U}$ common knowledge.
+Then:
+\begin{enumerate}[leftmargin=0.75in]
+\item If $W < \underline{U}$, the suitor's threat to exit is not credible; in any Markov-perfect equilibrium the target deviates and exclusivity cannot be sustained unless $b\ge \bar{V}$.
+\item If $W \ge \underline{U}$, exit is credible; exclusivity can be sustained whenever condition~\eqref{eq:repeatedIC} holds.
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}[The Strategic Self-Improvement Channel]
+Proposition~\ref{prop:credibility} formalizes a common intuition: a suitor who lacks viable outside options cannot credibly enforce reciprocity.
+In the model, increasing $W$ (through social networks, alternative matches, self-respect, or higher opportunity cost of time) strengthens the relational contract by making exit credible.
+This does not require hostility or manipulation; it is simply the credibility condition for any self-enforcing agreement.
+\end{remark}
+
+% =========================================================
+\section{Extensions}\label{sec:extensions}
+% =========================================================
+
+\subsection{Competition Among Multiple Suitors}
+
+Let there be $n\ge 1$ alternative suitors generating the target's outside option $\bar{V}(n)$, increasing in $n$.
+Then the competition gap $\bar{V}(n)-b$ rises with $n$, tightening both the one-shot constraint $b+r\,x\ge \bar{V}(n)$ and the repeated-game condition $b+\delta\, x\ge \bar{V}(n)$.
+Thus, greater competition requires either (i)~higher contingency (stronger reciprocity norms or boundaries), (ii)~greater intensity, or (iii)~higher patience to magnify continuation values.
+
+\subsection{Heterogeneity in Reciprocity Norms}
+
+One interpretation of $r$ is technological: it measures what fraction of courtship value is inherently relationship-specific.
+Another interpretation is behavioral: some targets experience a psychological cost from appropriating attention without reciprocation, effectively raising $r$ endogenously.
+If such ``reciprocity norms'' vary across targets, then the same suitor action may be persuasive for one target but strategically irrelevant for another.
+This heterogeneity predicts selection effects: unconditional giving appears to ``work'' in subpopulations with high endogenous~$r$, but fails systematically where appropriation is socially or psychologically inexpensive.
+
+\subsection{Private Information and Screening}
+
+Suppose the target's outside option $\bar{V}$ is private information, drawn from a distribution $F$ known to the suitor.
+The suitor can offer a menu of courtship packages $\{(x_i,r_i)\}_{i}$ (e.g., a sequence of escalating contingent investments).
+Under standard single-crossing conditions, an optimal menu is monotone: targets with higher outside options require higher effective contingent value $r\,x$ to commit.
+In practice, this corresponds to \emph{gradual escalation of relationship-specific investments} rather than large unconditional gifts offered early, thereby reducing losses when $\bar{V}$ turns out to be high.
+
+\subsection{Platform Design: Escrow and Verifiable Reciprocity}
+
+In many markets, escrow mechanisms transform noncontractible exchange into contractible exchange.
+Analogously, dating platforms could implement verifiable reciprocity features---for example, mutual exclusivity flags, transparent effort commitments, or time-bounded escalation protocols.
+In the model, such tools effectively lower $k(r)$ (the cost of implementing contingency) and raise the feasible level of~$r$, thereby expanding the parameter region in which mutually beneficial relationships form and reducing wasteful appropriable transfers.
+
+% =========================================================
+\section{Welfare and Discussion}
+% =========================================================
+
+We briefly discuss efficiency implications.
+Let total surplus from an exclusive relationship (absent courtship effort) be $U+b$, and total surplus from the outside option be $0+\bar{V}$ (normalizing the suitor's outside payoff to zero).
+The first-best matching rule is: form the relationship if and only if $U+b \ge \bar{V}$.
+
+However, Proposition~\ref{prop:irrelevance} shows that even when $U+b \ge \bar{V}$, the relationship may fail to form if the target's private incentive constraint is not satisfied.
+This constitutes an inefficiency driven by appropriability and the absence of enforceable commitment.
+Contingency tools (higher $r$) and relational contracting (higher $\delta$ coupled with credible exit) move outcomes closer to first best by aligning the target's private incentives with social surplus.
+
+\begin{remark}[A Normative Reading]
+The model does \emph{not} prescribe ``invest more to win.''
+Rather, it yields three prescriptions:
+(i)~unconditional giving is strategically weak under appropriability;
+(ii)~winning requires shifting effort toward mutually meaningful, relationship-specific value and clear reciprocity; and
+(iii)~credible exit (i.e., maintaining boundaries) is central to any self-enforcing relationship contract.
+\end{remark}
+
+% =========================================================
+\section{Conclusion}
+% =========================================================
+
+This paper modeled ``simping'' as an appropriability and commitment problem in courtship.
+In a one-shot setting, fully appropriable gifts cannot change partner choice: the recipient can accept them and still pursue the superior outside option.
+Winning requires contingency---courtship inputs whose value is realized primarily under mutual commitment.
+We characterized optimal intensity and contingency, showed how competition and contingency costs shape equilibrium outcomes, and provided a repeated-game foundation in which patience and credible exit endogenize effective contingency.
+
+A key implication is conceptual: a high-attachment suitor can prevail not by increasing unconditional transfers, but by reallocating effort toward relationship-specific value and credible reciprocity.
+This reallocation is both strategically necessary (to satisfy the target's incentive-compatibility constraint) and normatively preferable (to avoid inefficient overinvestment and exploitation).
+
+Several directions merit future investigation.
+First, the model could be enriched with two-sided investment, where both parties make relationship-specific contributions.
+Second, introducing learning about match quality would allow the analysis to address the optimal timing and pacing of courtship escalation.
+Third, empirical work using data from dating platforms could test the comparative-statics predictions regarding contingency, competition, and relationship formation rates.
+
+\FloatBarrier
+
+% =========================================================
+% REFERENCES
+% =========================================================
+
+% 【唤醒蓝三角】：此时 DeclareRobustCommand 获得生命！
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
+
+% \nocite{*}
+\bibliographystyle{aea}
+\bibliography{AERub_Simp}
+
+\appendix
+\section{Appendix: Proofs}
+
+% \subsection{Proof of Proposition \ref{prop:irrelevance}}
+% Fix $r=0$. For any $x \ge 0$, $u_T(R) - u_T(C) = \bar{V} - b$. If $b < \bar{V}$, rejection is a dominant strategy. Anticipating this, $S$ chooses $x=0$ to minimize costs. \qed
+
+% \subsection{Proof of Proposition \ref{prop:optcontingency}}
+% The suitor chooses minimal $x = (\bar{V}-b)/r$ to induce $C$. Substituting into the objective and taking FOC with respect to $r$ yields the result via the chain rule. \qed
+
+\subsection{Proof of Proposition \ref{prop:irrelevance}}
+
+Fix $r=0$.
+For any $x\ge 0$, the target's payoff from committing is $b+x$ and from rejecting is $\bar{V}+(1-0)x=\bar{V}+x$.
+Thus $u_T(R)-u_T(C)=\bar{V}-b$, which is independent of $x$.
+If $b<\bar{V}$, then $u_T(R)>u_T(C)$ for all $x$, so the target rejects regardless of $x$.
+Anticipating rejection, the suitor's payoff is $u_S(R)=-c(x)-k(0)=-c(x)$, which is maximized at $x=0$ since $c$ is increasing and $c(0)=0$.
+\hfill $\blacksquare$
+
+\subsection{Proof of Proposition \ref{prop:optcontingency}}
+
+Assume $b<\bar{V}$.
+For any $r>0$, the target commits if and only if $x\ge (\bar{V}-b)/r$ by condition~\eqref{eq:commitconstraint}.
+Since the suitor's payoff under commitment is $U-c(x)-k(r)$ and $c$ is increasing, the suitor optimally chooses the minimal $x(r)=(\bar{V}-b)/r$.
+Substituting yields the optimization problem~\eqref{eq:rsproblem}.
+If the optimum is interior, the first-order condition is
+\[
+-\frac{d}{dr}\,c\!\left(\frac{\bar{V}-b}{r}\right) - k'(r) = 0.
+\]
+By the chain rule,
+\[
+\frac{d}{dr}\,c\!\left(\frac{\bar{V}-b}{r}\right)
+=
+c'\!\left(\frac{\bar{V}-b}{r}\right)\cdot\left(-\frac{\bar{V}-b}{r^2}\right).
+\]
+Substituting and rearranging gives equation~\eqref{eq:foc}.
+Finally, the suitor chooses to induce commitment (rather than abstaining) only if his equilibrium payoff is non-negative, yielding condition~\eqref{eq:participation}.
+\hfill $\blacksquare$
+
+\subsection{Proof of Proposition \ref{prop:repeated}}
+
+Under perpetual cooperation, the target's discounted payoff is
+\[
+V_C = \sum_{t=0}^{\infty}\delta^t(b+x)=\frac{b+x}{1-\delta}.
+\]
+If the target deviates in the current period, she obtains $\bar{V}+x$ now (appropriating current effort) and then receives $\bar{V}$ in every subsequent period after the suitor exits:
+\[
+V_D = (\bar{V}+x)+\sum_{t=1}^{\infty}\delta^t\,\bar{V} = (\bar{V}+x)+\frac{\delta\,\bar{V}}{1-\delta}.
+\]
+Cooperation is incentive compatible if and only if $V_C\ge V_D$.
+Multiplying both sides by $(1-\delta)$ yields
+\[
+b+x \;\ge\; (1-\delta)(\bar{V}+x)+\delta\,\bar{V} \;=\; \bar{V} + (1-\delta)\,x,
+\]
+which simplifies to $b+\delta\, x\ge \bar{V}$.
+\hfill $\blacksquare$
+
+\subsection{Proof of Proposition \ref{prop:credibility}}
+
+\emph{Part 1.}
+If $W<\underline{U}$, then after any deviation the suitor strictly prefers staying to exiting, so the exit threat is not sequentially rational.
+Anticipating this, the target expects no loss of future relationship surplus from deviating; in the stage game she prefers $\bar{V}+x$ to $b+x$ whenever $b<\bar{V}$, so deviation occurs in every period.
+
+\emph{Part 2.}
+If $W\ge \underline{U}$, then exit is sequentially rational after deviation.
+Given that the suitor will exit following any deviation, the target's incentive constraint reduces to the standard relational condition derived in Proposition~\ref{prop:repeated}.
+\hfill $\blacksquare$
+
+\end{document}
