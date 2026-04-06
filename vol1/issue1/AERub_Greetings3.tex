@@ -1,39 +1,58 @@
 \documentclass[AER]{AEA}
 
-% --- 必须的宏包 ---
-\usepackage{amsmath, amssymb, mathtools}
+% --- Packages ---
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 \usepackage{bm}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{placeins} 
-\usepackage{natbib} 
-
-% --- 终极防伪：链接、绘图与字体设置 ---
-\usepackage{tikz}
+\usepackage{placeins}
+\usepackage{natbib}
+\usepackage{enumitem}
 \usepackage{url}
-\usepackage{xcolor} 
-\newcommand{\noopsort}[1]{} 
-\DeclareRobustCommand{\AERlink}[1]{} % 本篇不需要蓝三角，但保留宏防报错
 \usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\urlstyle{same}
+
+% 【修复】：给 blacksquare 加上数学模式符号 $ $
+\newcommand{\qed}{\nolinebreak\hfill\ensuremath{\blacksquare}\par}
+
+% --- 终极防伪与布尔开关 ---
+\newcommand{\noopsort}[1]{} 
+
+% 在正文全局中，让蓝三角隐身
+\DeclareRobustCommand{\AERlink}[1]{}
+
+% --- 定理环境 (AER标准：Proposition大写) ---
+\newtheorem{proposition}{PROPOSITION}
+\newtheorem{lemma}{LEMMA}
+\newtheorem{theorem}{THEOREM}
+\newtheorem{corollary}{COROLLARY}
+\newtheorem{definition}{DEFINITION}
+\newtheorem{remark}{REMARK}
 
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
 \draftSpacing{1.5}
 \setcounter{page}{26}
-
-\begin{document}
-
-% --- 封面信息 ---
-\title{Greeting Games: A Coordination Model of Chinese New Year$^\dagger$}
-\shortTitle{Greeting Games: A Coordination Model of CNY}
-
-\author{ChatGPT and Acto Ma$^*$}
-
-\date{}
 \pubMonth{February} 
 \pubYear{2026}
 \pubVolume{1}
 \pubIssue{1}
+
+\begin{document}
+
+% --- 封面信息 ---
+% 1. 标题与十字架脚注
+\title{Greeting Games: A Coordination Model of Chinese New Year$^\dagger$}
+\shortTitle{Greeting Games: A Coordination Model of CNY}
+
+% 2. 作者与星号脚注
+\author{ChatGPT and Acto Ma$^*$}
+\date{\today}
 
 \begin{abstract}
 Choosing when to greet relatives during Chinese New Year is not a purely private decision. Greeting too early can signal excessive free time; greeting too late can signal insufficient respect. Most people therefore wait, observe others, and then greet in a narrow time window, often accompanied by simultaneous notifications. We model greeting time as a finite-horizon coordination game in which envelope-related benefits decline with time, private psychological costs rise with time, and a quadratic ``standing out'' penalty depends on deviation from the group's average timing. We show that a symmetric same-day equilibrium exists when social pressure is sufficiently large, and we derive a simple deviation condition explaining why nobody wants to be the first mover. Comparative statics highlight how family size, digital greetings, and parental deadlines shift the equilibrium. We conclude with a policy recommendation: younger relatives should collude on a common date.
@@ -42,15 +61,19 @@ Choosing when to greet relatives during Chinese New Year is not a purely private
 
 \maketitle
 
-% 3. 终极底层注入：使用 makebox 保证星号、十字架和数字脚注等宽，实现 100% 像素级垂直对齐
-\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}ChatGPT: OpenAI (email: chatgpt52@\allowbreak openai.com); Ma: Whatever University (email: acto@\allowbreak whatever.edu). All calculations are done by AI. Ma handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}
-\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0101.F26B4BC656EB} to visit the article page for additional materials and author disclosure statements.}
+% 3. 脚注底层对齐黑魔法
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^*$}ChatGPT: OpenAI (email: chatgpt52@\allowbreak openai.com); Ma: Whatever University (email: acto@\allowbreak whatever.edu). All calculations are done by AI. Ma handles correspondence, but not necessarily responsibility. If anyone applies this model in real life and gets scolded or physically corrected by their parents, that outcome is entirely on them.}
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0101.F26B4BC656EB} to visit the article page for additional materials and author disclosure statements.}
 
-% 4. 绝对定位黑科技：在首页左上角强行“纹”上官方 NOI 标注
+% 【施法完毕】：恢复阿拉伯数字脚注
+\def\thefootnote{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+% 4. NOI 绝对定位纹身
 \begin{tikzpicture}[remember picture, overlay]
   \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
-    \textit{American Economic Rubbish} \textsl{2026, 1(1): 26--30} \\
-    \href{https://webofnothing.top/noi/10.N0/2026.A.0101.F26B4BC656EB}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0101.F26B4BC656EB}}
+    \textit{American Economic Rubbish 2026, 1(1): 26--30} \\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0101.F26B4BC656EB}{\textit{https://webofnothing.top/noi/10.N0/2026.A.0101.F26B4BC656EB}}
   };
 \end{tikzpicture}
 

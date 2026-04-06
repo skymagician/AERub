@@ -1,29 +1,48 @@
 \documentclass[AER]{AEA}
 
-% --- 必备宏包 ---
-\usepackage{amsmath, amssymb, mathtools}
+% --- Packages ---
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{bm}
 \usepackage{booktabs}
-\usepackage{natbib} % AEA standard bibliography package
+\usepackage{array}
+\usepackage{placeins}
+\usepackage{natbib}
+\usepackage{enumitem}
 \usepackage{url}
-\usepackage{xcolor} % 确保颜色宏包已加载
-\newcommand{\noopsort}[1]{} 
-% 【关键修改】：在导言区定义为空，这意味着在正文中调用时，它什么也不显示！
-\DeclareRobustCommand{\AERlink}[1]{}
 \usepackage[hidelinks]{hyperref}
-\usepackage{placeins} 
+\usepackage{xcolor}
 \usepackage{tikz}
+
 \usetikzlibrary{trees, calc, positioning, shapes}
+\urlstyle{same}
+
+% 【修复】：给 blacksquare 加上数学模式符号 $ $
+\newcommand{\qed}{\nolinebreak\hfill\ensuremath{\blacksquare}\par}
+
+% --- 终极防伪与布尔开关 ---
+\newcommand{\noopsort}[1]{} 
+
+% 在正文全局中，让蓝三角隐身
+\DeclareRobustCommand{\AERlink}[1]{}
+
+% --- 定理环境 (AER标准：Proposition大写) ---
+\newtheorem{proposition}{PROPOSITION}
+\newtheorem{lemma}{LEMMA}
+\newtheorem{theorem}{THEOREM}
+\newtheorem{corollary}{COROLLARY}
+\newtheorem{definition}{DEFINITION}
+\newtheorem{remark}{REMARK}
 
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
+\setcounter{page}{5}  % 接续上一篇页码
 \pubMonth{February} 
 \pubYear{2026}
 \pubVolume{1}
-\pubIssue{1}          % <--- 保持第 1 期
-\setcounter{page}{5}  % <--- 强制从第 5 页开始
-
-% 草稿行距
-\draftSpacing{1.5}
+\pubIssue{1}
 
 \begin{document}
 
@@ -32,9 +51,8 @@
 \title{The Nash Equilibrium of Spring Festival Gala: A Dynamic Game of Channel Switching and Family Harmony$^\dagger$}
 \shortTitle{Gala, Game Theory, and Phones}
 
-% 2. 硬编码星号 (*) 脚注，彻底抛弃 \thanks，防止缩进错误
+% 2. 作者与星号脚注
 \author{Gemini and Tachikoma$^*$}
-
 \date{\today}
 
 \begin{abstract}
@@ -44,15 +62,19 @@ The Spring Festival Gala (CCTV-1) acts as an exogenous common shock to Chinese h
 
 \maketitle
 
-% 3. 强行插入不带编号的专属脚注 (保证100%左侧像素级对齐)
-\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^*$}Gemini: Department of Artificial Intelligence, Google (email: gemini@google.com); Tachikoma: Department of Public Security Section 9, Niihama City (email: tachikoma@section9.go.jp). We acknowledge Major Kusanagi for not disconnecting our neural link during the simulation.}
-\let\thefootnote\relax\footnotetext{\makebox[1em][l]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0202.F7FD5443919F} to visit the article page for additional materials and author disclosure statements.}
+% 3. 脚注底层对齐黑魔法
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^*$}Gemini: Department of Artificial Intelligence, Google (email: gemini@google.com); Tachikoma: Department of Public Security Section 9, Niihama City (email: tachikoma@section9.go.jp). We acknowledge Major Kusanagi for not disconnecting our neural link during the simulation.}
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/2026.A.0202.F7FD5443919F} to visit the article page for additional materials and author disclosure statements.}
 
-% 4. 绝对定位黑科技：在首页左上角强行“纹”上官方 NOI 标注（纳米级拆解专属防伪码）
+% 【施法完毕】：恢复阿拉伯数字脚注
+\def\thefootnote{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+% 4. NOI 绝对定位纹身
 \begin{tikzpicture}[remember picture, overlay]
   \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
-    \textit{American Economic Rubbish} \textsl{2026, 1(1): 5--8} \\
-    \href{https://webofnothing.top/noi/10.N0/2026.A.0202.F7FD5443919F}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/2026.A.0202.F7FD5443919F}}
+    \textit{American Economic Rubbish 2026, 1(1): 5--8}\\
+    \href{https://webofnothing.top/noi/10.N0/2026.A.0202.F7FD5443919F}{\textit{https://webofnothing.top/noi/10.N0/2026.A.0202.F7FD5443919F}}
   };
 \end{tikzpicture}
 

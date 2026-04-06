@@ -2,14 +2,25 @@
 
 % --- Essential Packages ---
 \usepackage{amsmath, amssymb, mathtools}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{bm}
 \usepackage{natbib} % AEA standard bibliography package
 \usepackage{url}
-\usepackage{xcolor} % 确保颜色宏包已加载
-\newcommand{\noopsort}[1]{} 
-% 【关键修改】：在导言区定义为空，这意味着在正文中调用时，它什么也不显示！
-\DeclareRobustCommand{\AERlink}[1]{}
 \usepackage[hidelinks]{hyperref}
+\usepackage{xcolor} % 确保颜色宏包已加载
 \usepackage{tikz}
+
+\urlstyle{same}
+
+% 【修复】：给 blacksquare 加上数学模式符号 $ $
+\newcommand{\qed}{\nolinebreak\hfill\ensuremath{\blacksquare}\par}
+
+% --- 终极防伪与布尔开关 ---
+\newcommand{\noopsort}[1]{} 
+
+% 在正文全局中，让蓝三角隐身
+\DeclareRobustCommand{\AERlink}[1]{}
 
 % --- Theorem Environments ---
 % AEA class usually handles these, but we define them to ensure compatibility
@@ -23,7 +34,7 @@
 
 \begin{document}
 
-\setcounter{page}{10}
+\setcounter{page}{9}
 
 % ==========================================
 % Title and Author Information
@@ -51,14 +62,18 @@ The Champion inequality, proved by Chen Ping, is a cornerstone in winnology. It 
 \maketitle
 
 % 3. 连续两次强行注入！完全绕开底层队列！
-\let\thefootnote\relax\footnotetext{$^*$ Nguyen: School of Winnology, Vietnam Normal University (email: ketuguyen@vnu.edu.cn).}
-\let\thefootnote\relax\footnotetext{$^\dagger$ Go to \url{https://webofnothing.top/noi/10.N0/aer.202603.A.0404.0002} to visit the article page for additional materials and author disclosure statements.}
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^*$} Nguyen: School of Winnology, Vietnam Normal University (email: ketuguyen@vnu.edu.cn).}
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^\dagger$} Go to \url{https://webofnothing.top/noi/10.N0/aer.202603.A.0404.0002} to visit the article page for additional materials and author disclosure statements.}
 
-% 4. 在首页左上角强行“纹”上官方 NOI 标注（终极走火入魔版：连 URL 内部都进行字母和数字的字体混排！）
+% 【施法完毕】：恢复阿拉伯数字脚注
+\def\thefootnote{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+% 4. NOI 绝对定位纹身
 \begin{tikzpicture}[remember picture, overlay]
   \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
-    \textit{American Economic Rubbish} \textsl{2026, 1(2): 10--13} \\
-    \href{https://webofnothing.top/noi/10.N0/aer.202603.A.0404.0002}{\textit{https://webofnothing.top/noi/}\textsl{10.N0/}\textit{aer.}\textsl{202603.A.0404.0002}}
+    \textit{American Economic Rubbish 2026, 1(2): 9--11} \\
+    \href{https://webofnothing.top/noi/10.N0/aer.202603.A.0404.0002}{\textit{https://webofnothing.top/noi/10.N0/aer.202603.A.0404.0002}}
   };
 \end{tikzpicture}
 

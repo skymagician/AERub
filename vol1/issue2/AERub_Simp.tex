@@ -10,26 +10,21 @@
 \usepackage{placeins}
 \usepackage{natbib}
 \usepackage{enumitem}
-\usepackage{tikz}
 \usepackage{url}
+\usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
+\usepackage{tikz}
 
 \urlstyle{same}
 
-% 1. 先强行抹杀 AEA.cls 自带的 proof 环境
-% \let\proof\relax
-% \let\endproof\relax
-
-% 2. 然后再安全加载 amsthm
-% \usepackage{amsthm}
+% 【修复】：给 blacksquare 加上数学模式符号 $ $
+\newcommand{\qed}{\nolinebreak\hfill\ensuremath{\blacksquare}\par}
 
 % --- 终极防伪与布尔开关 ---
 \newcommand{\noopsort}[1]{} 
-% 【修复】：给 blacksquare 加上数学模式符号 $ $
-\newcommand{\qed}{\nolinebreak\hfill\ensuremath{\blacksquare}\par}
+
 % 在正文全局中，让蓝三角隐身
 \DeclareRobustCommand{\AERlink}[1]{}
-\usepackage[hidelinks]{hyperref}
 
 % --- 定理环境 (AER标准：Proposition大写) ---
 \newtheorem{proposition}{PROPOSITION}
@@ -42,7 +37,7 @@
 % --- 核心设置 ---
 \issueName{THE AMERICAN ECONOMIC RUBBISH}
 \draftSpacing{1.5}
-\setcounter{page}{25} % 接续上一篇页码
+\setcounter{page}{23} % 接续上一篇页码
 \pubMonth{April}
 \pubYear{2026}
 \pubVolume{1}
@@ -56,7 +51,7 @@
 
 % 2. 作者与星号脚注
 \author{Peter Price$^*$}
-\date{February 2026}
+\date{\today}
 
 \begin{abstract}
 This paper develops a theory of ``simping'' as a commitment and appropriability problem in courtship. A suitor (the ``simp'') supplies costly attention and favors that can be partially appropriated even when the target does not commit. In a one-shot game, unconditional courtship that is fully appropriable cannot change partner choice. We introduce a \textit{contingency technology} that shifts courtship from appropriable transfers toward relationship-specific investments whose benefits are realized only under mutual commitment. We characterize the optimal mix of intensity and contingency, and provide a repeated-game foundation in which relational contracts endogenize contingency via continuation values and credible exit. The analysis highlights an efficiency rationale for platform features that facilitate transparent reciprocity.
@@ -74,10 +69,10 @@ This paper develops a theory of ``simping'' as a commitment and appropriability 
 \def\thefootnote{\arabic{footnote}}
 \setcounter{footnote}{0}
 
-% 4. DOI 绝对定位纹身
+% 4. NOI 绝对定位纹身
 \begin{tikzpicture}[remember picture, overlay]
   \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
-    \textit{American Economic Rubbish 2026, 1(2): 25--35} \\
+    \textit{American Economic Rubbish 2026, 1(2): 23--33} \\
     \href{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0004}{\textit{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0004}}
   };
 \end{tikzpicture}
