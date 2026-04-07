@@ -1,0 +1,592 @@
+\documentclass[AER]{AEA}
+
+% --- Packages ---
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{placeins}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\urlstyle{same}
+
+\newcommand{\qed}{\nolinebreak\hfill\ensuremath{\blacksquare}\par}
+
+\newcommand{\noopsort}[1]{}
+
+\DeclareRobustCommand{\AERlink}[1]{}
+
+% --- 定理环境 (AER标准) ---
+\newtheorem{proposition}{PROPOSITION}
+\newtheorem{lemma}{LEMMA}
+\newtheorem{theorem}{THEOREM}
+\newtheorem{corollary}{COROLLARY}
+\newtheorem{definition}{DEFINITION}
+\newtheorem{remark}{REMARK}
+\newtheorem{assumption}{ASSUMPTION}
+
+% --- 核心设置 ---
+\issueName{THE AMERICAN ECONOMIC RUBBISH}
+\draftSpacing{1.5}
+\setcounter{page}{34}
+\pubMonth{April}
+\pubYear{2026}
+\pubVolume{1}
+\pubIssue{2}
+
+\begin{document}
+
+\title{Diminishing Marginal Returns to Devotion: A Relational-Contract and Contest Theory of ``Tiangou'' (Simping)$^\dagger$}
+\shortTitle{Diminishing Returns to Devotion}
+
+\author{Zhuoyuan Li$^*$}
+\date{February 2026}
+
+\begin{abstract}
+This paper develops a stylized theory of courtship effort in the attention economy,
+focusing on the empirical pattern that additional ``devotion''---messages, favors, and
+gifts---delivers sharply diminishing incremental reciprocation. We formalize this
+phenomenon using two complementary game-theoretic environments. First, we study a
+Bayesian acceptance game in which a receiver (the ``target'') has a private reciprocation
+cost and values devotion through a concave reciprocity technology, yielding a concave
+success probability for the suitor. Second, we extend to an $N$-suitor attention contest
+in which receivers allocate scarce attention across competing suitors. In both settings
+we characterize equilibrium effort, show that the marginal effect of additional devotion
+on reciprocation is decreasing, and identify conditions under which competition produces
+socially excessive devotion despite individually diminishing marginal returns. We then
+interpret the results as a theory of ``tiangou'' behavior---a suitor whose effective value of
+reciprocation is sufficiently high relative to outside options---and derive comparative
+statics, welfare implications, and platform-design predictions (e.g., message caps, gift
+taxation, and commitment devices).
+\noindent (\textit{JEL} C72, C73, D82, D86, L82, Z13)
+\end{abstract}
+
+\maketitle
+
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^*$}Li: School of Devotion, Tiangou University (email: tiangou@\allowbreak tu.edu.cn). I am grateful to all the ``targets'' who provided me with high-frequency exogenous shocks of non-reciprocation, which were essential for the empirical calibration of this model.}
+\let\thefootnote\relax\footnotetext{\noindent\makebox[0em][r]{$^\dagger$}Go to \url{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0005} to visit the article page for additional materials.}
+
+\def\thefootnote{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north west, align=left, font=\scriptsize] at ([xshift=2cm, yshift=-1.5cm]current page.north west) {
+    \textit{American Economic Rubbish 2026, 1(2): 34--44} \\
+    \href{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0005}{\textit{https://webofnothing.top/noi/10.N0/aer.202604.A.0101.0005}}
+  };
+\end{tikzpicture}
+
+% =========================================================
+% Introduction (unnumbered)
+% =========================================================
+
+Online interaction has made courtship increasingly resemble an attention market: time and
+responsiveness are scarce, while messages, favors, and gifts are abundant and scalable.
+A pervasive stylized fact in popular discourse is \textit{diminishing marginal
+reciprocation}: the first incremental unit of devotion (a thoughtful message, a small
+favor) may meaningfully increase the likelihood of a reply, while later increments produce
+much smaller changes in reciprocation. In Chinese internet vernacular this dynamic is
+often summarized by the term ``tiangou'' (literally ``licking dog''), referring to a
+suitor who repeatedly supplies devotion despite limited or delayed
+reciprocation.\footnote{We treat the term descriptively as a label for a strategic
+type---a high-valuation suitor in an attention game---and avoid any normative claim about
+individuals.}
+
+This paper offers a game-theoretic account of diminishing marginal reciprocation in
+courtship, consistent with modern economic theory. Our goal is not to moralize about
+relationship behavior, but to provide a clean microfoundation connecting (i) concave
+valuation of devotion by receivers, (ii) strategic reciprocation under private information
+and attention scarcity, and (iii) equilibrium overinvestment under competition. The theory
+also generates testable implications relevant to platforms that intermediate interaction
+(dating apps, livestream gifting, social messaging).
+
+Our paper is closely related to \citet{Price2026}, who develops an overlapping framework
+analyzing contingent courtship strategies and relational contracts in an ``affection
+economy.'' While Pan focuses on appropriable attention and the conditions under which
+contingent devotion is self-enforcing, we complement that analysis by formalizing the
+diminishing-returns structure of the reciprocity technology and characterizing rent
+dissipation in multi-suitor competition. Together, these analyses provide complementary
+foundations for a theory of strategic devotion in modern attention markets.
+
+\subsection*{Contributions}
+
+We make three contributions.
+
+\textit{First}, we introduce a minimal Bayesian acceptance game where a receiver has a
+private cost of reciprocation and values devotion through a \textit{concave reciprocity
+technology}. The suitor chooses effort anticipating acceptance. We characterize
+equilibrium effort and show that the marginal benefit of additional devotion is decreasing
+whenever the reciprocity technology is concave and costs are convex, generating an
+interior optimum even for very high valuations.
+
+\textit{Second}, we extend to a multi-suitor attention contest with a concave ``courtship
+score'' mapping effort into effective attractiveness. We derive the symmetric Nash
+equilibrium in pure strategies under standard conditions (including log-concavity of the
+score), and show that: (i) each suitor faces diminishing marginal returns, yet (ii)
+aggregate effort can rise with the number of competitors and dissipate surplus.
+
+\textit{Third}, we analyze welfare and platform design. Because devotion expenditures can
+resemble rent-seeking, private incentives may exceed social benefits. We identify
+policy-like interventions---message caps, gift taxes, attention quotas, and commitment
+tools---that can raise welfare by reducing dissipative competition without eliminating
+mutually beneficial matching.
+
+\subsection*{Roadmap}
+
+Section~1 reviews related literature. Section~2 presents the baseline acceptance game and
+establishes diminishing marginal returns and comparative statics. Section~3 studies the
+$N$-suitor contest and derives equilibrium effort and welfare. Section~4 discusses welfare
+and platform design. Section~5 offers extensions (heterogeneous types, signaling,
+habituation). Section~6 concludes. Proofs are in the Appendix.
+
+% =========================================================
+\section{Related Literature}
+% =========================================================
+
+Our analysis draws from several literatures.
+
+\textit{Simping, contingent courtship, and the affection economy.} Most closely related is
+\citet{Price2026}, who models courtship as a relational contract problem in which attention
+is ``appropriable'' and devotion is contingent on reciprocation. Pan establishes conditions
+under which contingent strategies are self-enforcing and characterizes the resulting
+equilibrium attention allocations. Our paper complements Pan's analysis by introducing a
+concave reciprocity technology that generates diminishing marginal returns, and by
+embedding single-receiver dynamics into an $N$-suitor contest to study rent dissipation
+and platform design.
+
+\textit{Contests and rent-seeking.} The multi-suitor model is closely related to
+Tullock-style contests and all-pay competition in which agents expend resources to win a
+prize \citep{Tullock1980, Konrad2009}. Diminishing returns in our setting are captured by
+a concave score function, connecting to contest success functions with decreasing
+effectiveness of effort.
+
+\textit{Bayesian games and acceptance decisions.} The baseline acceptance game resembles
+screening with private reservation values: a receiver accepts if the realized utility
+crosses a type-specific threshold. Our concave reciprocity technology plays the role of a
+diminishing marginal ``quality'' signal, related to classical signaling and screening
+frameworks \citep{Spence1973, Riley2001}.
+
+\textit{Repeated interaction and relational incentives.} While our baseline is static and
+our contest model is one-shot, the economic intuition is consistent with relational
+contracting: responsiveness can be a costly action used to incentivize costly supply
+\citep{BakerGibbonsMurphy2002, Levin2003}. In Section~5 we sketch a repeated-game
+microfoundation in which ``breadcrumbing'' can arise as an incentive scheme subject to
+limited commitment.
+
+\textit{Attention economy.} The notion that attention is scarce and valuable has long been
+emphasized in economics and organization theory \citep{Simon1971}. Our modeling choice to
+treat attention as a costly resource complements modern platform settings where attention
+allocation is mediated by design choices (limits, ranking, gating).
+
+% =========================================================
+\section{Baseline Model: The Acceptance Game}
+% =========================================================
+
+\subsection{Players, Timing, and Primitives}
+
+There are two players: a \textit{suitor} $S$ and a \textit{receiver} $R$.
+
+\paragraph{Timing.}
+\begin{enumerate}
+  \item $S$ chooses a devotion level (effort) $e \in \mathbb{R}_+$.
+  \item $R$ observes $e$ and chooses whether to reciprocate: $a \in \{0, 1\}$, where
+    $a = 1$ denotes reciprocation (reply/date/commitment) and $a = 0$ denotes
+    non-reciprocation.
+\end{enumerate}
+
+\paragraph{Receiver private information.} $R$ has a privately known reciprocation cost
+$k \in [0, \bar{k}]$ drawn from cdf $F$ with pdf $f$ continuous and strictly positive on
+$(0, \bar{k})$.
+
+\paragraph{Payoffs.} Suitor payoff:
+\begin{equation}
+  U_S(e, a) = aV - c(e),
+\end{equation}
+where $V > 0$ is $S$'s value of reciprocation and $c : \mathbb{R}_+ \to \mathbb{R}_+$ is
+continuously differentiable, strictly increasing, strictly convex, and $c(0) = 0$.
+
+Receiver payoff:
+\begin{equation}
+  U_R(e, a; k) = b(e) + a \cdot r(e) - ak.
+\end{equation}
+
+Here $b(e)$ captures benefits from devotion that accrue regardless of reciprocation
+(e.g., gifts, favors, attention received), with $b$ increasing and concave, $b(0) = 0$.
+The term $r(e)$ captures the \textit{incremental relational benefit} from reciprocating
+with this suitor (e.g., perceived care, compatibility, perceived quality), and is assumed
+increasing and concave with $r(0) = 0$. The key economic force is the concavity of
+$r(\cdot)$: additional devotion yields diminishing increments in the receiver's
+willingness to reciprocate. This concavity assumption parallels the ``appropriable
+attention'' framework in \citet{Price2026}, where sustained devotion raises a receiver's
+outside option at a decreasing rate.
+
+\paragraph{Equilibrium concept.} We study Perfect Bayesian Equilibrium (PBE). Since the
+receiver moves after observing $e$, the equilibrium reduces to a Bayes--Nash
+characterization with a cutoff strategy.
+
+\subsection{Receiver Best Response and the Cutoff Structure}
+
+Given $e$, the receiver chooses $a = 1$ if and only if
+\begin{equation}
+  b(e) + r(e) - k \geq b(e) \quad \iff \quad r(e) \geq k.
+\end{equation}
+Thus, the receiver reciprocates if and only if her cost is below the relational benefit.
+
+\begin{lemma}[Cutoff reciprocation]\label{lem:cutoff}
+  For any devotion level $e$, there exists a cutoff $k^*(e) = r(e)$ such that $R$
+  reciprocates if and only if $k \leq k^*(e)$. The suitor's success probability is
+  \begin{equation}
+    p(e) = \Pr(a = 1 \mid e) = F(r(e)).
+  \end{equation}
+\end{lemma}
+
+Lemma~\ref{lem:cutoff} implies that the suitor's expected payoff is
+\begin{equation}
+  \Pi(e) \equiv \mathbb{E}[U_S(e, a)] = VF(r(e)) - c(e).
+\end{equation}
+
+\subsection{Equilibrium Devotion and Diminishing Marginal Returns}
+
+We now establish existence, uniqueness, and the diminishing marginal returns property.
+
+\begin{assumption}[Regularity]\label{ass:regularity}
+  (i) $c$ is $C^2$, strictly convex, and $\lim_{e \to \infty} c'(e) = \infty$.\\
+  (ii) $r$ is $C^2$, strictly increasing, concave, and $\lim_{e \to \infty} r(e) = \bar{r} < \bar{k}$.\\
+  (iii) $F$ is $C^1$ and strictly increasing on $[0, \bar{k}]$.
+\end{assumption}
+
+Assumption~\ref{ass:regularity}(ii) allows for a natural saturation: even extreme
+devotion cannot guarantee reciprocation if the receiver's cost is high enough.
+
+\begin{proposition}[Existence and characterization]\label{prop:existence}
+  Under Assumption~\ref{ass:regularity}, the suitor's problem~(5) has a (possibly
+  boundary) maximizer $e^* \in [0, \infty)$. If an interior solution exists, it satisfies
+  the first-order condition
+  \begin{equation}
+    Vf(r(e^*))r'(e^*) = c'(e^*),
+  \end{equation}
+  and the second-order condition holds whenever $r''(e) \leq 0$ and $c''(e) > 0$.
+\end{proposition}
+
+\paragraph{Diminishing marginal returns.} Define the \textit{marginal reciprocation
+value} (MRV) of devotion:
+\begin{equation}
+  \mathrm{MRV}(e) \equiv \frac{d}{de}\bigl[VF(r(e))\bigr] = Vf(r(e))r'(e).
+\end{equation}
+
+\begin{proposition}[Diminishing marginal returns to devotion]\label{prop:dmr}
+  Suppose $f$ is weakly decreasing on the relevant range and $r$ is concave. Then
+  $\mathrm{MRV}(e)$ is weakly decreasing in $e$. In particular, each additional unit of
+  devotion raises the success probability by less than the previous one:
+  \begin{equation}
+    \frac{d^2}{de^2} F(r(e)) \leq 0.
+  \end{equation}
+\end{proposition}
+
+Proposition~\ref{prop:dmr} formalizes the idea that ``the first message matters most'':
+concavity of $r$ (and mild regularity of $F$) implies concavity of the success
+probability. The suitor may still choose high devotion if $V$ is large, but the
+incremental impact declines with effort.
+
+\subsection{Comparative Statics and the ``Tiangou'' Type}
+
+We interpret tiangou as a suitor with sufficiently high effective value of reciprocation
+relative to costs and outside options. To make this formal, allow the suitor to have an
+outside option $\bar{u} \geq 0$ (e.g., alternative matches, leisure). Then the objective
+becomes
+\begin{equation}
+  \Pi(e) = VF(r(e)) - c(e) - \bar{u},
+\end{equation}
+and the suitor participates only if $\max_{e \geq 0} \Pi(e) \geq 0$.
+
+\begin{proposition}[Value and outside-option effects]\label{prop:compstat}
+  Assume an interior optimum and conditions for the implicit function theorem. Then:
+  \begin{enumerate}
+    \item $e^*$ is increasing in $V$.
+    \item $e^*$ is decreasing in any parameter that shifts $c$ upward (higher marginal
+      cost).
+    \item A higher outside option $\bar{u}$ weakly reduces devotion through the
+      participation constraint; when participation binds, the equilibrium may jump from
+      positive $e^*$ to $0$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{remark}[A minimal definition of ``tiangou'']\label{rem:tiangou}
+  In this baseline model, a tiangou type can be defined as a parameter region in which
+  $V$ is high (or $\bar{u}$ low) such that the chosen devotion $e^*$ is large even though
+  $\mathrm{MRV}(e)$ is already small. Formally, fix a threshold $\varepsilon > 0$ and
+  define $e_\varepsilon$ by $\mathrm{MRV}(e_\varepsilon) = \varepsilon$. A suitor is
+  tiangou-like if $e^* \geq e_\varepsilon$, i.e., he invests in the region of low
+  marginal reciprocation value. This parallels \citet{Price2026}'s notion of ``excess
+  simping''---continued devotion beyond the relational optimum.
+\end{remark}
+
+% =========================================================
+\section{Competition: An $N$-Suitor Attention Contest}
+% =========================================================
+
+We now introduce competition among multiple suitors. This captures environments with
+thick markets (social media, dating apps) where receivers face many potential suitors and
+attention is allocated competitively.
+
+\subsection{Environment}
+
+There is one receiver $R$ and $N \geq 2$ suitors indexed by $i \in \{1, \ldots, N\}$.
+Suitors simultaneously choose devotion $e_i \geq 0$ at cost $c(e_i)$.
+
+The receiver allocates a single unit of reciprocation (e.g., chooses one suitor to
+date/respond to). We model the receiver's choice probabilistically via a contest success
+function:
+\begin{equation}
+  \Pr(i \text{ wins}) = \frac{s(e_i)}{\sum_{j=1}^N s(e_j)},
+\end{equation}
+where $s : \mathbb{R}_+ \to \mathbb{R}_+$ is the \textit{courtship score}, increasing
+with $s(0) = 0$. We assume $s$ is concave to capture diminishing marginal effectiveness
+of additional devotion. The ``prize'' for winning is reciprocation value $V$.
+
+Suitor $i$'s expected payoff is
+\begin{equation}
+  \pi_i(e_i, e_{-i}) = V \cdot \frac{s(e_i)}{\sum_{j=1}^N s(e_j)} - c(e_i).
+\end{equation}
+
+\subsection{Symmetric Equilibrium}
+
+We focus on symmetric pure-strategy Nash equilibrium.
+
+\begin{assumption}[Contest regularity]\label{ass:contest}
+  $s$ is $C^2$, strictly increasing, concave, and log-concave (i.e., $\log s(\cdot)$ is
+  concave). $c$ is as in Assumption~\ref{ass:regularity}(i).
+\end{assumption}
+
+\begin{proposition}[Symmetric equilibrium in the concave-score contest]\label{prop:contest}
+  Under Assumption~\ref{ass:contest}, there exists a symmetric pure-strategy Nash
+  equilibrium $e^c$ satisfying
+  \begin{equation}
+    c'(e^c) = V \cdot \frac{N-1}{N^2} \cdot \frac{s'(e^c)}{s(e^c)}.
+  \end{equation}
+  Moreover, if $c'$ is strictly increasing and $\frac{s'}{s}$ is strictly decreasing
+  (implied by log-concavity), the symmetric equilibrium is unique.
+\end{proposition}
+
+Equation~(12) makes the economics transparent: marginal cost equals marginal benefit,
+where marginal benefit is proportional to the \textit{semi-elasticity} $s'/s$. Concavity
+and log-concavity imply $s'/s$ declines with effort, producing diminishing marginal
+returns.
+
+\begin{corollary}[Competition and the ``arms race'']\label{cor:arms}
+  In the symmetric equilibrium, individual effort $e^c$ is increasing in $V$ and (under
+  mild additional conditions) can increase with $N$ for relevant ranges. Even when $s$ is
+  concave (diminishing effectiveness), adding competitors can raise aggregate devotion
+  $Ne^c$ and dissipate surplus.
+\end{corollary}
+
+\subsection{A Canonical Functional-Form Example}
+
+To connect with standard contest theory and yield closed forms, suppose
+\begin{equation}
+  s(e) = e^\gamma, \quad \gamma \in (0, 1),
+\end{equation}
+capturing diminishing effectiveness ($\gamma < 1$), and
+\begin{equation}
+  c(e) = \frac{\alpha}{2} e^2, \quad \alpha > 0.
+\end{equation}
+Then $s'/s = \gamma/e$, and (12) gives
+\begin{equation}
+  \alpha e^c = V \cdot \frac{N-1}{N^2} \cdot \frac{\gamma}{e^c}
+  \quad\implies\quad
+  e^c = \sqrt{V \cdot \frac{N-1}{N^2} \cdot \frac{\gamma}{\alpha}}.
+\end{equation}
+The equilibrium effort increases in $V$ and $\gamma$, decreases in $\alpha$, and exhibits
+the usual contest effect in $N$.
+
+\begin{remark}[Diminishing marginal returns in the contest]\label{rem:contest_dmr}
+  Even though each suitor's marginal win probability from additional devotion is decreasing
+  in $e_i$ (due to $\gamma < 1$ and the denominator effect), equilibrium effort can still
+  be substantial when the prize $V$ is large or the market is competitive.
+\end{remark}
+
+% =========================================================
+\section{Welfare and Platform Design}
+% =========================================================
+
+Diminishing marginal returns at the individual level does not guarantee efficiency. In
+contests, private incentives ignore the negative externality imposed on rivals through the
+denominator $\sum_j s(e_j)$.
+
+\subsection{A Simple Welfare Benchmark}
+
+Define social welfare as the sum of suitor utilities plus the receiver's realized matching
+utility net of devotion costs. To avoid imposing a particular ``true'' benefit of
+devotion, we consider two polar benchmarks.
+
+\paragraph{Benchmark A (pure rent-seeking).} Devotion is purely wasteful from a social
+perspective (e.g., excessive messaging time, monetary gifts with no true surplus), so
+welfare is
+\begin{equation}
+  W_A = V - \sum_{i=1}^N c(e_i),
+\end{equation}
+since exactly one suitor obtains value $V$ in expectation. In the symmetric equilibrium,
+expected welfare is
+\begin{equation}
+  \mathbb{E}[W_A] = V - Nc(e^c),
+\end{equation}
+which can decrease in $N$ and $V$ for ranges where $Nc(e^c)$ grows rapidly.
+
+\paragraph{Benchmark B (productive devotion).} Devotion creates real surplus for the
+receiver, captured by $B\!\left(\sum_i e_i\right)$ with $B$ concave, so
+\begin{equation}
+  W_B = V + B\!\left(\sum_{i=1}^N e_i\right) - \sum_{i=1}^N c(e_i).
+\end{equation}
+Concavity of $B$ implies diminishing social marginal returns, so competition can again
+overshoot the welfare-optimal total devotion.
+
+\subsection{Design Implications}
+
+We interpret platform features as instruments that change $c(\cdot)$, cap $e$, or alter
+the contest success function.
+
+\begin{proposition}[Message caps and gift taxes]\label{prop:policy}
+  Consider the contest model with welfare $W_A$ (pure rent-seeking). Any policy that
+  weakly reduces equilibrium effort (e.g., a cap $e_i \leq \bar{e}$ below $e^c$, or a
+  per-unit tax that increases marginal cost) weakly increases welfare. Under $W_B$
+  (productive but concave benefits), such policies increase welfare whenever equilibrium
+  total devotion exceeds the social optimum characterized by $B'(\cdot) = c'(\cdot)$ at
+  symmetry.
+\end{proposition}
+
+\begin{remark}[Interpretation for tiangou dynamics]\label{rem:platform}
+  In many platform settings, the suitor's private $V$ may be amplified by design (streaks,
+  read receipts, intermittent rewards), effectively increasing $V$ and shifting equilibrium
+  toward high devotion in low-marginal-return regions. Conversely, strengthening outside
+  options (improved discovery, fair ranking) can reduce tiangou-like overinvestment. These
+  platform-design prescriptions complement the commitment-device analysis in
+  \citet{Price2026}.
+\end{remark}
+
+% =========================================================
+\section{Extensions}
+% =========================================================
+
+This section sketches several extensions that preserve the core diminishing-marginal-returns result.
+
+\subsection{Heterogeneous Suitors and Signaling}
+
+Let suitor type $\theta \in \{H, L\}$ affect cost: $c(e; \theta)$ with $c_e(e; H) <
+c_e(e; L)$. If the receiver values type directly (e.g., compatibility), then devotion can
+serve as a costly signal \citep{Spence1973}. Concavity of $r(e)$ implies that extremely
+high devotion becomes progressively less informative at the margin, which can compress
+separation and lead to pooling or partial pooling equilibria. A testable implication is
+that beyond a certain point, additional gifts or messages do little to update beliefs.
+
+\subsection{Habituation and Attention Inflation}
+
+Introduce a state $h$ capturing habituation (reference dependence): $r(e; h)$ is
+increasing and concave in $e$ but decreasing in $h$, and $h$ evolves as $h' = \rho h +
+(1 - \rho)e$. Then the marginal effectiveness $r_e(e; h)$ declines both in $e$ and in
+past devotion. This produces ``attention inflation'': sustaining the same acceptance
+probability requires increasing devotion over time, consistent with observed escalation
+in some relationships.
+
+\subsection{Relational Contracting and ``Breadcrumbing''}
+
+A repeated-game version can endogenize intermittent reciprocation. Let the receiver choose
+attention intensity $a_t \in [0, 1]$ at convex cost $\phi(a_t)$, while receiving concave
+benefit $b(e_t)$. A self-enforcing arrangement can implement $a_t$ as an incentive
+instrument for $e_t$. Under standard relational-contract constraints
+\citep{BakerGibbonsMurphy2002, Levin2003}, promised attention is bounded by the
+receiver's temptation to deviate, and this bound inherits concavity from $b(\cdot)$,
+again generating diminishing marginal returns: higher devotion can be rewarded, but only
+at a decreasing rate. This mechanism is closely related to the contingent-courtship
+equilibria characterized in \citet{Price2026}.
+
+\subsection{Empirical Implications}
+
+Although the paper is theoretical, it yields qualitative predictions.
+\begin{enumerate}
+  \item \textbf{Concavity of response rates.} Holding match fixed, the probability of
+    receiving a reply (or the intensity of reciprocation) should be concave in
+    messages/gifts when receiver valuation is concave.
+  \item \textbf{Competition amplifies waste.} In thicker markets (larger $N$), individual
+    devotion may rise and total devotion rises more, even as marginal returns decline.
+  \item \textbf{Outside options reduce overinvestment.} Improvements that raise $\bar{u}$
+    (better matching, better visibility) reduce devotion and reduce tiangou-like behavior.
+  \item \textbf{Platform features shift $V$.} Intermittent reinforcement (streaks, read
+    receipts, partial replies) increases the perceived prize $V$, increasing equilibrium
+    devotion and pushing behavior into low-marginal-return regions.
+\end{enumerate}
+
+% =========================================================
+\section{Conclusion}
+% =========================================================
+
+This paper provides a game-theoretic framework for understanding diminishing marginal
+reciprocation in courtship devotion and its relationship to ``tiangou'' behavior. In a
+Bayesian acceptance game, concavity of a receiver's reciprocity technology yields a
+concave success probability and declining marginal returns to devotion. In a competitive
+attention contest, each suitor still faces diminishing returns, yet competition can
+produce high aggregate devotion and welfare losses analogous to rent dissipation. These
+results suggest a coherent economic interpretation of widely discussed social phenomena
+and highlight the role of platform design in shaping incentives in attention markets. Our
+analysis complements the contingent-courtship and relational-contract approach of
+\citet{Price2026}, and taken together these frameworks offer a more complete theory of
+strategic devotion in the modern affection economy.
+
+% =========================================================
+% REFERENCES
+% =========================================================
+\DeclareRobustCommand{\AERlink}[1]{\makebox[0pt][r]{\href{#1}{\color{blue}$\blacktriangleright$}\hspace{0.3em}}}
+
+\bibliographystyle{aea}
+\bibliography{AERub_tiangou2}
+
+% =========================================================
+\appendix
+\section{Proofs}
+% =========================================================
+
+\subsection{Proof of Proposition~\ref{prop:existence}}
+
+Existence follows from continuity of $\Pi(e)$, $\Pi(0) = VF(0) \geq 0$, and the fact
+that $c(e) \to \infty$ as $e \to \infty$ while $VF(r(e)) \leq VF(\bar{r}) < \infty$, so
+$\Pi(e) \to -\infty$ as $e \to \infty$. Hence $\Pi$ attains a maximum on $[0, \infty)$.
+For an interior maximizer, the FOC~(6) holds. Under concavity of $r$ and strict convexity
+of $c$, the SOC is satisfied under standard curvature conditions. \qed
+
+\subsection{Proof of Proposition~\ref{prop:dmr}}
+
+Differentiate $F(r(e))$:
+\[
+  \frac{d}{de} F(r(e)) = f(r(e))\, r'(e).
+\]
+Differentiate again:
+\[
+  \frac{d^2}{de^2} F(r(e)) = f'(r(e))\,(r'(e))^2 + f(r(e))\, r''(e).
+\]
+If $f'(\cdot) \leq 0$ on the relevant range, $r'(e) \geq 0$, and $r''(e) \leq 0$
+(concavity), then both terms are weakly negative, so the second derivative is $\leq 0$.
+Multiplying by $V > 0$ preserves the inequality, so MRV is weakly decreasing. \qed
+
+\subsection{Proof of Proposition~\ref{prop:contest}}
+
+Fix $e_{-i}$ and consider $\pi_i(e_i, e_{-i})$ in~(11). For interior $e_i$, the FOC is
+\[
+  V \cdot \frac{s'(e_i)\,\sum_{j \neq i} s(e_j)}{\left(\sum_{j=1}^N s(e_j)\right)^2}
+  = c'(e_i).
+\]
+In a symmetric equilibrium with $e_j = e$ for all $j \neq i$ and $e_i = e$, we have
+$\sum_{j \neq i} s(e) = (N-1)s(e)$ and $\sum_{j=1}^N s(e) = Ns(e)$, yielding
+\[
+  c'(e) = V \cdot \frac{s'(e)(N-1)s(e)}{(Ns(e))^2}
+         = V \cdot \frac{N-1}{N^2} \cdot \frac{s'(e)}{s(e)}.
+\]
+Existence follows from standard arguments using continuity and boundary behavior;
+uniqueness follows if $c'$ is increasing and $s'/s$ is decreasing (log-concavity). \qed
+
+\end{document}
