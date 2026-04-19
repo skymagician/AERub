@@ -17,7 +17,7 @@
 中文稿件采用《经济研究》排版格式：
 * **依赖模板**：`chinese-erj.cls`
 * **编译引擎**：必须使用 `xelatex` $\to$ `biber` $\to$ `xelatex` $\to$ `xelatex`。
-* **套用范例**：请参考本仓库的中文稿件代码（如`AERub_lemon.tex` + `AERub_lemon.bib`）。
+* **套用范例**：请参考本仓库的中文稿件代码（如`AERub_tiangou.tex` + `AERub_tiangou.bib`）。
 
 ### 🇺🇸 英文模板 (English Template)
 英文稿件采用美国经济学会（AEA）排版格式：

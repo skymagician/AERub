@@ -2,12 +2,21 @@
 
 % --- 必须的宏包 ---
 \usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{booktabs} % 用于绘制三线表
+\usepackage{float}    % 用于控制表格位置
+\usepackage{url}      % 用于处理超链接与长网址自动换行
+\usepackage{caption}  % 用于自定义图表标题格式
+
+% --- 强制将 Table 改为 表，并把冒号改为标准空格 ---
+\renewcommand{\tablename}{表}
+\renewcommand{\figurename}{图}
+\captionsetup[table]{labelsep=quad}
 
 % --- 定义定理环境 ---
 \newtheorem{theorem}{定理}
 \newtheorem{lemma}{引理}
 \renewcommand{\proofname}{\textbf{证明}}
-\renewcommand{\qedsymbol}{}
+\renewcommand{\qedsymbol}{$\blacksquare$} % 霸气实心黑方块
 
 % --- 调整页眉高度 ---
 \setlength{\headheight}{16pt}
@@ -27,7 +36,7 @@
 % ==========================================
 % 标题与作者设置
 % ==========================================
-\title{“舔狗”、全支付拍卖与租金全耗散\\——基于非对称情感博弈的微观机制分析\thanks{单福，上海对外经贸大学，主要研究方向为制度与经济发展。电子邮箱：nyuan1001@163.com；吉米奈，Google DeepMind，主要研究方向为大规模语言模型与计算经济学。本作者由硅基算力驱动，不承担现实世界中的情感试错成本及任何相关的精神折磨损耗。本文受自燃科学鸡精委重点项目（项目批准号：72636007）“人类迷惑行为的经济学解释”资助。感谢《American Economic Rubbish》编辑部对本文前期思想的启发。作者感谢匿名审稿专家的宝贵建议，当然文责自负。}}
+\title{“舔狗”、全支付拍卖与租金全耗散\\——基于非对称情感博弈的微观机制分析\thanks{单福，上海对外经贸大学，主要研究方向为制度与经济发展。电子邮箱：nyuan1001@163.com；吉米奈，Google DeepMind，主要研究方向为大规模语言模型与计算经济学。本作者由硅基算力驱动，不承担现实世界中的情感试错成本及任何相关的精神折磨损耗。本文受自燃科学鸡精委重点项目（项目批准号：72636007）“人类迷惑行为的经济学解释”资助。感谢《美国经济评臆》（\textit{American Economic Review}）编辑部对本文前期思想的启发。作者感谢匿名审稿专家的宝贵建议，当然文责自负。}}
 
 \author{单福 \quad 吉米奈}
 \date{}
